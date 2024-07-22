@@ -1,0 +1,839 @@
+{% extends 'Doctorcomman.html' %}  
+
+{% block section %} 
+    
+    <div class="app-wrapper">
+		{% include 'message.html' %}
+	    
+	    <div class="app-content pt-3 p-md-3 p-lg-4">
+
+			
+		    <div class="container-xl">
+			    
+			    <h1 class="app-page-title">My Account</h1>
+				<form method="post">
+					{% csrf_token %}
+                <div class="row gy-4" >
+
+
+	                <div class="col-12 col-lg-6">
+		                <div class="app-card app-card-account shadow-sm d-flex flex-column align-items-start">
+						    <div class="app-card-header p-3 border-bottom-0">
+						        <div class="row align-items-center gx-3">
+							        <div class="col-auto">
+								        <div class="app-icon-holder">
+										    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M10 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6 5c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+</svg>
+									    </div><!--//icon-holder-->
+						                
+							        </div><!--//col-->
+							        <div class="col-auto">
+								        <h4 class="app-card-title">Profile</h4>
+							        </div><!--//col-->
+									<div class="col-auto">
+                                
+										
+										<!-- {% for fm in stu_form %}
+										<form method="post">
+												{%csrf_token%}
+												{{fm.errors}}<br>
+												{{fm.label}}:{{fm}}<br>
+											{%endfor%}
+										</form> -->
+									</div>
+						        </div><!--//row-->
+						    </div><!--//app-card-header-->
+						    <div class="app-card-body px-4 w-100">
+							    <div class="item border-bottom py-3">
+								    <div class="row justify-content-between align-items-center">
+									    <div class="col-auto profile-pic-div">
+										    <div class="item-label mb-2"><strong>Photo</strong></div>
+										    <div class="item-data"><img id="photo" class="profile-image" src="/media/{{id.doctor_profile}}" alt=""></div>
+									    </div><!--//col-->
+									    <div class="col text-end">
+											<input id="file" name="patient_prof" type="file" id="file" hidden>
+										    <!-- <label for="file" id="uploadBtn" class="btn-sm app-btn-secondary" >Change</label> -->
+									    </div><!--//col-->
+								    </div><!--//row-->
+							    </div><!--//item-->
+							    <div class="item border-bottom py-3">
+								    <div class="row justify-content-between align-items-center">
+									    <div class="col-auto">
+										    <div class="item-label"><strong>Name</strong></div>
+									        <div class="item-data">{{id.doctor_name}}</div>
+									        <div class="item-data"><input id="NameInput" name="name" type="text" value="{{id.doctor_name}}" hidden ></div>
+									    </div><!--//col-->
+									    <div class="col text-end">
+										    <a role="button" onclick="Name()" id="NameBtn" class="btn-sm app-btn-secondary" >Change</a>
+									    </div><!--//col-->
+								    </div><!--//row-->
+							    </div><!--//item-->
+							    <div class="item border-bottom py-3">
+								    <div class="row justify-content-between align-items-center">
+									    <div class="col-auto">
+										    <div class="item-label"><strong>DOB</strong></div>
+									        <div class="item-data">{{id.doctor_DOB}}</div>
+											<div class="item-data"><input id="DOBInput" type="date" name="DOB" value="{{id.doctor_DOB}}" hidden></div>
+									    </div><!--//col-->
+									    <div class="col text-end">
+										    <a role="button" onclick="DOB()" id="DOBBtn" class="btn-sm app-btn-secondary" >Change</a>
+									    </div><!--//col-->
+								    </div><!--//row-->
+							    </div><!--//item-->
+							    <div class="item border-bottom py-3">
+								    <div class="row justify-content-between align-items-center">
+									    <div class="col-auto">
+										    <div class="item-label"><strong>Gender</strong></div>
+									        <div class="item-data">
+												{{id.doctor_sex}}
+									        </div>
+											<div class="item-data"><input id="GenderInput" name="sex" type="text" value={{id.doctor_sex}} hidden></div>
+									    </div><!--//col-->
+									    <div class="col text-end">
+										    <a role="button" onclick="Gender()" id="GenderBtn" class="btn-sm app-btn-secondary" >Change</a>
+									    </div><!--//col-->
+								    </div><!--//row-->
+							    </div><!--//item-->
+							    <div class="item border-bottom py-3">
+								    <div class="row justify-content-between align-items-center">
+									    <div class="col-auto">
+										    <div class="item-label"><strong>Category</strong></div>
+									        <div class="item-data">
+										        {{id.doctor_profession.specilaity_category}}
+									        </div>
+											<div class="item-data">
+												<select id="BloodInput" class="form-select" name="category" aria-label="Default select example" hidden >
+													{% for i in sp %}
+													<option value="{{i.index}}">{{i.specilaity_category}}</option>
+													{% endfor %}
+												  </select>
+											</div>
+									    </div><!--//col-->
+									    <div class="col text-end">
+										    <a role="button" onclick="Blood_group()" id="BloodBtn" class="btn-sm app-btn-secondary" >Change</a>
+									    </div><!--//col-->
+								    </div><!--//row-->
+							    </div><!--//item-->
+								<div class="item border-bottom py-3">
+								    <div class="row justify-content-between align-items-center">
+									    <div class="col-auto">
+										    <div class="item-label"><strong>Email </strong></div>
+									        <div class="item-data">{{id.email}}</div>
+											<div class="item-data"><input id="emailInput" name="email" type="email" value={{id.email}} hidden></div>
+									    </div><!--//col-->
+									    <div class="col text-end">
+										    <a role="button" onclick="email()" id="emailBtn" class="btn-sm app-btn-secondary" >Change</a>
+									    </div><!--//col-->
+								    </div><!--//row-->
+							    </div><!--//item-->
+								<div class="item border-bottom py-3">
+								    <div class="row justify-content-between align-items-center">
+									    <div class="col-auto">
+										    <div class="item-label"><strong>About </strong></div>
+									        <div class="item-data">{{id.doctor_self}}</div>
+											<div class="item-data"><textarea id="doctor_self" name="doctor_self" type="text" hidden>{{id.doctor_self}}</textarea></div>
+									    </div><!--//col-->
+									    <div class="col text-end">
+										    <a role="button" onclick="doctor_self()" id="emailBtn" class="btn-sm app-btn-secondary" >Change</a>
+									    </div><!--//col-->
+								    </div><!--//row-->
+							    </div><!--//item-->
+							    
+						    </div><!--//app-card-body-->
+						    <div class="app-card-footer p-4 mt-auto">
+							   <button class="btn app-btn-secondary" type="submit">Update Profile</button>
+						    </div><!--//app-card-footer-->
+						   
+						</div><!--//app-card-->
+	                </div><!--//col-->
+
+
+	                <div class="col-12 col-lg-6">
+		                <div class="app-card app-card-account shadow-sm d-flex flex-column align-items-start">
+						    <div class="app-card-header p-3 border-bottom-0">
+						        <div class="row align-items-center gx-3">
+							        <div class="col-auto">
+								        <div class="app-icon-holder">
+										    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-sliders" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3h9.05zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8h2.05zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1h9.05z"/>
+</svg>
+									    </div><!--//icon-holder-->
+						                
+							        </div><!--//col-->
+							        <div class="col-auto">
+								        <h4 class="app-card-title">Preferences</h4>
+							        </div><!--//col-->
+						        </div><!--//row-->
+						    </div><!--//app-card-header-->
+						    <div class="app-card-body px-4 w-100">
+							    
+							    <div class="item border-bottom py-3">
+								    <div class="row justify-content-between align-items-center">
+									    <div class="col-auto">
+										    <div class="item-label"><strong>Mobile</strong></div>
+									        <div class="item-data">{{id.mobile}}</div>
+                                            <div class="item-data"><input id="MobileInput" name="mob" type="tel" value="{{id.mobile}}" hidden></div>
+									    </div><!--//col-->
+									    <div class="col text-end">
+										    <a role="button" onclick="Mobile()" id="MobileBtn" class="btn-sm app-btn-secondary" >Change</a>
+									    </div><!--//col-->
+								    </div><!--//row-->
+							    </div><!--//item-->
+							    <div class="item border-bottom py-3">
+								    <div class="row justify-content-between align-items-center">
+									    <div class="col-auto">
+										    <div class="item-label"><strong>Address</strong></div>
+									        <div class="item-data">{{id.doctor_address}}</div>
+                                            <div class="item-data"><input id="doctor_addressInput" name="Add" type="text" value="{{id.doctor_address}}" hidden></div>
+									    </div><!--//col-->
+									    <div class="col text-end">
+										    <a role="button" onclick="doctor_address()" id="doctor_addressBtn" class="btn-sm app-btn-secondary" >Change</a>
+									    </div><!--//col-->
+								    </div><!--//row-->
+							    </div><!--//item-->
+							    <div class="item border-bottom py-3">
+								    <div class="row justify-content-between align-items-center">
+									    <div class="col-auto">
+										    <div class="item-label"><strong>City</strong></div>
+									        <div class="item-data">{{id.doctor_city}}</div>
+                                            <div class="item-data"><input id="doctor_cityInput" name="City" type="text" value="{{id.doctor_city}}" hidden></div>
+									    </div><!--//col-->
+									    <div class="col text-end">
+										    <a role="button" onclick="doctor_city()" id="doctor_cityBtn" class="btn-sm app-btn-secondary" >Change</a>
+									    </div><!--//col-->
+								    </div><!--//row-->
+							    </div><!--//item-->
+							    <div class="item border-bottom py-3">
+								    <div class="row justify-content-between align-items-center">
+									    <div class="col-auto">
+										    <div class="item-label"><strong>State</strong></div>
+									        <div class="item-data">{{id.doctor_state}}</div>
+                                            <div class="item-data"><input id="doctor_stateInput" name="state" type="text" value="{{id.doctor_state}}" hidden></div>
+									    </div><!--//col-->
+									    <div class="col text-end">
+										    <a role="button" onclick="doctor_state()" id="doctor_stateBtn" class="btn-sm app-btn-secondary" >Change</a>
+									    </div><!--//col-->
+								    </div><!--//row-->
+							    </div><!--//item-->
+							    <div class="item border-bottom py-3">
+								    <div class="row justify-content-between align-items-center">
+									    <div class="col-auto">
+										    <div class="item-label"><strong>Pincode</strong></div>
+									        <div class="item-data">{{id.doctor_zip}}</div>
+                                            <div class="item-data"><input id="doctor_zipInput" name="Zip" type="text" value="{{id.doctor_zip}}" hidden></div>
+									    </div><!--//col-->
+									    <div class="col text-end">
+										    <a role="button" onclick="doctor_zip()" id="doctor_zipBtn" class="btn-sm app-btn-secondary" >Change</a>
+									    </div><!--//col-->
+								    </div><!--//row-->
+							    </div><!--//item-->
+							    <div class="item border-bottom py-3">
+								    <div class="row justify-content-between align-items-center">
+									    <div class="col-auto">
+										    <div class="item-label"><strong>Area</strong></div>
+									        <div class="item-data">{{id.doctor_area}}</div>
+                                            <div class="item-data"><input id="doctor_areaInput" name="area" type="text" value="{{id.doctor_area}}" hidden></div>
+									    </div><!--//col-->
+									    <div class="col text-end">
+										    <a role="button" onclick="doctor_area()" id="doctor_zipBtn" class="btn-sm app-btn-secondary" >Change</a>
+									    </div><!--//col-->
+								    </div><!--//row-->
+							    </div><!--//item-->
+							    <div class="item border-bottom py-3">
+								    <div class="row justify-content-between align-items-center">
+									    <div class="col-auto">
+										    <div class="item-label"><strong>Country</strong></div>
+									        <div class="item-data">{{id.doctor_country}}</div>
+                                            <div class="item-data"><input id="doctor_countryInput" name="country" type="text" value="{{id.doctor_country}}" hidden></div>
+									    </div><!--//col-->
+									    <div class="col text-end">
+										    <a role="button" onclick="doctor_country()" id="doctor_countryBtn" class="btn-sm app-btn-secondary" >Change</a>
+									    </div><!--//col-->
+								    </div><!--//row-->
+							    </div><!--//item-->
+						    </div><!--//app-card-body-->
+						    <!-- <div class="app-card-footer p-4 mt-auto">
+							   <button class="btn app-btn-secondary" type="submit">Manage Preferences</button>
+						    </div>//app-card-footer -->
+						   
+						</div><!--//app-card-->
+	                </div><!--//col-->
+
+
+
+                    <div class="col-12 col-lg-6">
+						<form method="post">
+		                <div class="app-card app-card-account shadow-sm d-flex flex-column align-items-start">
+						    <div class="app-card-header p-3 border-bottom-0">
+						        <div class="row align-items-center gx-3">
+							        <div class="col-auto">
+								        <div class="app-icon-holder">
+										    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hospital" viewBox="0 0 16 16">
+                                                <path d="M8.5 5.034v1.1l.953-.55.5.867L9 7l.953.55-.5.866-.953-.55v1.1h-1v-1.1l-.953.55-.5-.866L7 7l-.953-.55.5-.866.953.55v-1.1h1ZM13.25 9a.25.25 0 0 0-.25.25v.5c0 .138.112.25.25.25h.5a.25.25 0 0 0 .25-.25v-.5a.25.25 0 0 0-.25-.25h-.5ZM13 11.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5Zm.25 1.75a.25.25 0 0 0-.25.25v.5c0 .138.112.25.25.25h.5a.25.25 0 0 0 .25-.25v-.5a.25.25 0 0 0-.25-.25h-.5Zm-11-4a.25.25 0 0 0-.25.25v.5c0 .138.112.25.25.25h.5A.25.25 0 0 0 3 9.75v-.5A.25.25 0 0 0 2.75 9h-.5Zm0 2a.25.25 0 0 0-.25.25v.5c0 .138.112.25.25.25h.5a.25.25 0 0 0 .25-.25v-.5a.25.25 0 0 0-.25-.25h-.5ZM2 13.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5Z"/>
+                                                <path d="M5 1a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1a1 1 0 0 1 1 1v4h3a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h3V3a1 1 0 0 1 1-1V1Zm2 14h2v-3H7v3Zm3 0h1V3H5v12h1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3Zm0-14H6v1h4V1Zm2 7v7h3V8h-3Zm-8 7V8H1v7h3Z"/>
+                                              </svg>
+									    </div><!--//icon-holder-->
+						                
+							        </div><!--//col-->
+							        <div class="col-auto">
+								        <h4 class="app-card-title">Hospital/Clinic</h4>
+							        </div><!--//col-->
+						        </div><!--//row-->
+						    </div><!--//app-card-header-->
+						    <div class="app-card-body px-4 w-100">
+							    <div class="item border-bottom py-3">
+								    <div class="row justify-content-between align-items-center">
+									    <div class="col-auto">
+										    <div class="item-label"><strong>Hosptial Name</strong></div>
+									        <div class="item-data">{{id.hosptial_name}}</div>
+									        <div class="item-data"><input id="hosptial_nameInput" name="Hname" type="text" value="{{id.hosptial_name}}" hidden ></div>
+									    </div><!--//col-->
+									    <div class="col text-end">
+										    <a role="button" onclick="hosptial_name()" id="hosptial_nameBtn" class="btn-sm app-btn-secondary" >Change</a>
+									    </div><!--//col-->
+								    </div><!--//row-->
+							    </div><!--//item-->
+							    <div class="item border-bottom py-3">
+								    <div class="row justify-content-between align-items-center">
+									    <div class="col-auto">
+										    <div class="item-label"><strong>Hospital Address</strong></div>
+									        <div class="item-data">{{id.hospital_address}}</div>
+											<div class="item-data"><input id="hospital_addressInput" name="Haddress" type="text" value="{{id.hospital_address}}" hidden></div>
+									    </div><!--//col-->
+									    <div class="col text-end">
+										    <a role="button" onclick="hospital_address()" id="hospital_addressBtn" class="btn-sm app-btn-secondary" >Change</a>
+									    </div><!--//col-->
+								    </div><!--//row-->
+							    </div><!--//item-->
+							    <div class="item border-bottom py-3">
+								    <div class="row justify-content-between align-items-center">
+									    <div class="col-auto">
+										    <div class="item-label"><strong>Hosptial Area</strong></div>
+									        <div class="item-data">
+												{{id.hosptial_area}}
+									        </div>
+											<div class="item-data"><input id="hosptial_areaInput" name="Harea" type="text" value="{{id.hosptial_area}}" hidden></div>
+									    </div><!--//col-->
+									    <div class="col text-end">
+										    <a role="button" onclick="hosptial_area()" id="hosptial_areaBtn" class="btn-sm app-btn-secondary" >Change</a>
+									    </div><!--//col-->
+								    </div><!--//row-->
+							    </div><!--//item-->
+							    <div class="item border-bottom py-3">
+								    <div class="row justify-content-between align-items-center">
+									    <div class="col-auto">
+										    <div class="item-label"><strong>Hosptial City</strong></div>
+									        <div class="item-data">
+										        {{id.hosptial_city}}
+									        </div>
+											<div class="item-data"><input id="hosptial_cityInput" name="Hcity" type="text" value="{{id.hosptial_city}}" hidden></div>
+									    </div><!--//col-->
+									    <div class="col text-end">
+										    <a role="button" onclick="hosptial_city()" id="hosptial_cityBtn" class="btn-sm app-btn-secondary" >Change</a>
+									    </div><!--//col-->
+								    </div><!--//row-->
+							    </div><!--//item-->
+								<div class="item border-bottom py-3">
+								    <div class="row justify-content-between align-items-center">
+									    <div class="col-auto">
+										    <div class="item-label"><strong>Hosptial State</strong></div>
+									        <div class="item-data">{{id.hosptial_state}}</div>
+											<div class="item-data"><input id="hosptial_stateInput" name="Hstate" type="text" value="{{id.hosptial_state}}" hidden></div>
+									    </div><!--//col-->
+									    <div class="col text-end">
+										    <a role="button" onclick="hosptial_state()" id="hosptial_stateBtn" class="btn-sm app-btn-secondary" >Change</a>
+									    </div><!--//col-->
+								    </div><!--//row-->
+							    </div><!--//item-->
+								<div class="item border-bottom py-3">
+								    <div class="row justify-content-between align-items-center">
+									    <div class="col-auto">
+										    <div class="item-label"><strong>Hosptial Country</strong></div>
+									        <div class="item-data">{{id.hosptial_country}}</div>
+											<div class="item-data"><input id="hosptial_countryInput" name="Hcountry" type="text" value="{{id.hosptial_country}}" hidden></div>
+									    </div><!--//col-->
+									    <div class="col text-end">
+										    <a role="button" onclick="hosptial_country()" id="hosptial_countryBtn" class="btn-sm app-btn-secondary" >Change</a>
+									    </div><!--//col-->
+								    </div><!--//row-->
+							    </div><!--//item-->
+								<div class="item border-bottom py-3">
+								    <div class="row justify-content-between align-items-center">
+									    <div class="col-auto">
+										    <div class="item-label"><strong>Hosptial Pincode</strong></div>
+									        <div class="item-data">{{id.hosptial_pincode}}</div>
+											<div class="item-data"><input id="hosptial_pincodeInput" name="Hzip" type="text" value="{{id.hosptial_pincode}}" hidden></div>
+									    </div><!--//col-->
+									    <div class="col text-end">
+										    <a role="button" onclick="hosptial_pincode()" id="hosptial_pincodelBtn" class="btn-sm app-btn-secondary" >Change</a>
+									    </div><!--//col-->
+								    </div><!--//row-->
+							    </div><!--//item-->
+								<div class="item border-bottom py-3">
+								    <div class="row justify-content-between align-items-center">
+									    <div class="col-auto">
+										    <div class="item-label"><strong>Hosptial Telephone</strong></div>
+									        <div class="item-data">{{id.hosptial_telephone}}</div>
+											<div class="item-data"><input id="hosptial_telephoneInput" name="tel" type="tel" value="{{id.hosptial_telephone}}" hidden></div>
+									    </div><!--//col-->
+									    <div class="col text-end">
+										    <a role="button" onclick="hosptial_telephone()" id="hosptial_telephoneBtn" class="btn-sm app-btn-secondary" >Change</a>
+									    </div><!--//col-->
+								    </div><!--//row-->
+							    </div><!--//item-->
+							    
+						    </div><!--//app-card-body-->
+						    <!-- <div class="app-card-footer p-4 mt-auto">
+							   <button class="btn app-btn-secondary" type="submit">Update Hospital/Clinic</button>
+						    </div>//app-card-footer -->
+						   
+						</div><!--//app-card-->
+	                </div><!--//col-->
+
+
+                    <div class="col-12 col-lg-6">
+						<form method="post">
+		                <div class="app-card app-card-account shadow-sm d-flex flex-column align-items-start">
+						    <div class="app-card-header p-3 border-bottom-0">
+						        <div class="row align-items-center gx-3">
+							        <div class="col-auto">
+								        <div class="app-icon-holder">
+										    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
+                                                <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                                                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                                              </svg>
+									    </div><!--//icon-holder-->
+						                
+							        </div><!--//col-->
+							        <div class="col-auto">
+								        <h4 class="app-card-title">Appointment Schedule</h4>
+							        </div><!--//col-->
+						        </div><!--//row-->
+						    </div><!--//app-card-header-->
+						    <div class="app-card-body px-4 w-100">
+							    <div class="item border-bottom py-3">
+								    <div class="row justify-content-between align-items-center">
+									    <div class="col-auto">
+										    <div class="item-label"><strong>Advance Appointment</strong></div>
+									        <div class="item-data">{{id.advance_appointment}}</div>
+									        <div class="item-data"><input id="advance_appointmentInput" name="advance" type="text" value="{{id.advance_appointment}}" hidden ></div>
+									    </div><!--//col-->
+									    <div class="col text-end">
+										    <a role="button" onclick="advance_appointment()" id="advance_appointmentBtn" class="btn-sm app-btn-secondary" >Change</a>
+									    </div><!--//col-->
+								    </div><!--//row-->
+							    </div><!--//item-->
+                                <div class="item border-bottom py-3">
+								    <div class="row justify-content-between align-items-center">
+									    <div class="col-auto">
+										    <div class="item-label"><strong>doctor_fee</strong></div>
+									        <div class="item-data">
+												{{id.doctor_fee}}
+									        </div>
+											<div class="item-data"><input id="doctor_feeInput"  name="fee" type="text" value="{{id.doctor_fee}}" hidden></div>
+									    </div><!--//col-->
+									    <div class="col text-end">
+										    <a role="button" onclick="doctor_fee()" id="doctor_feeBtn" class="btn-sm app-btn-secondary" >Change</a>
+									    </div><!--//col-->
+								    </div><!--//row-->
+							    </div><!--//item-->
+							    <div class="item border-bottom py-3">
+								    <div class="row justify-content-between align-items-center">
+									    <div class="col-auto">
+										    <div class="item-label"><strong>Time Slots</strong></div>
+									        <div class="item-data">{{id.time_Slots}}</div>
+											<div class="item-data"><textarea style="width: 500px; height: 100px;" id="time_SlotsInput" name="slot" type="text"  hidden> "{{id.time_Slots}}" </textarea></div>
+									    </div><!--//col-->
+									    <div class="col text-end">
+										    <a role="button" onclick="time_Slots()" id="time_SlotsBtn" class="btn-sm app-btn-secondary" >Change</a>
+									    </div><!--//col-->
+								    </div><!--//row-->
+							    </div><!--//item-->
+							    
+							      
+						    </div><!--//app-card-body-->
+						    <!-- <div class="app-card-footer p-4 mt-auto">
+							   <button class="btn app-btn-secondary" type="submit">Update Appointment Schedule</button>
+						    </div>//app-card-footer -->
+						   
+						</div><!--//app-card-->
+						
+	                </div><!--//col-->
+
+
+
+
+
+
+
+	                <div class="col-12 col-lg-6">
+		                <div class="app-card app-card-account shadow-sm d-flex flex-column align-items-start">
+						    <div class="app-card-header p-3 border-bottom-0">
+						        <div class="row align-items-center gx-3">
+							        <div class="col-auto">
+								        <div class="app-icon-holder">
+										    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
+                                                <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+                                              </svg>
+									    </div><!--//icon-holder-->
+						                
+							        </div><!--//col-->
+							        <div class="col-auto">
+								        <h4 class="app-card-title">Qualification</h4>
+							        </div><!--//col-->
+						        </div><!--//row-->
+						    </div><!--//app-card-header-->
+						    <div class="app-card-body px-4 w-100">
+							    
+							    <div class="item border-bottom py-3">
+								    <div class="row justify-content-between align-items-center">
+									    <div class="col-auto">
+										    <div class="item-label"><strong>Qualification</strong></div>
+									        <div class="item-data">{{id.doctor_qualifcation}}</div>
+                                            <div class="item-data"><input id="doctor_QualiInput" name="doctor_qualifcation" type="text" value="{{id.doctor_qualifcation}}" hidden ></div>
+									    </div><!--//col-->
+									    <div class="col text-end">
+										    <a role="button" onclick="doctor_quali()" id="doctor_QaliBtn" class="btn-sm app-btn-secondary" >Change</a>
+									    </div><!--//col-->
+								    </div><!--//row-->
+							    </div><!--//item-->
+							    <div class="item border-bottom py-3">
+								    <div class="row justify-content-between align-items-center">
+									    <div class="col-auto">
+										    <div class="item-label"><strong>College</strong></div>
+									        <div class="item-data">{{id.doctor_college}}</div>
+                                            <div class="item-data"><input id="doctor_collegeInput" name="Clg" type="text" value="{{id.doctor_college}}" hidden ></div>
+									    </div><!--//col-->
+									    <div class="col text-end">
+										    <a role="button" onclick="doctor_college()" id="doctor_collegeBtn" class="btn-sm app-btn-secondary" >Change</a>
+									    </div><!--//col-->
+								    </div><!--//row-->
+							    </div><!--//item-->
+
+							    <div class="item border-bottom py-3">
+								    <div class="row justify-content-between align-items-center">
+									    <div class="col-auto">
+										    <div class="item-label"><strong>Year Of Compilation</strong></div>
+									        <div class="item-data">{{id.year_of_compilation}}</div>
+                                            <div class="item-data"><input id="year_of_compilationInput" name="year" type="text" value="{{id.year_of_compilation}}" hidden > </div>
+									    </div><!--//col-->
+									    <div class="col text-end">
+										    <a role="button" onclick="year_of_compilation()" id="year_of_compilationBtn" class="btn-sm app-btn-secondary" >Change</a>
+									    </div><!--//col-->
+								    </div><!--//row-->
+							    </div><!--//item-->
+							    <div class="item border-bottom py-3">
+								    <div class="row justify-content-between align-items-center">
+									    <div class="col-auto">
+										    <div class="item-label"><strong>Experience</strong></div>
+									        <div class="item-data">{{id.Experience}}</div>
+                                            <div class="item-data"><input id="ExperienceInput" name="Experience" type="text" value="{{id.Experience}}" hidden ></div>
+									    </div><!--//col-->
+									    <div class="col text-end">
+										    <a role="button" onclick="Experience()" id="ExperienceBtn" class="btn-sm app-btn-secondary" >Change</a>
+									    </div><!--//col-->
+								    </div><!--//row-->
+							    </div><!--//item-->
+							    <div class="item border-bottom py-3">
+								    <div class="row justify-content-between align-items-center">
+									    <div class="col-auto">
+										    <div class="item-label"><strong>Doctor Awards</strong></div>
+									        <div class="item-data">{{id.doctor_Awards}}</div>
+                                            <div class="item-data"><input id="doctor_AwardsInput" name="award" type="text" value="{{id.doctor_Awards}}" hidden ></div>
+									    </div><!--//col-->
+									    <div class="col text-end">
+										    <a role="button" onclick="doctor_Awards()" id="doctor_AwardsBtn" class="btn-sm app-btn-secondary" >Change</a>
+									    </div><!--//col-->
+								    </div><!--//row-->
+							    </div><!--//item-->
+							    <div class="item border-bottom py-3">
+								    <div class="row justify-content-between align-items-center">
+									    <div class="col-auto">
+										    <div class="item-label"><strong>Doctor Awards Year</strong></div>
+									        <div class="item-data">{{id.doctor_Awards_year}}</div>
+                                            <div class="item-data"><input id="doctor_Awards_yearInput" name="awardYear" type="text" value="{{id.doctor_Awards_year}}" hidden  ></div>
+									    </div><!--//col-->
+									    <div class="col text-end">
+										    <a role="button" onclick="doctor_Awards_year()" id="doctor_Awards_yearBtn" class="btn-sm app-btn-secondary" >Change</a>
+									    </div><!--//col-->
+								    </div><!--//row-->
+							    </div><!--//item-->
+							    <div class="item border-bottom py-3">
+								    <div class="row justify-content-between align-items-center">
+									    <div class="col-auto">
+										    <div class="item-label"><strong>Doctor Certificate</strong></div>
+									        <div class="item-data">{{id.doctor_certificate}}</div>
+                                            <div class="item-data"><input id="doctor_certificateInput" type="file" value="{{id.doctor_certificate}}" hidden ></div>
+									    </div><!--//col-->
+									    <div class="col text-end">
+										    <a role="button" onclick="doctor_certificate()" id="doctor_certificateBtn" class="btn-sm app-btn-secondary" >Change</a>
+									    </div><!--//col-->
+								    </div><!--//row-->
+							    </div><!--//item-->
+							    
+						    </div><!--//app-card-body-->
+						    
+						    <!-- <div class="app-card-footer p-4 mt-auto">
+							   <button class="btn app-btn-secondary" type="submit">Update Qualification</button>
+						    </div>//app-card-footer -->
+						   
+						</div><!--//app-card-->
+	                </div>
+
+
+
+
+
+	                <div class="col-12 col-lg-6">
+		                <div class="app-card app-card-account shadow-sm d-flex flex-column align-items-start">
+						    <div class="app-card-header p-3 border-bottom-0">
+						        <div class="row align-items-center gx-3">
+							        <div class="col-auto">
+								        <div class="app-icon-holder">
+										    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shield-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M5.443 1.991a60.17 60.17 0 0 0-2.725.802.454.454 0 0 0-.315.366C1.87 7.056 3.1 9.9 4.567 11.773c.736.94 1.533 1.636 2.197 2.093.333.228.626.394.857.5.116.053.21.089.282.11A.73.73 0 0 0 8 14.5c.007-.001.038-.005.097-.023.072-.022.166-.058.282-.111.23-.106.525-.272.857-.5a10.197 10.197 0 0 0 2.197-2.093C12.9 9.9 14.13 7.056 13.597 3.159a.454.454 0 0 0-.315-.366c-.626-.2-1.682-.526-2.725-.802C9.491 1.71 8.51 1.5 8 1.5c-.51 0-1.49.21-2.557.491zm-.256-.966C6.23.749 7.337.5 8 .5c.662 0 1.77.249 2.813.525a61.09 61.09 0 0 1 2.772.815c.528.168.926.623 1.003 1.184.573 4.197-.756 7.307-2.367 9.365a11.191 11.191 0 0 1-2.418 2.3 6.942 6.942 0 0 1-1.007.586c-.27.124-.558.225-.796.225s-.526-.101-.796-.225a6.908 6.908 0 0 1-1.007-.586 11.192 11.192 0 0 1-2.417-2.3C2.167 10.331.839 7.221 1.412 3.024A1.454 1.454 0 0 1 2.415 1.84a61.11 61.11 0 0 1 2.772-.815z"/>
+                                                <path fill-rule="evenodd" d="M10.854 6.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 8.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                                              </svg>
+									    </div><!--//icon-holder-->
+						                
+							        </div><!--//col-->
+							        <div class="col-auto">
+								        <h4 class="app-card-title">Security</h4>
+							        </div><!--//col-->
+						        </div><!--//row-->
+						    </div><!--//app-card-header-->
+						    <div class="app-card-body px-4 w-100">
+							    
+							    <div class="item border-bottom py-3">
+								    <div class="row justify-content-between align-items-center">
+									    <div class="col-auto">
+										    <div class="item-label"><i class="fab fa-cc-visa me-2"></i><strong>Username/Password</strong></div>
+									        <div class="item-data">{{id.doctor_userName}}/********</div>
+									    </div><!--//col-->
+									    
+								    </div><!--//row-->
+							    </div><!--//item-->
+							    <div class="item border-bottom py-3">
+								    <div class="row justify-content-between align-items-center">
+									    <div class="col-auto">
+										    <div class="item-label"><i class="fab fa-paypal me-2"></i><strong>Security Question</strong></div>
+									        <div class="item-data">{{id.Security_Question}}</div>
+									    </div>
+								    </div><!--//row-->
+							    </div><!--//item-->
+						    </div><!--//app-card-body-->
+						    <!-- <div class="app-card-footer p-4 mt-auto">
+							   <a class="btn app-btn-secondary" href="#">Manage Payment</a>
+						    </div>//app-card-footer -->
+						   
+						</div><!--//app-card-->
+	                </div>
+					<div class="app-card-footer p-4 mt-auto">
+						<input style="float: right;" class="btn app-btn-secondary" type="submit">
+					 </div>
+                </div><!--//row-->
+			</form>
+			    
+		    </div><!--//container-fluid-->
+		
+	    </div><!--//app-content-->
+	    
+    </div><!--//app-wrapper-->   
+
+
+	<script>
+		NameInput = document.getElementById('NameInput')
+		NameBtn = document.getElementById('NameBtn')
+		hidden = NameInput.getAttribute("hidden");
+
+		function Name() {
+			let btn = document.getElementById("NameInput")
+			btn.removeAttribute("hidden")
+			}
+		function DOB() {
+			let btn = document.getElementById("DOBInput")
+			btn.removeAttribute("hidden")
+			}
+		function Gender() {
+			let btn = document.getElementById("GenderInput")
+			btn.removeAttribute("hidden")
+			}
+		function Blood_group() {
+			let btn = document.getElementById("BloodInput")
+			btn.removeAttribute("hidden")
+			}
+		function email() {
+			let btn = document.getElementById("emailInput")
+			btn.removeAttribute("hidden")
+			}
+
+
+		function Mobile() {
+			let btn = document.getElementById("MobileInput")
+			btn.removeAttribute("hidden")
+			}
+        function doctor_address() {
+			let btn = document.getElementById("doctor_addressInput")
+			btn.removeAttribute("hidden")
+			}
+		function doctor_city() {
+			let btn = document.getElementById("doctor_cityInput")
+			btn.removeAttribute("hidden")
+			}
+		function doctor_state() {
+			let btn = document.getElementById("doctor_stateInput")
+			btn.removeAttribute("hidden")
+			}
+		function doctor_zip() {
+			let btn = document.getElementById("doctor_zipInput")
+			btn.removeAttribute("hidden")
+			}
+		function doctor_area() {
+			let btn = document.getElementById("doctor_areaInput")
+			btn.removeAttribute("hidden")
+			}
+		function doctor_country() {
+			let btn = document.getElementById("doctor_countryInput")
+			btn.removeAttribute("hidden")
+			}
+
+
+		function doctor_quali() {
+			let btn = document.getElementById("doctor_QualiInput")
+			btn.removeAttribute("hidden")
+			}
+		function doctor_certificate() {
+			let btn = document.getElementById("doctor_certificateInput")
+			btn.removeAttribute("hidden")
+			}
+        function doctor_Awards_year() {
+			let btn = document.getElementById("doctor_Awards_yearInput")
+			btn.removeAttribute("hidden")
+			}
+		function doctor_Awards() {
+			let btn = document.getElementById("doctor_AwardsInput")
+			btn.removeAttribute("hidden")
+			}
+		function Experience() {
+			let btn = document.getElementById("ExperienceInput")
+			btn.removeAttribute("hidden")
+			}
+		function doctor_college() {
+			let btn = document.getElementById("doctor_collegeInput")
+			btn.removeAttribute("hidden")
+			}
+		function doctor_college() {
+			let btn = document.getElementById("doctor_collegeInput")
+			btn.removeAttribute("hidden")
+			}
+		function year_of_compilation() {
+			let btn = document.getElementById("year_of_compilationInput")
+			btn.removeAttribute("hidden")
+			}
+
+
+		function doctor_fee() {
+			let btn = document.getElementById("doctor_feeInput")
+			btn.removeAttribute("hidden")
+			}
+        function time_Slots() {
+			let btn = document.getElementById("time_SlotsInput")
+			btn.removeAttribute("hidden")
+			}
+		function advance_appointment() {
+			let btn = document.getElementById("advance_appointmentInput")
+			btn.removeAttribute("hidden")
+			}
+
+
+		function hosptial_name() {
+			let btn = document.getElementById("hosptial_nameInput")
+			btn.removeAttribute("hidden")
+			}
+        function hospital_address() {
+			let btn = document.getElementById("hospital_addressInput")
+			btn.removeAttribute("hidden")
+			}
+		function hosptial_area() {
+			let btn = document.getElementById("hosptial_areaInput")
+			btn.removeAttribute("hidden")
+			}
+		function hosptial_city() {
+			let btn = document.getElementById("hosptial_cityInput")
+			btn.removeAttribute("hidden")
+			}
+		function hosptial_state() {
+			let btn = document.getElementById("hosptial_stateInput")
+			btn.removeAttribute("hidden")
+			}
+		function hosptial_country() {
+			let btn = document.getElementById("hosptial_countryInput")
+			btn.removeAttribute("hidden")
+			}
+		function hosptial_pincode() {
+			let btn = document.getElementById("hosptial_pincodeInput")
+			btn.removeAttribute("hidden")
+			}
+		function hosptial_telephone() {
+			let btn = document.getElementById("hosptial_telephoneInput")
+			btn.removeAttribute("hidden")
+			}
+		function doctor_self() {
+			let btn = document.getElementById("doctor_self")
+			btn.removeAttribute("hidden")
+			}
+		
+
+
+			// photo
+
+			
+			const imgDiv = document.querySelector('.profile-pic-div');
+			const img = document.querySelector('#photo');
+			const file = document.querySelector('#file');
+			const uploadBtn = document.querySelector('#uploadBtn');
+
+
+
+
+			//if user hover on img div
+
+			imgDiv.addEventListener('mouseenter', function(){
+				uploadBtn.style.display = "inline-block";
+			});
+
+			//if we hover out from img div
+
+			imgDiv.addEventListener('mouseleave', function(){
+				// uploadBtn.style.display = "none";
+			});
+
+			//lets work for image showing functionality when we choose an image to upload
+
+			//when we choose a foto to upload
+
+			file.addEventListener('change', function(){
+				//this refers to file
+				const choosedFile = this.files[0];
+
+				if (choosedFile) {
+
+					const reader = new FileReader(); //FileReader is a predefined function of JS
+
+					reader.addEventListener('load', function(){
+						img.setAttribute('src', reader.result);
+					});
+
+					reader.readAsDataURL(choosedFile);
+				}
+			});
+
+
+
+			// photo
+	</script>
+	
+	
+	{% endblock %}
+ 

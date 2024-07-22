@@ -1,0 +1,88 @@
+{% extends 'Doctorcomman.html' %}  
+
+{% block section %} 
+
+<div class="app-wrapper">
+	    
+    <div class="app-content pt-3 p-md-3 p-lg-4">
+        <div class="container-xl">
+            
+            <div class="row g-3 mb-4 align-items-center justify-content-between">
+                <div class="col-auto">
+                    <h1 class="app-page-title mb-0">Appointment Bills</h1>
+                </div>
+                <div class="col-auto">
+                     <div class="page-utilities">
+                        <div class="row g-2 justify-content-start justify-content-md-end align-items-center">
+                        
+                            
+                        </div><!--//row-->
+                    </div><!--//table-utilities-->
+                </div><!--//col-auto-->
+            </div><!--//row-->
+           
+            
+      
+            
+        <!-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	 -->
+            <div class="tab-content" id="orders-table-tab-content">
+                <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="orders-all-tab">
+                    <div class="app-card app-card-orders-table shadow-sm mb-5">
+                        <div class="app-card-body">
+                            <div class="table-responsive">
+                                <table class="table app-table-hover mb-0 text-left">
+                                    <thead style="text-align: center;" >
+                                        
+                                        <tr>
+                                            <th class="cell">id</th>
+                                            <th class="cell">patient</th>
+                                            <th class="cell">File name</th>
+                                            <th class="cell"></th>
+                                        </tr>
+                                       
+                                    </thead>
+                                    <tbody style="text-align: center;" >
+                                        {% for i in myFile %}
+                                        <tr>
+                                            <td class="cell">{{forloop.counter}}</td>
+                                            <td class="cell">{{i.patientName}}</td>
+                                            <td class="cell">{{i.name}}</td>
+                                            <td class="cell"><a class="btn-sm app-btn-secondary" href="{{i.upload.url}}">Download bill</a></td>
+                                        </tr>
+                                        {% empty %}
+                                        <div class="alert alert-danger" role="alert">
+                                        No Reports Available !!!
+                                        </div>
+                                        {% endfor %}
+                                        
+                                        
+                                        
+    
+                                    </tbody>
+                                </table>
+                            </div><!--//table-responsive-->
+                           
+                        </div><!--//app-card-body-->		
+                    </div><!--//app-card-->
+                    
+                    
+                </div><!--//tab-pane-->
+                
+                
+
+
+
+            <!-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+            
+            
+            
+        </div><!--//container-fluid-->
+    </div><!--//app-content-->
+    
+
+    
+</div><!--//app-wrapper-->   
+
+
+
+{% endblock %} 	

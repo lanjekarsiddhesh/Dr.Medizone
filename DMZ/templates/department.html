@@ -1,0 +1,47 @@
+{% extends 'Comaan.html' %}
+
+{% block css %} 
+{% endblock %}
+
+
+
+{% block body %}
+<div class="card text-bg-dark">
+    <img src="/media/about_banner.jpg" class="card-img" alt="..." style="height: 500px; opacity: 0.5;">
+    <center>
+    <div class="card-img-overlay">
+      <h1 class="card-title" style="font-size: 50px; font-weight: 700; letter-spacing: 0.5px; font-family: 'Poppins', sans-serif; margin-top: 130px; color: #ecf0f4; margin-left: 10px; ">We are all About bringing</h1>
+      <h1 class="card-title" style="font-size: 50px; font-weight: 700; letter-spacing: 0.5px; font-family: 'Poppins', sans-serif; margin-top: 30px; color: #ecf0f4; margin-left: 10px; ">transparency in the Indian</h1>
+      <h1 class="card-title" style="font-size: 50px; font-weight: 700; letter-spacing: 0.5px; font-family: 'Poppins', sans-serif; margin-top: 30px; color: #ecf0f4; margin-left: 10px; ">Healthcare System </h1>
+    </div>
+  </center>
+  </div>
+&nbsp;
+
+<div class="row">
+
+    <div class="col-4">
+      <div id="simple-list-example" class="d-flex flex-column gap-2 simple-list-example-scrollspy text-center">
+        {% for i in specialists|slice:"0:" %}
+
+        <a class="p-1 rounded" href= #{{i.specilaity_category}}>{{i.specilaity_category}}</a>
+        {% endfor %}
+      </div>
+    </div>
+
+        <!-- <h2 class="card-title col-2">Our Vision</h2> -->
+        <p class="card-text col-4" style="font-size: 20px;"><strong style="font-size: 30px;">Vision</strong>&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus facere sit qui optio nulla perferendis architecto 
+            illum distinctio sapiente dolor deleniti obcaecati neque ipsum aliquid, ratione quis quibusdam at consectetur. Lorem ipsum dolor sit 
+            amet consectetur adipisicing elit. Animi, perferendis eum quia magnam aut eligendi sed aspernatur consequatur quasi a consequuntur veritatis 
+            natus inventore. Fugit ab esse repudiandae tempora fugiat.</p>
+        <img src="/media/about_div_2.jpg" class="col-4 img-fluid rounded-start" alt="..." style="height: 300px; width: 300px;  ">
+    
+    
+    
+          
+        </div>
+{% endblock %}

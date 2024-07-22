@@ -1,0 +1,338 @@
+<!-- <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  </head>
+  <body> -->
+    {% extends 'Admin_dashboard_comman.html' %}
+{% block section %} 
+{% include 'message.html' %}
+<div class="container">
+  <div class="row gutters">
+  <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+  <div class="card h-100">
+    <div class="container text-center" >
+          <h5>Add New Medicine Product</h5>
+          <form method="post" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>{% csrf_token %}
+              <div class="col-md-6">
+                <label for="validationCustom01" class="form-label">Medicine name</label>
+                {{myForm.medicine_name}}
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label for="validationCustom02" class="form-label">Company_name</label>
+                <select name="company_name" class="form-select" aria-label="Default select example">
+                  <option selected>Open this select Category</option>
+                  {% for i in brand %}
+                  <option value={{i.Id}}>{{i.Brand_name}}</option>
+                  {% endfor %}
+                </select>
+                <span><a data-bs-toggle="modal" data-bs-target="#exampleModal">Add another brand</a></span>
+                <a href="/admin/medicine/brand/add/"   class="btn btn-primary btn-sm">Add</a>
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label for="validationCustom03" class="form-label">Medicine quantity</label>
+                {{myForm.medicine_quantity}}
+                  <div class="invalid-feedback">
+                    Please enter quantity.
+                  </div>
+              </div>
+              <div class="col-md-6">
+                <label for="validationCustom04" class="form-label">Total medicines</label>
+                {{myForm.Total_medicines}}
+                <div class="invalid-feedback">
+                  Please enter total quantity.
+                </div>
+              </div>
+              <div class="col-md-12">
+                <label for="validationCustom04" class="form-label">Category</label>
+              <select name="category" class="form-select" aria-label="Default select example">
+                <option selected>Open this select Category</option>
+                {% for i in category %}
+                <option value={{i.Id}}>{{i.Category}}</option>
+                {% endfor %}
+                
+              </select>
+              <span><a data-bs-toggle="modal" data-bs-target="#exampleModal">Add another Category</a></span>
+                <a href="/admin/medicine/category/add/"   class="btn btn-primary btn-sm">Add</a>
+                
+            </div>
+              <div class="col-md-6">
+                  <label for="validationCustom05" class="form-label">Price</label>
+                  {{myForm.price}}
+                  <div class="invalid-feedback">
+                    Please enter price.
+                  </div>
+              </div>
+              <div class="col-md-6">
+                  <label for="validationCustom06" class="form-label">Price off</label>
+                  {{myForm.price_off}}
+                  <div class="invalid-feedback">
+                    Please enter off price.
+                  </div>
+              </div>
+              <div class="col-md-6">
+                  <label for="validationCustom07" class="form-label">discription</label>
+                  {{myForm.discription}}
+                  <div class="invalid-feedback">
+                    Please enter discription.
+                  </div>
+              </div>
+              <div class="col-md-6">
+                  <label for="validationCustom08" class="form-label">uses</label>
+                  {{myForm.uses}}
+                  <div class="invalid-feedback">
+                    Please enter medicine uses.
+                  </div>
+              </div>
+              <div class="col-md-6">
+                  <label for="validationCustom09" class="form-label">Image1</label>
+                  {{myForm.Image1}}
+                  <div class="invalid-feedback">
+                    Please provide a valid city.
+                  </div>
+              </div>
+              <div class="col-md-6">
+                  <label for="validationCustom10" class="form-label">Image2</label>
+                  {{myForm.Image2}}
+                  <div class="invalid-feedback">
+                    Please provide a valid city.
+                  </div>
+              </div>
+              <div class="col-md-6">
+                  <label for="validationCustom11" class="form-label">Image3</label>
+                  {{myForm.Image3}}
+                  <div class="invalid-feedback">
+                    Please provide a valid city.
+                  </div>
+              </div>
+              <div class="col-md-6">
+                  <label for="validationCustom12" class="form-label">Image4</label>
+                  {{myForm.Image4}}
+                  <div class="invalid-feedback">
+                    Please enter image.
+                  </div>
+              </div>
+              
+              
+              <div class="col-12">
+                <button class="btn btn-primary" type="submit">Submit form</button>
+              </div>
+            </form>
+      </div>
+      
+    </div>
+    </div>
+
+    <!-- <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+      <div class="card h-100">
+          <div class="card-body">
+            <h5 class="text-center">Edit medicine quantity</h5>
+            <form method="post" class="row g-3 needs-validation text-center" novalidate>{% csrf_token %}
+              <div class="col-md-8">
+                <label for="validationCustom01" class="form-label">Medicine Id</label>
+                {{idForm.medicine_id}}
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+              </div>
+              <div class="col-md-4 mt-5">
+                <button class="btn btn-primary" id="btnform" type="submit">Find Medicine</button>
+              </div>
+            </form>
+
+            <h6>Medicine name:- </h6>
+            
+          </div>
+      </div>
+      </div> -->
+
+      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+        <div class="card mb-3">
+          <h5 class="text-center">Edit medicine quantity</h5>
+          <div class="row">
+            <div class="col">
+            <form method="post" class="row g-3 needs-validation text-center" novalidate>{% csrf_token %}
+              <div class="col-md-8">
+                <label for="validationCustom01" class="form-label">Find Medicine By id </label>
+                {{idForm.medicine_id}}
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+              </div>
+              <div class="col-md-4 mt-5">
+                <button class="btn btn-primary" id="btnform" type="submit">Find</button>
+              </div>
+            </form>
+          </div>
+          <div class="col">
+            <form method="post" class="row g-3 needs-validation text-center" novalidate>{% csrf_token %}
+              <div class="col-md-8">
+                <label for="validationCustom01" class="form-label">Find Medicine By name</label>
+                {{nameForm.medicine_search}}
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+              </div>
+              <div class="col-md-4 mt-5">
+                <button class="btn btn-primary" id="btnform" type="submit">Find</button>
+              </div>
+            </form>
+          </div>
+          </div>
+
+            <div class="card-header pb-0">
+                <h6 style="float: left;">Medicines <span class="badge text-bg-dark">{{length}}</span></h6>
+            </div>
+            <div class="card-body px-0 pt-2 pb-2">
+              <!-- <nav aria-label="Page navigation example">
+                  {% if patient.has_other_pages %}
+                  <ul class="pagination" >
+                      {% for i in patient.paginator.page_range %}
+                      {% if i == patient.number %}
+                    <li class="page-item" ><a style="background: rgb(171, 212, 248); color: black;" class="page-link" href="?page={{i}}">{{i}}</a></li>
+                    {% else %}
+                    <li class="page-item" ><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+                    {% endif %}
+                    {% endfor %}
+                  </ul>
+                  {% endif %}
+                </nav> -->
+                <div class="table-responsive p-0">
+                  <a style="float: right;" href="/Admin_dash_patient/">More...</a>
+                    <table class="table align-items-center mb-0">
+                        <thead>
+                            <tr>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Medicine name</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Quantity</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Price</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">price off</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">category</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">company</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Edit</th>
+                                <th class="text-secondary opacity-7"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          {% for medicine in medicine %}
+                         
+                            <tr>
+                              <td>
+                                  <p class="text-xs font-weight-bold mb-0">{{medicine.Id}}</p>
+                              </td>
+                                <!-- <td>
+                                    <div class="d-flex px-2 py-1">
+                                        <div>
+                                            <img src="/media/{{i.patient_profile}}" class="avatar avatar-sm me-3">
+                                        </div>
+                                        <div class="d-flex flex-column justify-content-center">
+                                            <h6 class="mb-0 text-sm">{{i.patient_name}}</h6>
+                                            <p class="text-xs text-secondary mb-0">{{i.patient_email}}</p>
+                                        </div>
+                                    </div>
+                                </td> -->
+                                <td>
+                                    <p class="text-xs font-weight-bold mb-0">{{medicine.medicine_name}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-xs font-weight-bold mb-0">{{medicine.Total_medicines}}</p>
+                                </td>
+                                <td>
+                                  <p class="text-xs font-weight-bold mb-0">{{medicine.price}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-xs font-weight-bold mb-0">{{medicine.price_off}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-xs font-weight-bold mb-0">{{medicine.category}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-xs font-weight-bold mb-0">{{medicine.company}}</p>
+                                </td>
+                                <!-- <td>
+                                    <p class="text-xs font-weight-bold mb-0">{{medicine.price}}</p>
+                                </td> -->
+                                <td class="align-middle">
+                                  <a href="/admin_dashboard_UpdateMedicine/{{medicine.Id}}" id="pt" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                      
+                                      <svg style="color: blue; margin-right: 20px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                                          <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+                                        </svg>
+                                  </a>
+                                  <a href="/medicineshop/deleteMedicine/{{medicine.Id}}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                      Delete
+                                      <svg style="color: red; margin-right: 20px; " xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                          <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                                        </svg>
+                                  </a>
+                              </td>
+                                
+                                
+                            </tr>
+                            {% endfor %}
+                            
+                            
+                        </tbody>
+                        
+                    </table>
+  
+                    <!-- <nav aria-label="Page navigation example">
+                      {% if patient.has_other_pages %}
+                      <ul class="pagination">
+                          {% for i in patient.paginator.page_range %}
+                          {% if i == patient.number %}
+                        <li class="page-item" ><a style="background: rgb(171, 212, 248); color: black;" class="page-link" href="?page={{i}}">{{i}}</a></li>
+                        {% else %}
+                        <li class="page-item" ><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+                        {% endif %}
+                        {% endfor %}
+                      </ul>
+                      {% endif %}
+                    </nav> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Understood</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+   
+<!-- Modal -->
+
+
+    
+
+    {% endblock %}
+
+    {% block script %} 
+    {% endblock %}
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  </body>
+</html> -->

@@ -1,0 +1,174 @@
+{% extends 'Comaan.html' %}
+
+{% block css %}{% endblock %}
+
+
+{% block body %} 
+
+<div class="container" style="margin-top: 50px;">
+    <form method="POST" enctype="multipart/form-data" class=" needs-validation" novalidate>
+      {% csrf_token %}
+        <div class="row g-3"  style="background: #f1f7fd; box-shadow: 0px 2px 15px;     overflow: hidden;">
+          <div class="container">
+            <span style="color: red;">Note:- All the tests as to present in the lab which admin as provided</span>
+          </div>
+        <div class="col-md-6">
+          <label for="validationCustom01" class="form-label">Full name</label>
+          <input name="name" type="text" class="form-control" id="validationCustom01"  required>
+          <div class="invalid-feedback">
+            Enter your name
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="validationCustom02" class="form-label">Lab name</label>
+          <input name="LabName" type="text" class="form-control" id="validationCustom02" required>
+          <div class="invalid-feedback">
+            Enter your lab name
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="validationCustom02" class="form-label">Education</label>
+          <input name="Education" type="text" class="form-control" id="validationCustom02" required>
+          <div class="invalid-feedback">
+            Enter your Education
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="validationCustom02" class="form-label">Lab licence</label>
+          <input name="licence" type="file" class="form-control" id="validationCustom02" required>
+          <div class="invalid-feedback">
+            upload your lab licence
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="validationCustom02" class="form-label">Id proof</label>
+          <span>Upload any goverment id proof</span>
+          <input name="idProof" type="file" class="form-control" id="validationCustom02" required>
+          <div class="invalid-feedback">
+            upload your Id proof
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="validationCustom02" class="form-label">Lab image</label>
+          <input name="Image" type="file" class="form-control" id="validationCustom02" required>
+          <div class="invalid-feedback">
+            upload your Lab image
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="validationCustomUsername" class="form-label">Username</label>
+          <div class="input-group has-validation">
+            <input name="userName" type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+            <div class="invalid-feedback">
+              Please choose a username.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <label for="validationCustomUsername" class="form-label">Password</label>
+          <div class="input-group has-validation">
+            <input name="password" type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+            <div class="invalid-feedback">
+              Please enter your Password.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <label for="validationCustomUsername" class="form-label">Re-Enter Password</label>
+          <div class="input-group has-validation">
+            <input name="Confirm_password" type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+            <div class="invalid-feedback">
+              Please enter your Password.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <label for="validationCustomUsername" class="form-label">Address Line 1</label>
+          <div class="input-group has-validation">
+            <input name="address1" type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+            <div class="invalid-feedback">
+              Please enter your Address Line 1.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <label for="validationCustomUsername" class="form-label">Address Line 2</label>
+          <div class="input-group has-validation">
+            <input name="address2" type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+            <div class="invalid-feedback">
+              Please enter your Address Line 2.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="validationCustom03" class="form-label">City</label>
+          <input name="City" type="text" class="form-control" id="validationCustom03" required>
+          <div class="invalid-feedback">
+            Please provide a valid city.
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="validationCustom04" class="form-label" >State</label>
+          <select name="state" class="form-select" id="validationCustom04" required>
+            <option selected disabled value="">Choose...</option>
+            <option>Maharashtra</option>
+            <option>Maharashtra</option>
+            <option>Maharashtra</option>
+            <option>Maharashtra</option>
+          </select>
+          <div class="invalid-feedback">
+            Please select a valid state.
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          <label for="validationCustom05" class="form-label">Zip</label>
+          <input name="zip" type="text" class="form-control" id="validationCustom05" required>
+          <div class="invalid-feedback">
+            Please provide a valid zip.
+          </div>
+        </div>
+        <div class="col-md-3">
+            <label for="validationCustom04" class="form-label" >State</label>
+            <select class="form-select" id="validationCustom04" required>
+              <option selected disabled value="">Choose...</option>
+              <option>...</option>
+              <option>...</option>
+              <option>...</option>
+              <option>...</option>
+            </select>
+            <div class="invalid-feedback">
+              Please select a valid state.
+            </div>
+          </div>
+          <div class="col-md-3">
+            <label for="validationCustomUsername" class="form-label">Price</label>
+            <div class="input-group has-validation">
+              <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend">
+              
+            </div>
+          </div>
+        
+        <div class="col-12">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+            <label class="form-check-label" for="invalidCheck">
+              Agree to terms and conditions
+            </label>
+            <div class="invalid-feedback">
+              You must agree before submitting.
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <button class="btn btn-primary" type="submit">Submit form</button>
+        </div>
+    </div>
+      </form>
+</div>
+
+{% endblock %}
+
+{% block js %} 
+
+{% endblock %}

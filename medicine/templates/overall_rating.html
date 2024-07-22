@@ -1,0 +1,94 @@
+<style>
+
+    .checked {
+        color: orange;
+    }
+
+    .fa-star {
+        font-size: 20px;
+        margin-bottom: 0;
+    }
+    .fa-star-half {
+        font-size: 20px;
+        margin-bottom: 0;
+    }
+    
+    </style>
+    
+    
+    
+    {% if medicine.overall_rating == 1.0 %}
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star "></span>
+        <span class="fa fa-star "></span>
+        <span class="fa fa-star "></span>
+        <span class="fa fa-star "></span>
+        {% endif %}
+        {% if medicine.overall_rating == 1.5 %}
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star-half checked "></span>
+        <span class="fa fa-star "></span>
+        <span class="fa fa-star "></span>
+        <span class="fa fa-star "></span>
+        {% endif %}
+        {% if medicine.overall_rating == 2.0 %}
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked "></span>
+        <span class="fa fa-star "></span>
+        <span class="fa fa-star "></span>
+        <span class="fa fa-star "></span>
+        {% endif %}
+        {% if medicine.overall_rating == 2.5 %}
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked "></span>
+        <span class="fa fa-star-half checked "></span>
+        <span class="fa fa-star "></span>
+        <span class="fa fa-star "></span>
+        {% endif %}
+        {% if medicine.overall_rating == 3.0 %}
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked "></span>
+        <span class="fa fa-star checked "></span>
+        <span class="fa fa-star "></span>
+        <span class="fa fa-star "></span>
+        {% endif %}
+        {% if medicine.overall_rating == 3.5 %}
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked "></span>
+        <span class="fa fa-star checked "></span>
+        <span class="fa fa-star-half checked "></span>
+        <span class="fa fa-star "></span>
+        {% endif %}
+        {% if medicine.overall_rating == 4.0 %}
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star "></span>
+        {% endif %}
+        {% if medicine.overall_rating == 4.5 %}
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star-half checked"></span>
+        {% endif %}
+        {% if medicine.overall_rating == 5.0 %}
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>  
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        {% endif %}
+ 
+ 
+ 
+ {% if medicine.overall_rating == 1.0 or medicine.overall_rating == 1.5 or medicine.overall_rating == 2.0 or medicine.overall_rating == 2.5 %}
+        <span style="background-color: rgb(255, 0, 0);" class="badge">{{medicine.overall_rating}}</span>
+        {% endif %}
+        {% if medicine.overall_rating == 3.0 or medicine.overall_rating == 3.5 %}
+        <span style="background-color: rgb(0, 55, 255);" class="badge">{{medicine.overall_rating}}</span>
+        {% endif %}
+        {% if medicine.overall_rating == 4.0 or medicine.overall_rating == 4.5 or medicine.overall_rating == 5.0 %}
+        <span style="background-color: green;" class="badge">{{medicine.overall_rating}}</span>
+        {% endif %}

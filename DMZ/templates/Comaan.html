@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="/media/logo.png" rel="icon">
+    <link href="/media/logo.png"rel="apple-touch-icon">
+
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- google <font -->
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+    <!-- font-awesom symbol -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    
+    {% block head %} {% endblock %}
+    
+  </head>
+  <body>
+    
+   
+
+   
+    <title>Drmedizone{% block title %} {% endblock %}</title>
+    <style>
+
+
+    /**
+    * Appointment Button *
+    */
+    body { overflow-x: hidden;}
+    .nav-btn {
+      background: #1977cc;
+      color: #fff;
+      border-radius: 50px;
+      padding: 8px 25px;
+      white-space: nowrap;
+      transition: 0.3s;
+      font-size: 14px;
+      display: inline-block;
+    }
+
+    .nav-btn:hover {
+      background: #166ab5;
+      color: #fff;
+    }
+
+    .btn:hover{
+      background: #166ab5;
+      color: #fff;
+    }
+
+    .btn {
+      background: #1977cc;
+      color: #fff;
+      border-radius: 50px;
+      padding: 8px 25px;
+      white-space: nowrap;
+      transition: 0.3s;
+      font-size: 14px;
+      display: inline-block;
+    }
+
+  
+
+    /*--------------------------------------------------------------
+    # Navigation Menu
+    --------------------------------------------------------------*/
+    /**
+    * Desktop Navigation 
+    */
+ 
+
+    .navbar ul {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      list-style: none;
+      align-items: center;
+    }
+
+    .navbar li {
+      position: relative;
+    }
+
+    .navbar>ul>li {
+      position: relative;
+      white-space: nowrap;
+      padding: 8px 0 8px 20px;
+    }
+
+    .navbar a,
+    .navbar a:focus {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 14px;
+      color: #2c4964;
+      white-space: nowrap;
+      transition: 0.3s;
+      border-bottom: 2px solid #fff;
+      padding: 5px 2px;
+    }
+
+    .navbar a i,
+    .navbar a:focus i {
+      font-size: 12px;
+      line-height: 0;
+      margin-left: 5px;
+    }
+
+    .navbar a:hover,
+    .navbar .active,
+    .navbar .active:focus,
+    .navbar li:hover>a {
+      color: #1977cc;
+      border-color: #1977cc;
+    }
+
+    .navbar .dropdown ul {
+      display: block;
+      position: absolute;
+      left: 20px;
+      top: calc(100% + 30px);
+      margin: 0;
+      padding: 10px 0;
+      z-index: 99;
+      opacity: 0;
+      visibility: hidden;
+      background: #fff;
+      box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+      transition: 0.3s;
+    }
+
+    .navbar .dropdown ul li {
+      min-width: 200px;
+    }
+
+    .navbar .dropdown ul a {
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 500;
+      text-transform: none;
+      color: #082744;
+      border: none;
+    }
+
+    .navbar .dropdown ul a i {
+      font-size: 12px;
+    }
+
+    .navbar .dropdown ul a:hover,
+    .navbar .dropdown ul .active:hover,
+    .navbar .dropdown ul li:hover>a {
+      color: #1977cc;
+    }
+
+    .navbar .dropdown:hover>ul {
+      opacity: 1;
+      top: 100%;
+      visibility: visible;
+    }
+
+    .navbar .dropdown .dropdown ul {
+      top: 0;
+      left: calc(100% - 30px);
+      visibility: hidden;
+    }
+
+    .navbar .dropdown .dropdown:hover>ul {
+      opacity: 1;
+      top: 0;
+      left: 100%;
+      visibility: visible;
+    }
+
+
+    .navbar .nav-link{
+      font-size: 17px;
+    }
+    
+    a{
+      color: black;
+      text-decoration: none;
+    }
+
+    .ovelay:hover {
+      background:#059fff;
+    }
+
+
+
+    
+.section-title {
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.section-title h2 {
+  text-align: center;
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  position: relative;
+  color: #2c4964;
+}
+
+.section-title h2::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 120px;
+  height: 1px;
+  background: #ddd;
+  bottom: 1px;
+  left: calc(50% - 60px);
+}
+
+.section-title h2::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: #1977cc;
+  bottom: 0;
+  left: calc(50% - 20px);
+}
+
+
+
+
+  
+
+    
+
+ 
+    {% block css %} {% endblock %}
+    </style>
+
+    
+  </head>
+  <!-- <body style="background-color:#e7e5e5 ;"> -->
+  <body>
+    <!-- nvaBar -->
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light ">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/" style="margin-right: 13px">
+          <img src="/media/logo.png" style="width: 45px;"><h3 style="font-size: 30px; line-height: 1; font-weight: 700; letter-spacing: 0.5px; font-family: 'Poppins', sans-serif; color: #2c4964; margin-left: 10px;">Dr.Medizone</h3></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link " aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'doctors' %}">Doctors</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'specialist' %}" >Speciality</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'Diagnostic' %}" >Lab Tests</a>
+              </li>
+              <!-- <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Counsulation
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#videocall">Video Counsulation</a></li>
+                  <li><a class="dropdown-item" href="/Tele/">Tele Counsulation</a></li>
+                </ul>
+              </li> -->
+              <li class="nav-item">
+                <a class="nav-link" href="/medicineshop/">Order medicine</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/Department/">Department</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Contact
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="/contact_us/">Contact</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="/FAQ/">FAQ</a></li>
+                </ul>
+              </li>
+              <!-- <li class="nav-item">
+                
+                <a class="nav-link" href="/Services/">Services</a>
+              </li> -->
+              <li class="nav-item">
+                <a class="nav-link" href="/About_us/">About</a>
+              </li>
+              <!-- <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dropdown
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li> -->
+            </ul>
+            <form class="d-flex" method="post">
+              {% csrf_token %}
+              <input class="form-control me-2" name="Searches" type="search" placeholder="Search" aria-label="Search" style="margin-bottom: 5%; margin-top: 3%; border-radius: 50px;">
+              <button class="btn nav-btn btn-outline-success" type="submit" style=" margin-bottom: 5%; margin-top: 3% ">Search</button>
+            </form>
+            {% if login == 'Login' or Doctor_status == 'Login' %}
+            <a href="{% url 'login' %}"><button type="button" class="btn nav-btn btn-success" hidden >Logout</button></a>
+            {% else %}
+            <a href="{% url 'login' %}"><button type="button" class="btn nav-btn btn-success" >Login</button></a>
+            {% endif %}
+            <div class="dropdown">
+              <button class="btn nav-btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="margin-bottom: 5%; ">
+                    SignUp
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'Doctor_Registration' %}">Doctor</a></li>
+                <li><a class="dropdown-item" href="{% url 'Patient_Registration' %}">Patient</a></li>
+              </ul>
+            </div>
+
+            
+            {% if login == 'Login' %}
+            <a href="/PDashboard/LabAppointment/?id={{patient_id}}">
+
+            <img style="height: 35px; width: 35px;" src="\media\person.svg"></a>
+            {% endif %}
+
+            {% if Doctor_status == 'Login' %}
+              <a href="/DDashboard/?Doctor_id={{Doctor_id}}">
+
+            <img style="height: 35px; width: 35px;" src="\media\person.svg"></a>
+          
+            {% endif %}
+              
+            
+          </div>
+        </div>
+      </nav>
+    <!-- navBar_End -->
+
+
+    {% block body %} 
+    <!-- Modal -->
+
+    <!-- video calling popup -->
+    {% endblock %}
+
+
+
+    <!-- Modal -->
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="videocall" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+
+  
+
+
+    <!-- user feedback box-shadow -->
+  
+    
+  &nbsp;
+    
+
+
+
+
+
+    <!-- footer starting -->
+
+  <!-- Footer -->
+<footer class="text-center text-lg-start bg-light text-black">
+  <!-- Section: Social media -->
+  <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+    <!-- Left -->
+    <div class="me-5 d-none d-lg-block">
+      <span>Get connected with us on social networks:</span>
+    </div>
+    <!-- Left -->
+
+    <!-- Right -->
+  
+
+
+    <div>
+      <a
+        class="btn text-white btn-floating m-1 link-secondary"
+        style="background-color: #f2f4f8; padding: 0; border-radius: 50px;"
+        href="https://www.facebook.com/"
+        role="button"
+        ><img src = "/media/facebook.svg" alt="My Happy SVG" style="width: 30px;"/>
+       </a>
+
+      <!-- Twitter -->
+      <a
+        class="btn text-white btn-floating m-1  link-secondary"
+        style="background-color: #f9f9f9; padding: 0; border-radius: 50px;"
+        href="https://twitter.com/?lang=en-in"
+        role="button"
+        >
+        <img src = "/media/twitter.svg" alt="My Happy SVG" style="width: 30px;" aria-hidden="true"/></a>
+
+      <!-- Google -->
+      <a
+        class="btn text-white btn-floating m-1  link-secondary"
+        style="background-color: #f4f1f0; padding: 0; border-radius: 50px;"
+        href="https://www.google.co.in/"
+        role="button"
+        ><img src = "/media/google.svg" alt="My Happy SVG" style="width: 30px;"/></a>
+
+      <!-- Instagram -->
+      <a
+        class="btn text-white btn-floating m-1  link-secondary"
+        style="background-color: #fdfafc; padding: 0; border-radius: 50px;"
+        href="https://www.instagram.com/03_siddhu_2001/"
+        role="button"
+        ><img src = "/media/instagram.svg" alt="My Happy SVG" style="width: 30px;"/></a>
+
+      <!-- Linkedin -->
+      <a
+        class="btn text-white btn-floating m-1  link-secondary"
+        style="background-color: #f6f9fb; padding: 0; border-radius: 50px;"
+        href="https://www.linkedin.com/login/"
+        role="button"
+        ><img src = "/media/linkedin.svg" alt="My Happy SVG" style="width: 30px;"/></a>
+      <!-- Github -->
+      <a
+        class="btn text-white btn-floating m-1  link-secondary"
+        style="background-color: #faf2f2; padding: 0; border-radius: 50px;"
+        href="https://github.com/"
+        role="button"
+        ><img src = "/media/github.svg" alt="My Happy SVG" style="width: 30px;"/></a>
+    </div>
+    <!-- Right -->
+  </section>
+  <!-- Section: Social media -->
+
+  <!-- SignUp -->
+
+  <div class="container p-4 pb-0">
+    <!-- Section: CTA -->
+    <section class="">
+
+        <div class="dropdown d-flex justify-content-center align-items-center">
+          <span class="me-3">Register for free</span>
+          <button class="btn  btn-rounded dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            SignUp
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'Doctor_Registration' %}">Doctor</a></li>
+            <li><a class="dropdown-item" href="{% url 'Patient_Registration' %}">Patient</a></li>
+          </ul>
+        </div>
+    </section>
+    <!-- Section: CTA -->
+  </div>
+
+  <!-- end SignUp -->
+
+  <!-- Section: Links  -->
+  <section class="">
+    <div class="container text-center text-md-start mt-5">
+      <!-- Grid row -->
+      <div class="row mt-3">
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+          <!-- Content -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            <img src="/media/logo.png" style="width: 25px;">Drmedizone
+          </h6>
+          <p>
+            We are technology driven online solution for all your medical needs.Our team of medical experts will accompany you at every step. From finding the right doctor and hospital, booking doctor appointments, comparing procedure costs to solving your health related queries.
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            For Patients
+          </h6>
+          <p>
+            <a href="#" class="text-reset">Search Doctor</a>
+          </p>
+          <p>
+            <a href="{% url 'Diagnostic' %}" class="text-reset">Book Dignostic Test</a>
+          </p>
+          <p>
+            <a href="/HomeCare/" class="text-reset">Book HomeCare</a>
+          </p>
+          <p>
+            <a href="/medicineshop/" class="text-reset">Book Medicine</a>
+          </p>
+          <p>
+            <a href="{% url 'specialist' %}" class="text-reset">Show specialist</a>
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            For Doctors
+          </h6>
+          <p>
+            <a href="#!" class="text-reset">Doctor Profile</a>
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+          <p ><img src = "/media/home.svg" alt="My Happy SVG" style="width: 30px; background-color: #f5eff5;"/> India, 2022-23, </p>
+          <p>
+            <img src = "/media/email.svg" alt="My Happy SVG" style="width: 30px;background-color: #f7f4f7;"/>
+            Drmedizone@gmail.com
+          </p>
+          <p><img src = "/media/phone.svg" alt="My Happy SVG" style="width: 30px; background-color: #f9f8f9;"/> + 91 937 240 3834</p>
+          <p><img src = "/media/phone.svg" alt="My Happy SVG" style="width: 30px; background-color: #fdfafd;"/> + 91 234 567 89</p>
+        </div>
+        <!-- Grid column -->
+      </div>
+      <!-- Grid row -->
+    </div>
+  </section><hr>
+  <!-- Section: Links  -->
+
+  <!-- Copyright -->
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">
+    © 2022 Copyright:
+    <a class="text-reset fw-bold" href="{% url 'index' %}">Drmedizone.com</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
+    <!-- footer ending -->
+
+
+
+   
+
+
+
+    
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <!-- Template Main JS File -->
+   
+    <script>
+
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+(() => {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+        window.alert("all Fields are required !!!");
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+
+
+
+      
+
+
+    {% block js %} {% endblock %}
+    </script>
+    
+ 
+    
+    
+      
+      
+    
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>

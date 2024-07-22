@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Otp</title>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous"> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <!-- <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script> -->
+  </head>
+<style>
+
+#warning {
+      animation: fadeOut 3s;;
+    }
+
+    @keyframes fadeOut {
+      0% { opacity: 0; }
+      100% { opacity: 1;}
+    }
+
+    body {
+        background: linear-gradient(90deg, #c7e5fe, #6aa5d9);
+    } 
+    
+        .form {
+      width: 350px;
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      border-radius: 15px;
+      background-color: white;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      transition: .4s ease-in-out;
+    }
+    
+    .form:hover {
+      box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+      scale: 0.99;
+    }
+    
+    .heading {
+      /* position: relative; */
+      text-align: center;
+      color: black;
+      font-size: 30px;
+      top: 5em;
+      font-weight: bolder;
+    }
+    
+    .check {
+      /* position: relative; */
+      align-self: center;
+      /* top: 2em; */
+    }
+    
+    .input {
+      /* position: relative; */
+      text-align: center;
+      width: 2.5em;
+      height: 2.5em;
+      margin: 1em;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+      background-color: rgb(235, 235, 235);
+      box-shadow: inset 3px 3px 6px #d1d1d1,
+                inset -3px -3px 6px #ffffff;
+      top: 10em;
+      font-size: 15px;
+      font-weight: bolder;
+      /* left: 1.5em; */
+      /* padding-left: 15px; */
+      transition: .4s ease-in-out;
+    }
+    
+    .input:hover {
+      box-shadow: inset 0px 0px 0px #d1d1d1,
+                inset 0px 0px 0px #ffffff;
+      background-color: lightgrey;
+    }
+    
+    .input:focus {
+      box-shadow: inset 0px 0px 0px #d1d1d1,
+                inset 0px 0px 0px #ffffff;
+      background-color: lightgrey;
+    }
+    
+    .btn1 {
+      /* position: relative; */
+      margin-top: 5%;
+      /* left: 2.4em; */
+      align-self: center;
+      width: 17em;
+      height: 3em;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+      transition: .4s ease-in-out;
+      box-shadow: 1px 1px 3px #b5b5b5,
+                 -1px -1px 3px #ffffff;
+    }
+    
+    .btn1:active {
+      box-shadow: inset 3px 3px 6px #b5b5b5,
+                inset -3px -3px 6px #ffffff;
+    }
+    
+    .btn2 {
+      /* position: relative; */
+      /* top: 9.5em; */
+      /* left: 2.4em; */
+      margin-top: 5%;
+      align-self: center;
+      width: 17em;
+      height: 3em;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+      transition: .4s ease-in-out;
+      box-shadow: 1px 1px 3px #b5b5b5,
+                 -1px -1px 3px #ffffff;
+    }
+    
+    .btn2:active {
+      box-shadow: inset 3px 3px 6px #b5b5b5,
+                inset -3px -3px 6px #ffffff;
+    }
+    </style>
+  <body>
+    <div class="container">
+      <div id="alert">
+
+      </div>
+      <center>
+
+        <form name="myForm" class="form" method="post" onsubmit="return validateForm()" >{% csrf_token %}
+            <p class="heading">Verify</p>
+            <svg class="check" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="60px" height="60px" viewBox="0 0 60 60" xml:space="preserve">  <image id="image0" width="60" height="60" x="0" y="0" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAQAAACQ9RH5AAAABGdBTUEAALGPC/xhBQAAACBjSFJN
+          AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAJcEhZ
+          cwAACxMAAAsTAQCanBgAAAAHdElNRQfnAg0NDzN/r+StAAACR0lEQVRYw+3Yy2sTURTH8W+bNgVf
+          aGhFaxNiAoJou3FVEUQE1yL031BEROjCnf4PLlxILZSGYncuiiC48AEKxghaNGiliAojiBWZNnNd
+          xDza3pl77jyCyPzO8ubcT85wmUkG0qT539In+MwgoxQoUqDAKDn2kSNLlp3AGi4uDt9xWOUTK3xg
+          hVU2wsIZSkxwnHHGKZOxHKfBe6rUqFGlTkPaVmKGn6iYao1ZyhK2zJfY0FZ9ldBzsbMKxZwZjn/e
+          5szGw6UsD5I0W6T+hBhjUjiF7bNInjz37Ruj3igGABjbtpIo3GIh30u4ww5wr3fwfJvNcFeznhBs
+          YgXw70TYX2bY/ulkZhWfzfBbTdtrzjPFsvFI+T/L35jhp5q2owDs51VIVvHYDM9sa/LY8XdtKy1l
+          FXfM8FVN2/X2ajctZxVXzPA5TZvHpfb6CFXxkerUWTOcY11LX9w0tc20inX2mmF4qG3upnNWrOKB
+          hIXLPu3dF1x+kRWq6ysHpkjDl+7eQjatYoOCDIZF3006U0unVSxIWTgTsI3HNP3soSJkFaflMDwL
+          3OoHrph9YsPCJJ5466DyOGUHY3Epg2rWloUxnMjsNw7aw3AhMjwVhgW4HYm9FZaFQZ/bp6QeMRQe
+          hhHehWKXGY7CAuSpW7MfKUZlAUqWdJ3DcbAAB3guZl9yKC4WYLfmT4muFtgVJwvQx7T2t0mnXK6J
+          XlGGyAQvfNkaJ5JBmxnipubJ5HKDbJJsM0eY38QucSx5tJWTVHBwqDDZOzRNmn87fwDoyM4J2hRz
+          NgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMy0wMi0xM1QxMzoxNTo1MCswMDowMKC8JaoAAAAldEVY
+          dGRhdGU6bW9kaWZ5ADIwMjMtMDItMTNUMTM6MTU6NTArMDA6MDDR4Z0WAAAAKHRFWHRkYXRlOnRp
+          bWVzdGFtcAAyMDIzLTAyLTEzVDEzOjE1OjUxKzAwOjAwIIO3fQAAAABJRU5ErkJggg=="></image>
+          </svg>
+            <div class="box">
+            <input class="input" type="text" maxlength="1" name="Oneotp" required>
+            <input class="input" type="text" maxlength="1" name="Twootp" required> 
+            <input class="input" type="text" maxlength="1" name="Threeotp" required>
+            <input class="input" type="text" maxlength="1" name="Fourotp" required>
+            </div>
+            <button type="submit" class="btn1">Submit</button>
+            <p id="countDown"></p>
+            <a hidden id="resend_otp" class="btn2" href="/resend_otp/" >Resend otp</a>
+          </form>
+        </center>
+    
+    </div>
+
+    <script>
+        sessionStorage.setItem("otp", '{{check}}');
+
+      function validateForm() {
+        let one = document.forms["myForm"]["Oneotp"].value;
+        let two = document.forms["myForm"]["Twootp"].value;
+        let three = document.forms["myForm"]["Threeotp"].value;
+        let four = document.forms["myForm"]["Fourotp"].value;
+        let x = one+two+three+four;
+        if (x != sessionStorage.getItem("otp")) {
+        //   alert(sessionStorage.getItem("otp"));
+          const Alert = document.getElementById('alert')
+          Alert.innerHTML = `<div id="warning" style="background-color: rgba(255, 0, 0, 0.552); border-radius: 5px; "><h5 style="font-size: 20px; font-weight: 700; padding: 1%; "> <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Enter valid otp</h5></div>`
+          setInterval(Alert, 1000);
+
+          return false;
+        }
+      }
+
+    const startingMinute = 1;
+    let time = startingMinute * 60;
+
+    const countDown = document.getElementById('countDown');
+    const timerOtp = document.getElementById('resend_otp');
+    hidden = timerOtp.getAttribute("hidden")
+
+    const myInterval = setInterval(updateCountDown, 1000);
+
+    function myStopFunction() {
+        clearInterval(myInterval);
+      }
+
+    function updateCountDown(){
+        const startingSeconds = 60;
+        const minute = Math.floor(time / 60);
+        let seconds = time % 60;
+        // seconds = seconds < 1   ? '0' + seconds : seconds;
+        countDown.innerHTML =  `0${minute} : ${seconds}`;
+        time--;
+        if (time == -1 ){
+            myStopFunction()
+            sessionStorage.clear();
+            countDown.innerHTML = "00:00"
+            timerOtp.removeAttribute("hidden");
+        }
+    }
+
+    function myStopFunction() {
+        clearInterval(myInterval);
+      }
+      
+    </script>
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script> -->
+  </body>
+</html>

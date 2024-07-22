@@ -1,0 +1,89 @@
+
+
+<style>
+
+    .checked {
+        color: orange;
+    }
+    
+    </style>
+    
+    
+    
+    {% if review.rating == 1.0 %}
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star "></span>
+        <span class="fa fa-star "></span>
+        <span class="fa fa-star "></span>
+        <span class="fa fa-star "></span>
+        {% endif %}
+        {% if review.rating == 1.5 %}
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star-half checked "></span>
+        <span class="fa fa-star "></span>
+        <span class="fa fa-star "></span>
+        <span class="fa fa-star "></span>
+        {% endif %}
+        {% if review.rating == 2.0 %}
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked "></span>
+        <span class="fa fa-star "></span>
+        <span class="fa fa-star "></span>
+        <span class="fa fa-star "></span>
+        {% endif %}
+        {% if review.rating == 2.5 %}
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked "></span>
+        <span class="fa fa-star-half checked "></span>
+        <span class="fa fa-star "></span>
+        <span class="fa fa-star "></span>
+        {% endif %}
+        {% if review.rating == 3.0 %}
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked "></span>
+        <span class="fa fa-star checked "></span>
+        <span class="fa fa-star "></span>
+        <span class="fa fa-star "></span>
+        {% endif %}
+        {% if review.rating == 3.5 %}
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked "></span>
+        <span class="fa fa-star checked "></span>
+        <span class="fa fa-star-half checked "></span>
+        <span class="fa fa-star "></span>
+        {% endif %}
+        {% if review.rating == 4.0 %}
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star "></span>
+        {% endif %}
+        {% if review.rating == 4.5 %}
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star-half checked"></span>
+        {% endif %}
+        {% if review.rating == 5.0 %}
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>  
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        {% endif %}
+        
+        {% if review.rating == 1.0 or review.rating == 1.5 or review.rating == 2.0 or review.rating == 2.5 %}
+        <span style="background-color: rgb(255, 0, 0);" class="badge">{{review.rating}}</span>
+        {% endif %}
+        {% if review.rating == 3.0 or review.rating == 3.5 %}
+        <span style="background-color: rgb(0, 55, 255);" class="badge">{{review.rating}}</span>
+        {% endif %}
+        {% if review.rating == 4.0 or review.rating == 4.5 or review.rating == 5.0 %}
+        <span style="background-color: green;" class="badge">{{review.rating}}</span>
+        {% endif %}
+    
+  
+    
+    

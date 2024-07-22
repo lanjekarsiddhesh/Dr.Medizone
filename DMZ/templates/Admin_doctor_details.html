@@ -1,0 +1,146 @@
+{% extends 'Admin_dashboard_comman.html' %}
+{% block section %} 
+
+    <div class="container p-3 mt-3" style="background-color: aliceblue;" >
+
+        <div class="border border-secondary mt-4" style="width: 150px; height: 150px; " >
+
+            <img src="/media/{{doctor.doctor_profile}}" style="width: 150px; height: 150px; " >
+
+        </div>
+
+        <div class="container mt-2 pt-3">
+            <div class="row border border-secondary mt-4">
+                <div class="col border border-secondary p-2">
+                    <label><b>Name:-</b> {{doctor.doctor_name}} </label>
+                </div>
+                <div class="col border border-secondary p-2">
+                    <label><b>Email:-</b> {{doctor.email}} </label>
+                </div>
+                <div class="col border border-secondary p-2">
+                    <label><b>Mobile:-</b> {{doctor.mobile}} </label>
+                </div>
+            </div>
+
+            <div class="row border border-secondary mt-4">
+                <div class="col border border-secondary p-2">
+                    <label><b>DOB:- </b> {{doctor.doctor_DOB}}</label>
+                </div>
+                <div class="col border border-secondary p-2">
+                    <label><b>Gender:-</b> {{doctor.doctor_sex}} </label>
+                </div>
+            </div>
+
+            <div class="row border border-secondary mt-4">
+                <div class="col-6 border border-secondary p-2">
+                    <label><b>Address:-</b> {{doctor.doctor_address}} </label>
+                </div>
+                <div class="col border border-secondary p-2">
+                    <label><b>Area:-</b> {{doctor.doctor_area}} </label>
+                </div>
+                <div class="col border border-secondary p-2">
+                    <label><b>State:-</b> {{doctor.doctor_state}} </label>
+                </div>
+            </div>
+
+            <div class="row border border-secondary mt-4">
+                <div class="col border border-secondary p-2">
+                    <label><b>City:-</b> {{doctor.doctor_city}} </label>
+                </div>
+                <div class="col border border-secondary p-2">
+                    <label><b>Country:-</b> {{doctor.doctor_country}} </label>
+                </div>
+                <div class="col border border-secondary p-2">
+                    <label><b>Pincode:-</b> {{doctor.doctor_zip}} </label>
+                </div>
+            </div>
+
+            <div class="row border border-secondary mt-4">
+                <div class="col border border-secondary p-2">
+                    <label><b>Award:- </b> {{doctor.doctor_Awards}}</label>
+                </div>
+                <div class="col border border-secondary p-2">
+                    <label><b>Year:-</b> {{doctor.doctor_Awards_year}} </label>
+                </div>
+            </div>
+
+            <div class="row border border-secondary mt-4">
+                <div class="col border border-secondary p-2">
+                    <label><b>Qualifcation:-</b> {{doctor.doctor_qualifcation}} </label>
+                </div>
+                <div class="col border border-secondary p-2">
+                    <label><b>College:-</b> {{doctor.doctor_college}} </label>
+                </div>
+                <div class="col border border-secondary p-2">
+                    <label><b>Year of Compilation:-</b> {{doctor.year_of_compilation}} </label>
+                </div>
+                <div class="col border border-secondary p-2">
+                    <label><b>Experience:-</b> {{doctor.Experience}} </label>
+                </div>
+            </div>
+
+            <div class="row border border-secondary mt-4">
+                <div class="col border border-secondary p-2">
+                    <label><b>Category:-</b> {{doctor.doctor_category}} </label>
+                </div>
+                <div class="col border border-secondary p-2">
+                    <label><b>Fee:-</b> {{doctor.doctor_fee}} </label>
+                </div>
+            </div>
+
+            <div class="row border border-secondary mt-4">
+                <div class="col border border-secondary p-2">
+                    <label><b>Advance Appointment:-</b> {{doctor.advance_appointment}} </label>
+                </div>
+                <div class="col-10 border border-secondary p-2">
+                    <label><b>Slots:-</b> {{doctor.time_Slots}} </label>
+                </div>
+            </div>
+
+            <div class="row border border-secondary mt-4">
+                <div class="col border border-secondary p-2">
+                    <label><b>Hosptial Name:-</b> {{doctor.hosptial_name}} </label>
+                </div>
+                <div class="col-9 border border-secondary p-2">
+                    <label><b>Hospital Address:-</b> {{doctor.hospital_address}} </label>
+                </div>
+            </div>
+
+            <div class="row border border-secondary mt-4">
+                <div class="col border border-secondary p-2">
+                    <label><b>Hosptial Area:-</b> {{doctor.hosptial_area}} </label>
+                </div>
+                <div class="col border border-secondary p-2">
+                    <label><b>Hosptial City:-</b> {{doctor.hosptial_city}} </label>
+                </div>
+                <div class="col border border-secondary p-2">
+                    <label><b>Hosptial State:-</b> {{doctor.hosptial_state}} </label>
+                </div>
+                <div class="col border border-secondary p-2">
+                    <label><b>Hosptial Country:-</b> {{doctor.hosptial_country}} </label>
+                </div>
+            </div>
+
+            <div class="row border border-secondary mt-4">
+                <div class="col border border-secondary p-2">
+                    <label><b>Hosptial Pincode:-</b> {{doctor.hosptial_pincode}} </label>
+                </div>
+                <div class="col-9 border border-secondary p-2">
+                    <label><b>Hosptial Telephon:-</b> {{doctor.hosptial_telephone}} </label>
+                </div>
+            </div>
+
+            <div class="row border border-secondary mt-4">
+                <div class="col border border-secondary p-2">
+                    <label><b>About:-</b> {{doctor.doctor_self}} </label>
+                </div>
+                
+            </div>
+
+        </div>
+
+        <a href="/Admin_dash_doctor/" role="button" class="btn btn-dark mt-3" style="float: right;">Back</a>
+
+
+    </div>
+    {% endblock %}

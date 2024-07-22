@@ -1,0 +1,219 @@
+{% extends 'Comaan.html' %}
+{% block css %}
+.section-title {
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.section-title h2 {
+  text-align: center;
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  position: relative;
+  color: #2c4964;
+}
+
+.section-title h2::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 120px;
+  height: 1px;
+  background: #ddd;
+  bottom: 1px;
+  left: calc(50% - 60px);
+}
+
+.section-title h2::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: #1977cc;
+  bottom: 0;
+  left: calc(50% - 20px);
+}
+
+
+
+{% endblock %}
+
+{% block body %} 
+{% include 'message.html' %}
+
+<!-- banner -->
+<div class="card text-bg-dark">
+  <img src="/media/banner.jpg." class="card-img" alt="..." style="height: 300px; opacity: 0.5;">
+  <center>
+  <div class="card-img-overlay">
+    <h1 class="card-title" style="font-size: 30px; font-weight: 700; letter-spacing: 0.5px; font-family: 'Poppins', sans-serif; margin-top: 100px; color: #ecf0f4; margin-left: 10px; ">Connect With Us</h1>
+    <h5 class="card-text" style="color: #ebedef; margin-left: 10px;">Any Queries, Ideas or Feedback - Drmedizone is here to build and execute healthcare alliances</h5>
+    <h5 class="card-text" style="color: #f8fafc; margin-left: 10px;">while aspiring to perform and provide credible and timely services.</h5>
+  </div>
+</center>
+</div>
+
+<!-- <img  -->
+&nbsp;
+<div class="card-group container"  >
+  <div class="card" style="border: none; padding-right: 100px;">
+    <a href="#contact">
+    <img src="/media/departments-3.jpg" class="card-img-top" alt="..." style="overflow: hidden; border-radius: 50%;">
+    <div class="card-img-overlay">
+      <center>
+      <h1 class="card-title" style="font-size: 30px; font-weight: 700; letter-spacing: 0.5px; font-family: 'Poppins', sans-serif; margin-top: 100px; color: #000407; margin-left: 10px; ">Connect With Us</h1>
+    </center>
+    </div>
+  </a>
+  </div>
+  <div class="card" style="border: none; padding-right: 100px;">
+    <a href="#contact">
+    <img src="/media/departments-3.jpg" class="card-img-top" alt="..." style="overflow: hidden; border-radius: 50%;">
+    <div class="card-img-overlay">
+      <center>
+      <h1 class="card-title" style="font-size: 30px; font-weight: 700; letter-spacing: 0.5px; font-family: 'Poppins', sans-serif; margin-top: 100px; color: #00070d; margin-left: 10px; ">Connect With Us</h1>
+    </center>
+    </div>
+  </a>
+  </div>
+  <div class="card" style="border: none;">
+    <a href="#contact">
+    <img src="/media/departments-3.jpg" class="card-img-top" alt="..." style="overflow: hidden; border-radius: 50%;">
+    <div class="card-img-overlay">
+      <center>
+      <h1 class="card-title" style="font-size: 30px; font-weight: 700; letter-spacing: 0.5px; font-family: 'Poppins', sans-serif; margin-top: 100px; color: #00050a; margin-left: 10px; ">Connect With Us</h1>
+    </center>
+    </div>
+  </a>
+  </div>
+</div>
+&nbsp;
+<!-- <img  -->
+
+<!-- <img  -->
+<div class="container-fluid" style="box-shadow: 0px 2px 15px">
+    <h2 style="text-align: center; font-size: 32px; font-weight: bold; color: #2c4964; padding-top: 20px;">Partner With Us</h2>
+
+  <div class="row">
+
+    <div class="col-lg-3 col-md-6" style="padding-top: 50px; padding-bottom: 50px; margin-left: 100px;">
+    <center>
+      <div class="count-box">
+        <a href="#contact">
+        <i class="fas fa-user-md"><img src="/media/notepad.png" style="width: 100px;"></i>
+        <span data-purecounter-start="0" data-purecounter-end="85" data-purecounter-duration="1" class="purecounter">{{Dr_length}}</span>
+        <b><h6 style="padding-top: 30px;">Fill in your details and hit the submit</h6>
+        <h6>button.</h6></b>
+      </a>
+      </div>
+    </center>
+    </div>
+
+    <div class="col-lg-3 col-md-6 mt-5 mt-md-0" style="padding-top: 50px; padding-bottom: 50px; margin-left: 100px">
+      <center>
+      <div class="count-box" >
+        <a href="#contact">
+        <i class="far fa-hospital"><img src="/media/customer-care.png" style="width: 100px;;"></i>
+        <span data-purecounter-start="0" data-purecounter-end="18" data-purecounter-duration="1" class="purecounter">{{specialist_length}}</span>
+        <b><h6 style="padding-top: 30px;">Our outreach executive will get in</h6>
+        <h6>touch with you.</h6>
+      </a>
+      </div></b>
+    </center>
+    </div>
+
+    <div class="col-lg-3 col-md-6 mt-5 mt-lg-0" style="padding-top: 50px; padding-bottom: 50px; margin-left: 261px; margin-left: 50px;">
+      <center>
+      <div class="count-box">
+        <a href="#contact">
+        <i class="fas fa-flask"><img src="/media/health-check.png" style="width: 100px; "></i>
+        <span data-purecounter-start="0" data-purecounter-end="12" data-purecounter-duration="1" class="purecounter">{{appointment_length}}</span>
+        <b><h6 style="padding-top: 30px;">After verification, you'll be listed on</h6>
+        <h6>Credihealth's website</h6>
+      </a>
+      </div></b>
+    </center>
+    </div>
+
+  </div>
+
+</div>
+&nbsp;
+<!-- ======= Contact Section ======= -->
+<section id="contact" class="contact">
+  
+  <div class="container">
+
+    <div class="section-title">
+      <h2>Contact</h2>
+      <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- <iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" allowfullscreen></iframe> -->
+    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.250570982498!2d-74.01803225587655!3d40.71113352043314!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b86e528cb077%3A0xc32fa3a95817256d!2sBhandup%2C%20Mumbai%2C%20Maharashtra%2C%20India!5e0!3m2!1sen!2sbg!4v1670575821859!5m2!1sen!2sbg" frameborder="0" width="100%" height="350px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+  </div>
+
+  <div class="container">
+    <div class="row mt-5">
+
+      <div class="col-lg-4">
+        <div class="info">
+          <div class="address">
+            <i class="bi bi-geo-alt"><img src="/media/location.png" style="width: 35px;"></i>
+            <h4 style="display: inline-block;">Location:</h4>
+            <p>1108 Shivdarshab CHS Quary Street, Mumbai, 400078</p>
+          </div>
+
+          <div class="email">
+            <i class="bi bi-envelope"><img src="/media/email.svg" style="width: 35px;"></i>
+            <h4 style="display: inline-block;">Email:</h4>
+            <p>drmedizone@example.com</p>
+          </div>
+
+          <div class="phone">
+            <i class="bi bi-phone"><img src="/media/phone.svg" style="width: 35px;"></i>
+            <h4 style="display: inline-block;">Call:</h4>
+            <p>+91 93724 03834</p>
+          </div>
+
+          
+
+        </div>
+
+      </div>
+
+      <div class="col-lg-8 mt-5 mt-lg-0">
+
+        <form method="post" role="form" >
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-md-6 form-group">
+              <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+            </div>
+            <div class="col-md-6 form-group mt-3 mt-md-0">
+              <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+            </div>
+          </div>
+          <div class="form-group mt-3">
+            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+          </div>
+          <div class="form-group mt-3">
+            <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+          </div>
+          <div class="text-center mt-2"><button type="submit" class="btn col-6" style="background: #1977cc; color: #fff; border-radius: 50px;">
+            Send message
+      </button></div>
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+</section><!-- End Contact Section -->
+{% endblock %}

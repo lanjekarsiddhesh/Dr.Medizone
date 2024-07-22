@@ -1,0 +1,107 @@
+{% extends 'commanMedicine.html' %}
+{% block body %}
+	{% load static %}
+	
+	<section id="cart_items">
+		{% include 'message.html' %}
+		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+				  <li><a href="#">Home</a></li>
+				  <li class="active">Shopping Cart</li>
+				</ol>
+			</div>
+			<div class="table-responsive cart_info">
+				<form method="post">{% csrf_token %}
+				<table class="table table-condensed">
+					{% if Mycart %}
+					<thead>
+						<tr class="cart_menu">
+							<td class="image" style="text-align: center;">Item</td>
+							<td class="description" style="text-align: center;">description</td>
+							<td class="price" style="text-align: center;">Price</td>
+							<td class="total" style="text-align: center;">Total</td>
+							<td></td>
+						</tr>
+					</thead>
+					{% endif %}
+					
+					<tbody>
+						{% for item in Mycart %}
+						
+						{% if item %}
+						<tr>
+							<td class="cart_product" style="width: 100px; justify-content: center; text-align: center;">
+								<img src="/media/{{item.Product.Image1}}" style="max-height: 80px; max-width: 80px;" alt="">
+							</td>
+							<td class="cart_description" style="text-align: center;">
+								<h4>{{item.Product.medicine_name}}</h4>
+								<p>Web ID: {{item.id}}</p>
+							</td>
+							<td class="cart_price" style="width: 100px; text-align: center;">
+								<p>{{item.Product.price}}/-</p>
+							</td>
+							
+							<td class="cart_total" style="width: 100px; text-align: center;">
+								<p class="cart_total_price">{{item.get_product_price}}</p>
+							</td>
+							<td class="cart_delete">
+								<a class="cart_quantity_delete" href="/medicineshop/RemoveCartitem/{{item.Product.Id}}"><i class="fa fa-times"></i></a>
+							</td>
+						</tr>
+						{% endif %}
+						{% empty %}
+						<div style="background-color: rgb(241, 142, 142);">
+						<h1 style="color: black; font-weight: bold; padding: 2%;">Empty Cart</h1>
+						</div>
+						{% endfor %}
+
+					</tbody>
+					
+				</table>
+				<button class="btn btn-default update" type="submit">Update</button>
+				</form>
+			</div>
+		</div>
+	</section> 
+
+	{% if Mycart %}
+	<section id="do_action">
+		<div class="container">
+			<div class="row">
+				
+				<div class="col-sm-6" style="float:right">
+					<div class="total_area">
+						<ul>
+							<li>Cart Sub Total <span>{{total}}/-</span></li>
+							<li>Shipping Cost <span>Free</span></li>
+							<li>Total <span>{{total}}/-</span></li>
+						</ul>
+							
+							<a class="btn btn-default check_out" href="Checkout?id={{Id}}">Check Out</a>
+							
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	{% endif %}
+
+	<script>
+		id = document.getElementById("num").value
+		console.log(id)
+		function PlusFunction() {
+		document.getElementById("Quantity"+id).stepUp(1);
+		}
+		function MinusFunction() {
+		document.getElementById("Quantity"+id).stepDown(1);
+		}
+		
+	</script>
+
+	
+
+	
+
+
+	{% endblock %}

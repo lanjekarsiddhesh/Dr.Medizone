@@ -1,0 +1,300 @@
+{% extends 'Admin_dashboard_comman.html' %}
+
+
+{% block css %} 
+
+
+
+.editorcol {
+    background-color: #fff;
+    width: 70%;
+    border-radius: 4px;
+    padding: 5px;
+    box-shadow: #00000059 0px 5px 15px;
+    
+}
+
+.box {
+    display: inline-block;
+    padding: 0 5px;
+}
+
+.first {
+    border-right: 2px solid #40576d33;
+}
+
+.editorcol input[type=number] {
+    outline: none;
+    border: none;
+    width: 50px;
+    color: #131c35;
+    font-size: 24px;
+    padding: 10px 0px;
+    margin-left: 10px;
+}
+
+.second {
+    border-right: 2px solid #40576d33;
+}
+
+.editorcol button {
+    border: none;
+    color: #131c35;
+    font-size: 20px;
+    font-weight: 300;
+    background-color: transparent;
+    padding: 10px 16px;
+    border-radius: 3px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.editorcol button:hover {
+    background-color: #40576d1a;
+}
+
+.editorcol button.active {
+    background-color: #73b1e333;
+    color: #5271ff;
+}
+
+.third {
+    border-right: 2px solid #40576d33;
+}
+
+.third button:focus {
+    background-color: #73b1e333;
+    color: #5271ff;
+}
+
+.editorcol input[type=color] {
+    width: 35px;
+    outline: none;
+    border: none;
+    background: none;
+}
+
+textarea {
+    width: 70%;
+    height: 250px;
+    padding: 10px;
+    border-radius: 3px;
+    outline: none;
+    border: none;
+    resize: vertical;
+}
+
+
+
+{% endblock %}
+
+
+{% block section %}
+
+
+
+
+<h3 class="mx-4 mt-4" style="text-align: center; "><b>QNA</b>
+    <!-- <span class="badge rounded-pill text-bg-danger">{{Dr_length}}</span> -->
+
+    {% include 'message.html' %}
+
+</h3>
+<div class="container-fluid pt-3">
+<div class=" removable">
+        <div class="card mb-4">
+            <center>
+            <div class="card-header pb-0">
+                <div class="btn-group"><!-- Filter -->
+                    <button style="height: 30px; border-radius: 20px;" class="btn btn-sm dropdown-toggle" data-bs-toggle="dropdown" >
+                      Filter by Answer
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/admin_dashboard_QNA/">All</a></li>
+                        <li><a class="dropdown-item" href="?answer=True">Completed</a></li>
+                        <li><a class="dropdown-item" href="?answer=False">Pending</a></li>
+                        <!-- <li><button type="submit" class="d-grid gap-2 col-6 mx-auto btn btn-info">Submit</button></li> -->
+                    </ul>
+                  </div>
+            </div>
+        </center>
+            <div class="card-body px-0 pt-0 pb-2">
+                <div class="table-responsive p-0">
+                    <table class="table align-items-center mb-0">
+                        <thead >
+                            <tr style="background: rgb(190, 243, 244);">
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder ">No.</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder ">Question</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder ">Email</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder  ps-2">answer</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder  ps-2">answer</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder  ps-2">Patient</th>
+                                <th class="text-secondary opacity-7">edit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in Qna %}
+                            <tr>
+                                <td>
+                                    <div class="d-flex px-2">
+                                        
+                                        <div class="d-flex flex-column justify-content-center">
+                                            <h6 style="margin-right: 9px;" class="mb-0 text-sm">#{{i.id}}</h6>
+                                        </div>
+                                        <!-- <div>
+                                            <img src="/media/{{i.patient_profile}}" class="avatar avatar-sm me-3" alt="..." >
+                                        </div> -->
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex px-2 py-1">
+                                        <div class="d-flex flex-column justify-content-center">
+                                            <h6 class="mb-0 text-sm">{{i.Question}}</h6>
+                                            <!-- <p class="text-xs text-secondary mb-0">{{i.patient_email}}</p> -->
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="text-xs font-weight-bold mb-0">{{i.Email}}</p>
+                                </td>
+                                <td>
+                                    {% if i.complete == True %}
+                                    <span class="badge text-bg-success">Complete</span>
+                                    {% else %}
+                                    <span class="badge text-bg-danger">Pending</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <p class="text-xs font-weight-bold mb-0">{{i.Answer}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-xs font-weight-bold mb-0">{{i.patient_id}}</p>
+                                </td>
+                                
+                                <td class="align-middle">
+                                    <a href="#" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                        Delete
+                                        <svg style="color: red; margin-right: 20px; " xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                            <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                                          </svg>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+</div>
+
+
+<h3 class="mx-4 mt-4" style="text-align: center; "><b>Answering</b>
+    <!-- <span class="badge rounded-pill text-bg-danger">{{Dr_length}}</span> -->
+</h3>
+
+
+  <div class="container-fluid pt-3" >
+    <div class=" removable">
+        <div class="card mt-4 p-4">
+            <center>
+            <div class="card-header pb-0">
+                <form  style="display: inline-block;" method="post">{% csrf_token %}
+                    <div class="btn-group">
+                        <!-- <input name="search" style="height: 30px;" class="form-control me-2" type="number" placeholder="Search By Id" aria-label="Search"> -->
+                        {{questionForm.id}}
+                        <button style="height: 30px;  margin-right: 15px; border-radius: 20px;" class="btn btn-outline-success" type="submit">Search</button>
+                              
+                    </div>
+                </form>
+            </div>
+            </center>
+
+            <!-- <section class="mt-4" > -->
+                <label class="mt-4" style="font-size: 20px;">Q. : {{Question.Question}}</label>
+                <center>
+                <div class="row mt-4">
+                    <div class="col editorcol">
+                        <div class="first box">
+                            <input id="font-size" type="number" value="16" min="1" max="100" onchange="f1(this)">
+                        </div>
+                        <div class="second box">
+                            <button type="button" onclick="f2(this)">
+                                <i class="fa fa-bold" aria-hidden="true"></i>
+                            </button>
+                            <button type="button" onclick="f3(this)">
+                                <i class="fa fa-italic" aria-hidden="true"></i>
+                            </button>
+                            <button type="button" onclick="f4(this)">
+                                <i class="fa fa-underline" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <div class="third box">
+                            <button type="button" onclick="f5(this)">
+                                <i class="fa fa-align-left" aria-hidden="true"></i>
+                            </button>
+                            <button type="button" onclick="f6(this)">
+                                <i class="fa fa-align-right" aria-hidden="true"></i>
+                            </button>
+                            <button type="button" onclick="f7(this)">
+                                <i class="fa fa-align-center" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <div class="fourth box">
+                            <button type="button" onclick="f8(this)">aA</button>
+                            <button type="button" onclick="f9()">
+                                <i class="fa-solid fa-text-slash"></i>
+                            </button>
+                            <input type="color" onchange="f10(this)">
+                        </div>
+                    </div>
+                </div>
+            </center>
+                <br>
+                <form method="post" >
+                    {% csrf_token %}
+                
+                    <div class="row">
+                        <div class="col editorcol">
+                            <input name="id" type="number" value={{Question.id}} hidden required >
+                            <!-- <textarea id="textarea1" placeholder="Your text here "></textarea> -->
+                            {{answerForm.Answer}}
+                        </div>
+                    </div>
+                    <br>
+                    
+                    <div class="row">
+                        <div class="d-grid gap-2 col-6 mx-auto">
+                            <button style="float: right;" class="btn btn-info" type="submit">Submit</button>
+                        </div>
+                    </div>
+                </form>
+                
+                
+            <!-- </section> -->
+            
+
+         
+        </div>
+    </div>
+  </div>
+
+
+  
+
+  {% block script %} 
+
+  
+
+
+  {% endblock %}
+  
+
+<!-- </div -->
+
+
+{% endblock %}

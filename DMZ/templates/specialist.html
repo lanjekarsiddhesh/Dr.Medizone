@@ -1,0 +1,91 @@
+{% extends 'Comaan.html' %}
+{% block title %} DMZ {% endblock %}
+{% block css %} 
+
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+ .ovelay:hover {
+  background:#05d1ff;
+}
+
+.animation::before {
+    content: "Health";
+    color: #00D7FF;
+    animation: animate infinite 5s;
+    padding-left: 10px;
+}
+
+@keyframes animate {
+
+    0% {
+        content: "Health";
+    }
+
+    50% {
+        content: "Days";
+    }
+
+    75% {
+        content: "Lives";
+    }
+}
+
+
+
+
+{% endblock %}
+{% block body %} 
+
+<!-- top slide -->
+
+<div class="container px-5" style=" background:linear-gradient(90deg,#1a5b68,#198196,#18acc9,#0ad6ff); border-radius: 100px; margin-top:3%;">
+    <div class="row gx-5 align-items-center justify-content-center">
+        <div class="col-lg-8 col-xl-7 col-xxl-6">
+            <div class="my-5 text-center text-xl-start">
+                <h1 class="display-4 fw-bolder text-white mb-4">Dr.Medizone Care</h1>
+                <p class="lead fw-normal text-white mb-1">Choose the your experts in end to end surgical care.</p>
+                <h4 class="display-6 fw-bolder text-white mb-2">You are in the safe hand</h4>
+                <h2 class="display-10 fw-bolder text-white mb-4">Better <span class="animation"></span></h2>
+                <p class="lead fw-normal text-white-50 mb-4">Speak and meat with a doctor online or offline without leaving your house. Manage your health conveniently with top-quality care.</p>
+                <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
+                    <a class="btn btn-outline-light btn-lg px-4" href="#">Reach out to us on | +91 9372403834</a>
+                    <a class="btn btn-primary btn-lg px-4 me-sm-3" href="#">Get Started</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center"><img style="height: 30rem;" class="img-fluid rounded-3 " src="/media/dmz_imgs/oip.png" alt="..." /></div>
+    </div>
+  </div>
+
+
+
+<!-- specialist -->
+
+<div class="container" >
+    <h2 style="font-weight:bold ;">Specialist</h2 >
+      <!-- <a href="{% url 'Doctor_Registration' %}" style="text-align:right ;"><h6>show more</h6></a> -->
+      <div class="row row-cols-2 row-cols-md-5 g-4">
+        {% for i in specialists|slice:"0:" %}
+        <a href="/doctor_specilaity/{{i.index}}" id="sp{{i.index}}" style="text-decoration:none ; color:black;" >
+          <div class="col">
+              <div class="card align-items-center ovelay">
+                <img src="/media/{{i.image}}" class="card-img-top" alt="Hollywood Sign on The Hill" style="height: 70px; width:70px; margin: 20px; "/>
+                <div class="card-body">
+                  <h6 class="card-title">{{i.specilaity_category}}</h6>
+                </div>
+              </div>
+          </div>
+        </a>
+          {% endfor %}
+          
+      </div>
+  </div>
+
+
+
+
+
+  <!-- slide -->
+  
+  
+
+{% endblock %}

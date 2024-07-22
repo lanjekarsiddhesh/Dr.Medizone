@@ -1,0 +1,108 @@
+{% extends 'Comaan.html' %}
+
+{% block css %} 
+{% endblock %}
+
+
+
+{% block body %}
+<!-- banner -->
+<div class="card text-bg-dark">
+    <img src="/media/about_banner.jpg" class="card-img" alt="..." style="height: 500px; opacity: 0.5;">
+    <center>
+    <div class="card-img-overlay">
+      <h1 class="card-title" style="font-size: 50px; font-weight: 700; letter-spacing: 0.5px; font-family: 'Poppins', sans-serif; margin-top: 130px; color: #ecf0f4; margin-left: 10px; ">We are all About bringing</h1>
+      <h1 class="card-title" style="font-size: 50px; font-weight: 700; letter-spacing: 0.5px; font-family: 'Poppins', sans-serif; margin-top: 30px; color: #ecf0f4; margin-left: 10px; ">transparency in the Indian</h1>
+      <h1 class="card-title" style="font-size: 50px; font-weight: 700; letter-spacing: 0.5px; font-family: 'Poppins', sans-serif; margin-top: 30px; color: #ecf0f4; margin-left: 10px; ">Healthcare System </h1>
+    </div>
+  </center>
+  </div>
+&nbsp;
+  <!-- 1div -->
+  <div class="container-fluid" style="padding-left: 150px;">
+    <div class="card mb-3" style="max-width: 1240px; border: none;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="/media/abot_div_1.jpg" class="img-fluid rounded-start" alt="..." style="height: 300px; width: 300px;">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h2 class="card-title">Drmedizone - Aapka Health Partner</h2>
+              <p class="card-text" style="font-size: 20px;">We are technology driven online solution for all your medical
+                needs.Our team of medical experts will accompany you at every
+                step.From finding the right doctor and hospital, booking doctor
+                appointments,comparing procedure costs to solving your health
+                related queries.We strive to continuously improve and develop new
+                services to empower and educate patients and their
+                families.Credihealth is here to ensure that the right healthcare
+                decisions are made.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  &nbsp;
+  <!-- 1div -->
+  <div class="container-fluid" style="box-shadow: 0px 2px 15px;">
+    <div class="card mb-3" style="max-width: 1240px; border: none; margin-left: 137px;">
+        <div class="row g-0" style="padding: 30px;">
+          <div class="col-md-8">
+            <div class="card-body">
+              <h2 class="card-title">Our Vision</h2>
+              <p class="card-text" style="font-size: 20px;">We envision a healthcare ecosystem where people from around the
+                world can quickly find credible and reliable answers to their medical
+                problems along with easy access to the best healthcare experts to
+                guide them towards a healthier, happier and more fulfilling life. We
+                aim to be the first port of call for customers having healthcare
+                related need, doubt, or query.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <img src="/media/about_div_2.jpg" class="img-fluid rounded-start" alt="..." style="height: 300px; width: 300px;">
+          </div>
+        </div>
+      </div>
+  </div>
+  &nbsp;
+  <!-- totalvdoctor and all count-box -->
+  <div class="container-fluid">
+
+  <div class="row">
+
+    <div class="col-lg-3 col-md-6" style=" padding-bottom: 50px; margin-left: 100px;">
+    <center>
+      <div class="count-box">
+        <i class="fas fa-user-md"><img src="/media/about_doctor.png" style="width: 100px;"></i>
+        <span data-purecounter-start="0" data-purecounter-end="85" data-purecounter-duration="1" class="purecounter">{{Dr_length}}</span>
+        <b><h4 style="padding-top: 30px;">35,000+</h4>
+        <h4>Specialists Doctors Available</h4></b>
+      </div>
+    </center>
+    </div>
+
+    <div class="col-lg-3 col-md-6 mt-5 mt-md-0" style=" padding-bottom: 50px; margin-left: 100px">
+      <center>
+      <div class="count-box" >
+        <i class="far fa-hospital"><img src="/media/about_calendar.png" style="width: 100px;;"></i>
+        <span data-purecounter-start="0" data-purecounter-end="18" data-purecounter-duration="1" class="purecounter">{{specialist_length}}</span>
+        <b><h4 style="padding-top: 30px;">500,000+ </h4>
+        <h4>patients have take appointment's from drmedizone</h4>
+      </div></b>
+    </center>
+    </div>
+
+    <div class="col-lg-3 col-md-6 mt-5 mt-lg-0" style="padding-bottom: 50px; margin-left: 261px; margin-left: 50px;">
+      <center>
+      <div class="count-box">
+        <i class="fas fa-flask"><img src="/media/about_hospital.png" style="width: 100px; "></i>
+        <span data-purecounter-start="0" data-purecounter-end="12" data-purecounter-duration="1" class="purecounter">{{appointment_length}}</span>
+        <b><h4 style="padding-top: 30px;">650+</h4>
+        <h4> Available Hospitals Across India</h4>
+      </div></b>
+    </center>
+    </div>
+
+  </div>
+
+</div>
+{% endblock %}

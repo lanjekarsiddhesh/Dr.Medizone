@@ -1,0 +1,120 @@
+{% extends 'Admin_dashboard_comman.html' %}
+{% block head %} 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+{% endblock %}
+
+{% block section %}
+
+{% include 'message.html'%}
+
+<div class="container mt-5">
+        <form class="row g-3 needs-validation p-5" method="post" enctype="multipart/form-data" novalidate>{% csrf_token %}
+
+            <div class="col-md-4">
+              <label for="validationCustom01" class="form-label">Test name</label>
+              <input type="text" name="name" class="form-control" id="validationCustom01"  required>
+              <div class="invalid-feedback">
+                Enter Test Name
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="validationCustom02" class="form-label">Price</label>
+              <input type="text" name="price" class="form-control" id="validationCustom02"  required>
+              <div class="invalid-feedback">
+                Enter Amount of tEst
+              </div>
+            </div>
+
+            <div class="col-md-4">
+                <label for="validationCustom04" class="form-label">Gender</label>
+                <select name="Gender" class="form-select" id="validationCustom04" required>
+                  <option selected disabled value="">Choose...</option>
+                  <option>Unisex</option>
+                  <option>Male</option>
+                  <option>Female</option>
+                </select>
+                <div class="invalid-feedback">
+                  Please select a valid gender.
+                </div>
+              </div>
+
+           
+            <div class="col-md-4">
+              <label for="validationCustom03" class="form-label">Age Group</label>
+              <input name="age" type="text" class="form-control" id="validationCustom03" required>
+              <div class="invalid-feedback">
+                Please provide a valid Age Group
+              </div>
+            </div>
+
+            <div class="col-md-4">
+                <label for="validationCustom04" class="form-label">Visit Type</label>
+                <select name="Visit" class="form-select" id="validationCustom04" required>
+                  <option selected disabled value="">Choose...</option>
+                  <option value="True">Lab Visit</option>
+                  <option value="False">Home Visit</option>
+                </select>
+                <div class="invalid-feedback">
+                  Please select a valid Visit type.
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <label for="validationCustom03" class="form-label">Image</label>
+                <input name="file" type="file" class="form-control" id="validationCustom03" required>
+                <div class="invalid-feedback">
+                  Please provide a valid Image
+                </div>
+              </div>
+
+
+
+              <div class="col-md-6">
+                <label for="validationCustom03" class="form-label">What_preparation_is_needed_for_this_Checkup</label>
+                <textarea name="preparation" type="text" class="form-control" id="validationCustom03" required></textarea>
+                <div class="invalid-feedback">
+                  Please provide a valid preparation
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <label for="validationCustom03" class="form-label">Who should book this checkup</label>
+                <textarea name="Who_should_book_this_checkup" type="text" class="form-control" id="validationCustom03" required></textarea>
+                <div class="invalid-feedback">
+                  Please provide a valid Who should book this checkup
+                </div>
+              </div>
+            
+            
+            
+            <div class="col-12">
+              <button style="float: right;" class="btn btn-primary" type="submit">Upload Test</button>
+            </div>
+          </form>
+</div>
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+</script>
+
+{% endblock %}

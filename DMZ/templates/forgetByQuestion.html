@@ -1,0 +1,66 @@
+{% extends 'Comaan.html' %}
+{% block title %} DMZ {% endblock %}
+
+{% block css %}
+#ParentContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#ChildContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  <!-- margin-top: 5rem; -->
+
+}
+{% endblock %}
+{% block body %}
+<div id="ParentContainer">
+<div class="container"  id="ChildContainer" style="  border: 5px solid;background-color:#B1E1FF; ">
+  <form method="POST" style=" margin-top: 26px; margin-bottom: 25px;">
+    {% csrf_token %}
+    <h5 style="text-align: center;">forget password by Security Question</h5>
+      <center>
+        <input value="Doctor" class="form-check-input" type="radio" name="usertype" id="flexRadioDefault1">
+        <label class="form-check-label" for="flexRadioDefault1">
+          Doctor
+        </label>
+        <input value="Patient" class="form-check-input" type="radio" name="usertype" id="flexRadioDefault2" checked>
+        <label class="form-check-label" for="flexRadioDefault2">
+          Patient
+        </label>
+    </center><br>
+    <div class="mb-3 row">
+      
+    
+        <label for="staticEmail" class="form-label">Choose Your Question</label>
+        <select name="Question"  class="form-select" id="validationDefaultBlood" required>
+          <option selected disabled value="">select your Question</option>
+          <option>Favourite Cricket Player ?</option>
+          <option>First Book You Read ? </option>
+          <option>Favourite Singer ?</option>
+          <option>Favourite Actor ?</option>
+          <option>Country That You Like Most ?</option>
+          <option>Your Childhood Friend ?</option>
+          <option>Your Favourite Movie ?</option>
+          <option>Your Mother Name ?</option><!-- <input name="mobile" type="tel" class="form-control" id="staticEmail" style="width:20em ;"> -->
+  
+      <div class="col-sm-6">
+        <label for="staticanswer" class="form-label">Give Your Answer</label>
+        <input name="answer" type="text" class="form-control" id="staticanswer"  placeholder="Enter your answer"><!-- <input name="mobile" type="tel" class="form-control" id="staticEmail" style="width:20em ;"> -->
+      </div>
+      <center>
+        <button type="submit" class="btn btn-primary">
+            Submit
+          </button>
+      </center>
+    </div>
+   
+
+  </form>
+</div>
+</div>
+{% endblock %}

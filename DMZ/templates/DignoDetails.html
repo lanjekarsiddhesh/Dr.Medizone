@@ -1,0 +1,112 @@
+{% extends 'Comaan.html' %}
+
+{% block css %}
+
+{% endblock %}
+
+
+
+{% block body %}
+
+
+<div class="container mt-5">
+    <div class="row">
+      <div class="col col-lg-3">
+        <img src="/media/{{test.image}}" class="rounded mx-auto d-block" style="width: 300px; height: 300px;" alt="...">
+      </div>
+
+      <div class="col col-lg-6 ">
+        <h3>{{test.name}}</h3>
+        <P class="text-muted">For Age Group and Gender:- {{test.Age_Group}} / {{test.Gender}}</P>
+        {% if test.Home_visit == True %}
+        <P class="text-muted">Possible For Home Visited</P>
+        {% else %}
+        <P class="text-muted">Not Possible For Home Visited</P>
+        {% endif %}
+
+        <h5>&#8377;{{test.price}}</h5>
+        <!-- <p>include <strong>55 Tests</strong></p> -->
+        <hr>
+        <h6>Who should book this checkup?</h6>
+        <p>{{test.Who_should_book_this_checkup}}</p>
+        <hr>
+        <h6>What preparation is needed for this Checkup?</h6>
+        <p>{{test.What_preparation_is_needed_for_this_Checkup}}</p>
+        <hr>
+        {% if login == 'Login' %}
+        <a href="/DignosticForm/?DignoID={{test.id}}" class="btn btn-primary float-end m-2 " role="button">Book Your Test Now</a>
+        {% else %}
+        <a href="/Login/" role="button" class="btn btn-primary float-end m-2 " >Book Your Test Now</a>
+        {% endif %}
+        {% if DisabledAddToCart %}
+        <a style="pointer-events: none; background-color: rgb(166, 166, 166); border-color:rgb(166, 166, 166) ;" href="/Digno-Add-To-Cart/{{test.id}}" role="button" class="btn btn-outline-primary float-end m-2 " >Add to cart</a>
+        {% else %}
+        {% if login == 'Login' %}
+        <a href="/Digno-Add-To-Cart/{{test.id}}" role="button" class="btn float-end m-2 " >Add to cart</a>
+        {% else %}
+        <a href="/Login/" role="button" class="btn float-end m-2 " >Add to cart</a>
+        {% endif %}
+        {% endif %}
+        
+      </div>
+
+      <div class="col col-lg-3">
+        <div class="card shadow-sm  bg-body rounded " style="width: 25rem;">
+            <div class="card-body">
+              <h5 class="card-title">Your Cart <span class="badge bg-secondary">{{TestLength}}</span></h5>
+
+                {% for i in CartItem %}
+              <hr>
+                <div class="row">
+                  <div style="font-weight: 500;" class="col-lg-8">{{i.Tests.name}}</div>
+                  <div style="font-weight: 500;" class="col-lg-4">&#8377;{{i.Tests.price}}/-</div>
+                  <p style="font-size: 12px;" class="card-text col-lg-11 text-muted mt-1"><strong>preparation</strong><br>
+                   {{i.Tests.What_preparation_is_needed_for_this_Checkup}}
+                  </p>
+                  <a role="button" href="/DignoCartItemDelete/{{i.Tests.id}}" class="btn-close col-lg-1 " ></a>
+                </div>
+                {% empty %}
+              <div style="background-color: rgb(241, 142, 142);">
+              <h3 style="color: black; font-weight: bold; padding: 2%;">Empty Cart</h3>
+              </div>
+                {% endfor %}
+              
+
+
+
+
+
+              <hr>
+              {% if extra %}
+              <div class="row mt-2">
+                <div style="font-weight: 500; font-size: 12px;" class="col-lg-8 ">Pickup Charge</div>
+                <div style="font-weight: 500; font-size: 12px; " class="col-lg-4">&#8377;100.00/-</div>
+              </div>
+
+              <hr>{% endif %}
+
+              <div class="row mt-2">
+                <div style="font-weight: 700;" class="col-lg-8">Total</div>
+                <div style="font-weight: 700;" class="col-lg-4">&#8377;{{Carttotal}}/-</div>
+              </div>
+
+              <hr>
+              <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
+              
+              <div class="d-grid gap-2">
+                {% if login == 'Login' %}
+                <a href="/DignosticForm/?CartID={{Cartid}}" style="background-color: rgb(25, 119, 204); color: white; float: right; " class="btn ">Book Now</a>
+                {% else %}
+                <a href="/Login/" style="background-color: rgb(25, 119, 204); color: white; float: right; " class="btn ">Book Now</a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    
+  </div>
+
+
+
+{% endblock %}

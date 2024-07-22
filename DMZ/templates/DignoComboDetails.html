@@ -1,0 +1,55 @@
+{% extends 'Comaan.html' %}
+
+{% block css %}
+
+{% endblock %}
+
+
+
+{% block body %}
+
+<div class="container mt-5">
+    <div class="row">
+      <div class="col col-lg-3">
+        <img src="/media/{{test.image}}" class="rounded mx-auto d-block" style="width: 300px; height: 300px;" alt="...">
+      </div>
+
+      <div class="col col-lg-6 ">
+        <h3>{{test.name}}</h3>
+        <P class="text-muted">For Age Group and Gender :- {{test.Age_Group}} years / {{test.Gender}}</P>
+        <p>include <strong>{{test.Test_count}} Tests</strong></p>
+        <hr>
+        <h6>Who should book this checkup?</h6>
+        <p>{{test.Who_should_book_this_checkup}}</p>
+        <hr>
+        <h6>What preparation is needed for this Checkup?</h6>
+        <p>{{test.What_preparation_is_needed_for_this_Checkup}}<p>
+        <hr>
+        <h6>include {{test.Test_count}} Tests </h6>
+        {{test.details}}
+      </div>
+
+      <div class="col col-lg-3">
+        <div class="card" style="width: 25rem;">
+            <div class="card-body">
+              <h5 class="card-title">Selected Package</h5>
+              <hr>
+              <div class="row mt-4">
+                <div style="font-weight: 500;" class="col-lg-8">{{test.name}}</div>
+                <div style="font-weight: 500;" class="col-lg-4">&#8377;{{test.price}}/-</div>
+              </div>
+              <p style="font-size: 14px;" class="card-text mt-2">Include Tests {{test.Test_count}}</p>
+              <hr>
+              <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
+              
+              <div class="d-grid gap-2">
+                <a href="#" style="background-color: rgb(25, 119, 204); color: white; float: right; " class="btn ">Book Now</a>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    
+  </div>
+
+{% endblock %}

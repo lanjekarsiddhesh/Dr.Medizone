@@ -1,0 +1,139 @@
+{% extends 'Comaan.html' %}
+
+{% block css %}
+
+{% endblock %}
+
+
+
+{% block body %}
+
+
+<!-- feedback form -->
+
+<!-- Modal -->
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"> -->
+    <div class="modal-dialog modal-lg mt-4">
+      <div class="modal-content">
+        <form method="post" novalidate class="container  row g-3 needs-validation">{% csrf_token %}
+          <!-- <div class="col-md-6">
+            <div class="form-check form-switch">
+              <input class="form-check-input " type="checkbox" role="switch" id="flexSwitchCheckDefault" required>
+              <label class="form-check-label " for="flexSwitchCheckDefault"><span style="font-size: 17px; color: red; font-weight: 700px;">Dr.Medizone Lab</span></label>
+            </div>
+          </div> -->
+          <div class="col-md-6">
+            <label for="validationDefault04" class="form-label">Test Name :- </label>
+            <label style="color: red; font-weight: 700;" for="validationDefault04" class="form-label">{{test.name}}</label>
+            {% if testCart %}
+            <ul>
+              {% for i in testCart %}
+              <li style="color: red; font-weight: 700;" for="validationDefault04" class="form-label">{{i.Tests.name}}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+            
+            <div class="invalid-feedback">
+              Please choose a Test.
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="validationDefault04" class="form-label">Test Price :- </label>
+            <input name="Test_price" type="number" class="form-control" id="validationDefault01" value="{{total}}" hidden required>
+            <label style="color: red; font-weight: 700;" for="validationDefault04" class="form-label">&#8377;  {{total}}/-</label>
+            <div class="invalid-feedback">
+              Please choose a Test.
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="validationDefault01" class="form-label">Appointment Date</label>
+            <input name="Appointments_date" type="date" class="form-control" id="validationDefault01"  required>
+            <div class="invalid-feedback">
+              Please Enter a Appointments Date.
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="validationDefault01" class="form-label">Type</label>
+            <select name="Appointment_type" class="form-select" id="validationDefault04" required>
+              <option selected disabled value="">Choose Type</option>
+              <option>Home Visit</option>
+              <option>Lab Visit</option>
+            </select>
+            <div class="invalid-feedback">
+              Please choose a visiting type.
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="validationDefault01" class="form-label">Full Name</label>
+            <input name="Patient_name" type="text" class="form-control" id="validationDefault01"  required>
+            <div class="invalid-feedback">
+              Please Enter Full Name.
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="validationDefaultUsername" class="form-label">Mobile Number</label>
+            <div class="input-group">
+              <span class="input-group-text" id="inputGroupPrepend2">+91</span>
+              <input name="Patient_mobile" type="tel" class="form-control" id="validationDefaultUsername"  aria-describedby="inputGroupPrepend2" required>
+              <div class="invalid-feedback">
+                Please Enter Mobile Number.
+              </div>
+            </div>
+            
+          </div>
+          <div class="col-md-6">
+            <label for="validationDefault02" class="form-label">Email Id</label>
+            <input name="Patient_email" type="email" class="form-control" id="validationDefault02" required>
+            <div class="invalid-feedback">
+              Please Enter Email.
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="validationDefault04" class="form-label">Select Gender</label>
+            <select name="Patient_gender" class="form-select" id="validationDefault04" required>
+              <option selected disabled value="">Choose Gender</option>
+              <option>Male</option>
+              <option>Female</option>
+              <option>Transgender</option>
+            </select>
+            <div class="invalid-feedback">
+              Please Choose Gender.
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="validationDefault05" class="form-label">Enter your pincode</label>
+            <input name="Patient_pincode" type="text" class="form-control" id="validationDefault05" required>
+            <div class="invalid-feedback">
+              Please Enter Pincode.
+            </div>
+          </div>
+          <div class="col-md-12">
+            <label for="validationDefault05" class="form-label">Enter your address </label>
+            <input name="Patient_adress" type="text" class="form-control" id="validationDefault05" required>
+            <div class="invalid-feedback">
+              Please Enter your Address.
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+              <label class="form-check-label" for="invalidCheck2">
+                Agree to terms and conditions
+              </label>
+              <div class="invalid-feedback">
+                Please check the box.
+              </div>
+            </div>
+          </div>
+        <div class="modal-footer">
+          <button type="reset" class="btn btn-primary" >Clear</button>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  <!-- </div> -->
+  <!-- feedback form -->
+
+
+{% endblock %}

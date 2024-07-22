@@ -1,0 +1,45 @@
+{% extends 'Doctorcomman.html' %}  
+
+{% block section %} 
+<div class="app-wrapper">
+	    
+    <div class="app-content pt-3 p-md-3 p-lg-4">
+        <div class="container-xl">
+
+
+
+<div class="row  row-cols-md-5 g-3 p-3" >
+
+    {% for i in rating %}
+    <div class="col" >
+      
+      <div class="card d-flex align-items-center" style=" max-width:300px;">
+
+        <img src="/media/{{i.patient.patient_profile}}" style="height:70px; width:70px; " class="card-img-top rounded-circle mt-3" alt="...">
+        <center>
+        <div class="card-body">
+          <h5 class="mb-0 card-title fs-6">{{i.patient.patient_name}} 
+            </h5>
+
+          <h6 class="mb-0 mt-1" style="font-size: 15px;">{{i.subject}}</h6>
+          <p class="mb-0" style="font-size: 18px;"><span>{% include 'star_rating.html' %}</span></p>
+          <h6 class="mb-0" style="font-size: 15px;">health concern:- {{i.health_concern}}</h6>
+          <span class="card-text  text-wrap" style="font-size: 12px;">{{i.review}}  </span>
+        </div>
+      <center>
+        <div class="card-footer ">
+          <small>Give at {{i.Updated_at}}</small>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+
+        </div>
+        </div>
+        </div>
+
+{% endblock %}

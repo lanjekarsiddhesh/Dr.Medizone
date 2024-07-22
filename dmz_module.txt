@@ -1,0 +1,6 @@
+mysqlclient
+pillow
+twilio
+razorpay
+xhtml2pdf
+pip install django-hitcount

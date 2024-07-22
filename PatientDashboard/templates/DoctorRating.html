@@ -1,0 +1,217 @@
+{% extends 'comman.html' %}
+
+{% block style %}
+
+/* <!-- rating star --> */
+
+
+.rate input{
+display: none;
+
+}
+
+.rate{
+display: inline-block;
+border: 0;
+}
+
+.rate label:after{
+display: inline-block;
+font-size: 1.3rem;
+font-family: FontAwesome;
+content: "\f005";
+margin: 0;
+padding: 0.3rem .2rem;
+cursor: pointer;
+
+}
+
+.rate .half:after{
+content: "\f089";
+position:absolute;
+padding-right: 0;
+}
+
+label:hover ~ label, input:checked ~ label {
+color: rgb(255, 196, 0);
+
+}
+input:checked + label:hover, input:checked ~ label:hover, input:checked ~ label:hover ~ label, label:hover ~
+input:checked ~ label{
+color: rgb(222, 152, 1);
+}
+/* <!-- rating star end --> */
+
+{% endblock %}
+
+{% block section %}
+<div class="app-wrapper">
+
+    <div class="app-content pt-3 p-md-3 p-lg-4">
+        <div class="container-xl">
+
+
+
+            <div class="row  row-cols-md-5 g-3 p-3">
+
+                {% for i in rating %}
+                <div class="col">
+
+                    <div class="card d-flex align-items-center" style=" max-width:300px;">
+                        <div class="mt-3" style="position: absolute; left: 90%;">
+
+                            <a role="button" data-bs-toggle="dropdown">
+                                <div style=' width: 5px; height: 5px; background-color: black; margin: 6px 0;'></div>
+                                <div style='width: 5px; height: 5px; background-color: black; margin: 6px 0;'></div>
+                                <div style='width: 5px; height: 5px; background-color: black; margin: 6px 0;'></div>
+                            </a>
+
+                            <ul class="dropdown-menu">
+
+                                <a style="cursor: pointer;"  data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                    id="dr{{i.id}}" class="text-secondary font-weight-bold text-xs">
+                                    <li class="mx-4 dropdown-item" style="font-size: 20px; text-decoration: none;">Edit
+                                        <svg style="color: blue; cursor: pointer; margin-left: 10px; font-size: 20px; "
+                                            xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                                            <path
+                                                d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
+                                        </svg>
+                                    </li>
+                                </a>
+
+
+                            </ul>
+                        </div>
+
+
+                        <img src="/media/{{i.doctorId.doctor_profile}}" style="height:70px; width:70px; "
+                            class="card-img-top rounded-circle mt-3" alt="...">
+                        <center>
+                            <div class="card-body">
+                                <h5 class="mb-0 card-title fs-6">{{i.doctorId.doctor_name}}
+                                </h5>
+
+                                <h6 class="mb-0 mt-1" style="font-size: 15px;">{{i.subject}}</h6>
+                                <p class="mb-0" style="font-size: 18px;"><span>{% include 'star_rating.html' %}</span>
+                                </p>
+                                <h6 class="mb-0" style="font-size: 15px;">health concern:- {{i.health_concern}}</h6>
+                                <span class="card-text  text-wrap" style="font-size: 12px;">{{i.review}} </span>
+                            </div>
+                            <center>
+                                <div class="card-footer ">
+                                    <small>Give at {{i.Updated_at}}</small>
+                                </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div style="background-color: rgba(255, 0, 0, 0.39);">
+                    <h3 class="p-3">No single review present</h3>
+                </div>
+                {% endfor %}
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    {% for i in rating %}
+                    <h5 class="modal-title" id="exampleModalLabel">Update Dr. {{i.doctorId.doctor_name}}'s Review</h5>
+                    {% endfor %}
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <form action="" method="post" name="appointment-form">
+                        {% csrf_token %}
+                        <div class="modal-body">
+                            <div class="mb-3" style="margin-left: 1rem;">
+                                <label for="name" class="form-label">Please write the appointment
+                                    type you consulted Dr.
+                                    {{doctor.doctor_name}}</label>
+                                <input name="Type" type="text" class="form-control" id="name"
+                                    placeholder="Appointment type">
+                            </div>
+                            <div class="mb-3" style="margin-left: 1rem;">
+                                <label for="Health_concern" class="form-label">For which health concern did
+                                    you consult the
+                                    doctor?</label>
+                                <input name="Health_concern" type="text" class="form-control"
+                                    id="Health_concern" placeholder="Write your symptoms">
+                            </div>
+                            <div class="mb-3" style="margin-left: 1rem;">
+                                <label for="subject" class="form-label">Subject</label>
+                                <input name="subject" type="text" class="form-control" id="subject"
+                                    placeholder="Write your symptoms">
+                            </div>
+                            <div class="mb-3" style="margin-left: 1rem;">
+                                <label for="experience" class="form-label">Tell us more about your
+                                    experience</label>
+                                <textarea name="experience" type="text" class="form-control"
+                                    id="experience" placeholder="Write atleast 100 characters"
+                                    required></textarea>
+                            </div>
+
+                            <div class="mb-3" style="padding: 0; margin-left: 1rem;">
+                                <label for="exampleFormControlInput3" class="form-label">Would you recommend the
+                                    doctor?</label>
+                            </div>
+                            <div class="mb-3 btn-group" role="group" aria-label="Basic radio toggle button group"
+                                style="padding-left: 50px; margin-left: 1rem;">
+                                <input value="YES" type="radio" class="btn-check" name="YES_NO" id="YES"
+                                    autocomplete="off" checked>
+                                <label class="btn btn-outline-success" for="YES">YES</label>
+
+                                <input value="NO" type="radio" class="btn-check" name="YES_NO" id="NO"
+                                    autocomplete="off">
+                                <label class="btn btn-outline-danger" for="NO">NO</label>
+                            </div>
+                            <label for="exampleFormControlInput3" style="margin-left: 1rem;" class=" form-label row">How
+                                was your
+                                experience?</label>
+                            <div class="mb-3 rate" style="margin-left: 1rem;">
+                                <input name="rating" type="radio" id="rating10" value="5"><label for="rating10"
+                                    title="5">
+                                    <input name="rating" type="radio" id="rating9" value="4.5"><label for="rating9"
+                                        title="4.5" class="half">
+                                        <input name="rating" type="radio" id="rating8" value="4"><label for="rating8"
+                                            title="4">
+                                            <input name="rating" type="radio" id="rating7" value="3.5"><label
+                                                for="rating7" title="3.5" class="half">
+                                                <input name="rating" type="radio" id="rating6" value="3"><label
+                                                    for="rating6" title="3">
+                                                    <input name="rating" type="radio" id="rating5" value="2.5"><label
+                                                        for="rating5" title="2.5" class="half">
+                                                        <input name="rating" type="radio" id="rating4" value="2"><label
+                                                            for="rating4" title="2">
+                                                            <input name="rating" type="radio" id="rating3"
+                                                                value="1.5"><label for="rating3" title="1.5"
+                                                                class="half">
+                                                                <input name="rating" type="radio" id="rating2"
+                                                                    value="1"><label for="rating2" title="1">
+                                                                    <!-- <input name="rating" type="radio" id="rating1" value="0.5"><label for="rating1" title="0.5" class="half"> -->
+                            </div>
+                        </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Clear</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+{% endblock %}

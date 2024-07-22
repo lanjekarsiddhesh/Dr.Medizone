@@ -1,0 +1,67 @@
+{% extends 'Admin_dashboard_comman.html' %}
+{% block section %} 
+
+    <div class="container pt-3">
+
+        <div class="border border-secondary mt-4" style="width: 150px; height: 150px; " >
+
+            <img src="/media/{{patient.patient_profile}}" style="width: 150px; height: 150px; " >
+
+        </div>
+
+        <div class="container mt-2 pt-3">
+            <div class="row border border-secondary mt-4">
+                <div class="col border border-secondary p-2">
+                    <label><b>Name:-</b> {{patient.patient_name}} </label>
+                </div>
+                <div class="col border border-secondary p-2">
+                    <label><b>Email:-</b> {{patient.email}} </label>
+                </div>
+                <div class="col border border-secondary p-2">
+                    <label><b>Mobile:-</b> {{patient.mobile}} </label>
+                </div>
+            </div>
+
+            <div class="row border border-secondary mt-4">
+                <div class="col border border-secondary p-2">
+                    <label><b>DOB:- </b> {{patient.patient_DOB}}</label>
+                </div>
+                <div class="col border border-secondary p-2">
+                    <label><b>Gender:-</b> {{patient.patient_sex}} </label>
+                </div>
+                <div class="col border border-secondary p-2">
+                    <label><b>Blood:-</b> {{patient.patient_Blood}} </label>
+                </div>
+            </div>
+
+            <div class="row border border-secondary mt-4">
+                <div class="col-6 border border-secondary p-2">
+                    <label><b>Address:-</b> {{patient.patient_address}} </label>
+                </div>
+                <div class="col border border-secondary p-2">
+                    <label><b>Area:-</b> {{patient.patient_area}} </label>
+                </div>
+                <div class="col border border-secondary p-2">
+                    <label><b>State:-</b> {{patient.patient_state}} </label>
+                </div>
+            </div>
+
+            <div class="row border border-secondary mt-4">
+                <div class="col border border-secondary p-2">
+                    <label><b>City:-</b> {{patient.patient_city}} </label>
+                </div>
+                <div class="col border border-secondary p-2">
+                    <label><b>Country:-</b> {{patient.patient_country}} </label>
+                </div>
+                <div class="col border border-secondary p-2">
+                    <label><b>Pincode:-</b> {{patient.patient_zip}} </label>
+                </div>
+            </div>
+
+        </div>
+
+        <a href="/Admin_dash_patient/" role="button" class="btn btn-dark mt-3" style="float: right;">Back</a>
+
+
+    </div>
+    {% endblock %}

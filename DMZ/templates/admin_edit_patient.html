@@ -1,0 +1,236 @@
+{% extends 'Admin_dashboard_comman.html' %}
+
+{% block css %} 
+.account-settings .user-profile {
+    margin: 0 0 1rem 0;
+    padding-bottom: 1rem;
+    text-align: center;
+}
+.account-settings .user-profile .user-avatar {
+    margin: 0 0 1rem 0;
+}
+.account-settings .user-profile .user-avatar img {
+    width: 90px;
+    height: 90px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+}
+.account-settings .user-profile h5.user-name {
+    margin: 0 0 0.5rem 0;
+}
+.account-settings .user-profile h6.user-email {
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #9fa8b9;
+}
+.account-settings .about {
+    margin: 2rem 0 0 0;
+    text-align: center;
+}
+.account-settings .about h5 {
+    margin: 0 0 15px 0;
+    color: #007ae1;
+}
+.account-settings .about p {
+    font-size: 0.825rem;
+}
+.form-control {
+    border: 1px solid #cfd1d8;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    font-size: .825rem;
+    background: #ffffff;
+    color: #2e323c;
+}
+
+.card {
+    background: #ffffff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: 0;
+    margin-bottom: 1rem;
+}
+{% endblock %}
+
+
+{% block section %}
+
+
+<div class="container">
+    {% if Data %}
+    {% include 'message.html' %}
+    {% endif %}
+    <div class="row gutters">
+    <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+    <div class="card h-100">
+        <div class="card-body">
+            <div class="account-settings">
+                <div class="user-profile">
+                    <div style="overflow: hidden;" class="user-avatar">
+                        <img src="/media/{{patient.patient_profile}}" id="photo" alt="Maxwell Admin">
+                        <!-- <img src="https://bootdey.com/img/Content/avatar/avatar7.png" id="photo" alt="Maxwell Admin"> -->
+                        <center>
+                        <input style="background: #007ae1; border-radius: 30px; width: 90px;;" name="prof" type="file" id="file" class="form-control" >
+                    </center>
+
+                    </div>
+                    <h5 class="user-name">{{patient.patient_userName}}</h5>
+                    <h6 class="user-email">{{patient.email}}</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form method="post" enctype="multipart/form-data">{% csrf_token %}
+    </div>
+    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+    <div class="card h-100">
+        <div class="card-body">
+            <div class="row gutters">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <h6 class="mb-2 text-primary">Personal Details</h6>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <h6 class="user-email">{{patient.patient_name}}</h6>
+                        <input name="name" type="text" class="form-control" id="fullName" value="{{patient.patient_name}}">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="DOB">Date of birth</label>
+                        <input name="dob" type="date" class="form-control" id="DOB" >
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <input name="Gender" type="text" class="form-control" id="gender" value="{{patient.patient_sex}}">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input disabled name="phone" type="text" class="form-control" id="phone" value="{{patient.mobile}}">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="phone">Blood Group</label>
+                        <select name="patient_blood" class="form-select" value="{{patient.patient_Blood}}"  id="validationDefaultBlood" required>
+                            <option selected >{{patient.patient_Blood}}</option>
+                            <option>A+</option>
+                            <option>A-</option>
+                            <option>B+</option>
+                            <option>B-</option>
+                            <option>AB+</option>
+                            <option>AB-</option>
+                            <option>O+</option>
+                            <option>O-</option>
+                            </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row gutters">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <h6 class="mt-3 mb-2 text-primary">Address</h6>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="Area">Address</label>
+                        <input name="Add" type="text" class="form-control" id="Address" value="{{patient.patient_address}}">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="Area">Area</label>
+                        <input name="Area" type="text" class="form-control" id="Area" value="{{patient.patient_area}}">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="ciTy">City</label>
+                        <input name="city" type="text" class="form-control" id="ciTy" value="{{patient.patient_city}}">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="sTate">State</label>
+                        <input name="state" type="text" class="form-control" id="sTate" value="{{patient.patient_state}}">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="country">Country</label>
+                        <input name="country" type="text" class="form-control" id="country" value="{{patient.patient_country}}">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="zIp">Zip Code</label>
+                        <input name="zip" type="text" class="form-control" id="zIp" value="{{patient.patient_zip}}">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row gutters">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="text-right">
+                        <button type="clear" id="submit" name="submit" class="btn btn-secondary">Cancel</button>
+                        <button type="submit" id="submit" name="submit" class="btn btn-primary">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+</form>
+{% endblock %}
+
+{% block script %} 
+const imgDiv = document.querySelector('.user-avatar');
+        const img = document.querySelector('#photo');
+        const file = document.querySelector('#file');
+        // const uploadBtn = document.querySelector('#uploadBtn');
+
+        //lets work for image showing functionality when we choose an image to upload
+
+        //when we choose a foto to upload
+
+        file.addEventListener('change', function(){
+            //this refers to file
+            const choosedFile = this.files[0];
+
+            if (choosedFile) {
+
+                const reader = new FileReader(); //FileReader is a predefined function of JS
+
+                reader.addEventListener('load', function(){
+                    img.setAttribute('src', reader.result);
+                });
+
+                reader.readAsDataURL(choosedFile);
+
+                //Allright is done
+
+                //please like the video
+                //comment if have any issue related to vide & also rate my work in comment section
+
+                //And aslo please subscribe for more tutorial like this
+
+                //thanks for watching
+            }
+        });
+
+        
+
+    
+
+
+{% endblock %}

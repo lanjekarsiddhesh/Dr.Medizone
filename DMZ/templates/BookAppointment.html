@@ -1,0 +1,453 @@
+{% extends 'Comaan.html' %}
+
+{% block css %} 
+
+
+<!-- payment module start css-->
+
+<!-- payment module end css-->
+.social{
+  margin-top: 12px; display: flex; align-items: center; justify-content: flex-start;
+
+}
+.social_a{
+  transition: ease-in-out 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  width: 32px;
+  height: 32px;
+  background: #a0bcd5;
+  margin-right :5px ;
+
+}
+
+
+
+/* <!-- rating star --> */
+
+
+.rate input{
+  display: none;
+  
+}
+
+.rate{
+  display: inline-block;
+  border: 0;
+}
+
+.rate label:after{
+  display: inline-block;
+  font-size: 1.3rem;
+  font-family: FontAwesome;
+  content: "\f005";
+  margin: 0;
+  padding: 0.3rem .2rem;
+  cursor: pointer;
+
+}
+
+.rate .half:after{
+  content: "\f089";
+  position:absolute;
+  padding-right: 0;
+}
+
+label:hover ~ label, input:checked ~ label {
+  color: rgb(255, 196, 0);
+
+}
+input:checked + label:hover, input:checked ~ label:hover, input:checked ~ label:hover ~ label, label:hover ~ input:checked ~ label{
+  color: rgb(222, 152, 1);
+}
+/* <!-- rating star end --> */
+
+
+
+{% endblock %}
+
+
+
+{% block body %} 
+    <!-- Button trigger modal -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+      </symbol>
+    </svg>
+    {% for msg in messages %}
+    <div class="alert alert-success d-flex align-items-center" role="alert">
+      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+      <div>
+        <strong>Hye!!!</strong> {{msg}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    </div>
+      
+    {% endfor %}
+    
+
+<!-- Modal -->
+<center>
+  <div class="container col"  >
+    <div class="card mb-3" style="max-width: 600px; box-shadow: 0px 2px 15px">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="/media/{{doctor.doctor_profile}}" style=" height: 100%; border-radius: 50%; " class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h4 class="card-title" style="font-weight: 700; margin-bottom: 5px; font-size: 20px; color: #2c4964;">{{doctor.doctor_name}}</h4>
+            <p style=" font-size: 14px;" class="card-text m-0">{{doctor.doctor_qualifcation}}</p>
+            <span style="display: block; font-size: 15px; padding-bottom: 10px; position: relative; font-weight: 500;">{{doctor.doctor_profession.specilaity_category}}</span>
+            <p style="font-size: 14px;" class="card-text m-0">Fee:- Rs. {{doctor.doctor_fee}}</p>
+            <p style=" font-size: 14px;" class="card-text m-0">Contact:- {{doctor.doctor_mobile}}/{{doctor.doctor_email}}</p>
+            <span style="display: block; font-size: 15px; padding-bottom: 10px; position: relative; font-weight: 500;">{{doctor.Experience}} years of experiance {{doctor.doctor_category}}</span>
+            <p style=" font-size: 14px;" class="card-text m-0">Rating:- <span style="color: rgb(255, 157, 0); font-size: 17px" class="fa fa-star checked"></span>
+              <span style="color: rgb(255, 157, 0); font-size: 17px;" class="fa fa-star"></span>
+              <span style="color: rgb(255, 157, 0); font-size: 17px;" class="fa fa-star "></span>
+              <span style="color: rgb(255, 157, 0); font-size: 17px;" class="fa fa-star-half "></span>
+            </p>
+            <p style="font-size: 14px;" class="card-text m-0">About:- {{doctor.doctor_self}}</p>
+            <a href="/Review/{{doctor.doctor_id}}" id="{{doctor.doctor_id}}" ><span style="display: block; font-size: 15px; padding-bottom: 10px; position: relative; font-weight: 500;">Write Feedback</span></a> 
+            <div class="social" style="display: flex; padding-bottom: 10px; padding-top: 10px;">
+              <a href="" class="social_a"><i class="social_i ri-twitter-fill"><img src = "/media/twitter.svg" alt="My Happy SVG" style="width: 30px;" aria-hidden="true"/></i></a>
+              <a href="" class="social_a"><i class="social_i ri-facebook-fill"><img src = "/media/facebook.svg" alt="My Happy SVG" style="width: 30px;"/></i></a>
+              <a href="" class="social_a"><i class="social_i ri-instagram-fill"><img src = "/media/instagram.svg" alt="My Happy SVG" style="width: 30px;"/></i></a>
+              <a href="" class="social_a"> <i class="social_i ri-linkedin-box-fill"><img src = "/media/linkedin.svg" alt="My Happy SVG" style="width: 30px;"/></i> </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+  <!-- appointment -->
+  <div class="modal-content border" style="box-shadow: 0px 2px 15px; background-color: #f1f7fd; ">
+
+      <!-- <h3 class="modal-title" id="exampleModalLabel">Book Appointment</h3> -->
+      <h3 style="font-size: 30px; font-weight: 700; letter-spacing: 0.5px; font-family: 'Poppins', sans-serif; color: #2c4964; ">Book Appointment</h3>
+    <hr width="100%" size="5" >
+    <div class="modal-body">
+      <form action="" name="fom" class="row g-3" method="post" style="padding: 30px;">{% csrf_token %}
+      
+        <div class="col-md-3">
+          <label for="validationDefault01" class="form-label">First name</label>
+          <input type="text" name="ptfname" class="form-control" id="validationDefault01"  required>
+        </div>
+        <div class="col-md-3">
+          <label for="validationDefault02" class="form-label">Last name</label>
+          <input type="text" name="ptlaname" class="form-control" id="validationDefault02"  required>
+        </div>
+        
+        
+        <div class="col-md-3">
+          <label  for="validationDefault04" class="form-label">Type</label>
+          <select name="type" class="form-select" id="validationDefault04" onchange="disabledButton(this)"  required>
+            <option selected disabled value="">Choose meeting type</option>
+            <option value='Personal meeting'>Personal meeting</option>
+            <option value='Videocall meeting'>Videocall meeting</option>
+            <option value='Home visit'>Home visit</option>
+          </select>
+        </div>
+
+        <div class="col-md-3">
+          <label for="validationDefault05" class="form-label">Phone number</label>
+          <input type="tel" name="mob" class="form-control" id="validationDefault05" required>
+        </div>
+
+        <div class="col-md-3">
+          <label for="validationDefault05" class="form-label">Appointment date</label>
+          <input type="date" name="date" class="form-control" id="validationDefault06" onchange="Selectedtime(this)" required>
+        </div>
+
+        <div class="col-md-3">
+          <label for="validationDefaultUsername" class="form-label">Doctor name</label>
+            <input type="text" name="drname" class="form-control" id="validationDefaultUsername"  aria-describedby="inputGroupPrepend2" value="{{doctor.doctor_name}}" disabled = true required> 
+        </div>
+
+        <div class="col-md-3">
+          <label for="validationDefault03" class="form-label">Specialist</label>
+          <input type="text" name="specialist" class="form-control" id="validationDefault03" value="{{doctor.doctor_profession.specilaity_category}}" disabled = true required>
+        </div>
+
+        <div class="col-md-3">
+          <label for="validationDefault05" class="form-label">Fee</label>
+          <input type="tel" name="fee" class="form-control" id="validationDefault08" value="{{doctor.doctor_fee}}" disabled = true  required>
+        </div>
+
+          <label class="form-label">Select your time slot</label><br>
+        <div class=" row-cols-md-6 ">
+          {% for i in doctor.time_Slots.split %}
+          <input value="{{i}}" name="time" type="radio" class="btn-check " id="{{i}}" autocomplete="off" required  >
+          <label class="btn btn-outline-success mb-3" for="{{i}}">{{i}}</label>
+          {% endfor %}
+        </div>
+
+        <!-- <div class="col-md-3">
+          <label for="validationDefault05" class="form-label">Appointment time</label>
+          <input type="time" name="time" class="form-control" id="validationDefault07" required>
+        </div> -->
+        
+        
+
+        <div class="col-md-3">
+        <div class="form-check form-switch">
+          <input name="flexRadioDefault" value= 'paid' class="form-check-input" type="radio" role="switch" id="flexSwitchCheckDefault" onchange="disabledButton(this)" required>
+          <label class="form-check-label" for="flexSwitchCheckDefault" style="margin-left: -172px;">pay</label></a>
+        </div>
+        </div>
+
+        <div class="col-md-3">
+        <div class="form-check form-switch">
+          <input name="flexRadioDefault" value= 'pending' class="form-check-input" type="radio" role="switch" id="flexSwitchCheckDefault1" disabled="" onchange="disabledButton(this)" required>
+          <label class="form-check-label" for="flexSwitchCheckDefault1" style="margin-left: -172px;">pay later</label>
+        </div>
+      </div>
+ 
+
+      <div>
+        <div style="float: left;" class="col-md-3">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox"  value="" id="invalidCheck2" required>
+            <label class="form-check-label" for="invalidCheck2" >
+              Agree to terms and conditions
+            </label>
+          </div>
+        </div>
+      </div>
+
+        <!--floating window-->
+
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+              </div>
+              <div class="modal-body">
+                <!--payment method module start-->
+                <button id="rzp-button1">Pay</button>
+                <button id="rzp-button1" type="submit">done</button>
+                
+                <!--payment method module end-->
+
+
+              </div>
+              <!-- <div class="modal-footer">
+                <button class="btn btn-secondary" type="clear">Clear</button>
+                <button type="submit" class="btn btn-primary">submit</button>
+              </div> -->
+            </div>
+          </div>
+        </div>
+          <!--floating window end-->
+
+    </div>
+   
+    <hr width="100%" 
+        size="5" >
+    <div class="modal-footer" style="padding-right:20px; padding-bottom: 10px;">
+      <button type="reset" class="btn btn-secondary" style="padding-left:20px;">Clear</button>
+      <button id="ButtonType" class="btn btn-success" type="submit" hidden>pay</button>
+      <button id="ButtonType1" class="btn btn-success" type="submit" hidden>submit</button>
+      
+    </div>
+  </form>
+  </div>
+</div>
+
+
+</center>
+
+
+
+    <!-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+<!-- feedback form -->
+
+<!-- Modal -->
+
+<div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <form action="" method="post_" name="appointment-form">
+        <h1 class="modal-title fs-5"  id="exampleModalLabel">How was appointment experience with Dr. {{doctor.doctor_name}}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Please write the appointment type you consulted Dr. {{doctor.doctor_name}}</label>
+          <input name="emails" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Appointment type">
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlInput2" class="form-label">For which health concern did you consult the doctor?</label>
+          <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Write your symptoms">
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlInput2" class="form-label">Subject</label>
+          <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Write your symptoms">
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlInput3" class="form-label">Tell us more about your experience</label>
+          <textarea type="text" class="form-control" id="exampleFormControlInput3" placeholder="Write atleast 100 characters" required></textarea>
+        </div>
+        
+        <div class="mb-3" style="padding: 0;">
+          <label for="exampleFormControlInput3" class="form-label">Would you recommend the doctor?</label>
+        </div>
+        <div class="mb-3 btn-group"  role="group" aria-label="Basic radio toggle button group" style="padding-left: 50px;">
+          <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+          <label class="btn btn-outline-success" for="btnradio1">YES</label>
+        
+          <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+          <label class="btn btn-outline-danger" for="btnradio2">NO</label>
+        </div>
+      <label for="exampleFormControlInput3" class="form-label row">How was your experience?</label>
+      <div class="mb-3 rate">
+        <input name="rating" type="radio" id="rating10" value="5"><label for="rating10" title="5">
+        <input name="rating" type="radio" id="rating9" value="4.5"><label for="rating9" title="4.5" class="half">
+        <input name="rating" type="radio" id="rating8" value="4"><label for="rating8" title="4">
+        <input name="rating" type="radio" id="rating7" value="3.5"><label for="rating7" title="3.5" class="half"> 
+        <input name="rating" type="radio" id="rating6" value="3"><label for="rating6" title="3">
+        <input name="rating" type="radio" id="rating5" value="2.5"><label for="rating5" title="2.5" class="half"> 
+        <input name="rating" type="radio" id="rating4" value="2"><label for="rating4" title="2">            
+        <input name="rating" type="radio" id="rating3" value="1.5"><label for="rating3" title="1.5" class="half"> 
+        <input name="rating" type="radio" id="rating2" value="1"><label for="rating2" title="1">
+        <!-- <input name="rating" type="radio" id="rating1" value="0.5"><label for="rating1" title="0.5" class="half"> -->
+      </div>
+      <div class="modal-footer">  
+        <button type="reset" class="btn btn-primary" >Clear</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    <!-- </div> -->
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<!-- feedback form end -->
+
+    <!-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+
+
+
+{% endblock %}
+
+<!-- javascript for enabling disabling hide unhide button -->
+
+{% block js %} 
+
+
+
+
+
+
+const timeElapsed = Date.now();
+const today = new Date(timeElapsed);
+console.log(today.toLocaleDateString());
+
+function Selectedtime(selectTime){
+  var input = selectTime.value;
+  let dates = '{{Appointment_dates}}';
+  let datesList = dates.split(' ');
+  let timestr = '{{Appointment_times}}';
+  let time = timestr.split(" ");
+  console.log(time);
+  console.log(datesList);
+  console.log(input);
+  for(i of datesList){
+    console.log(i)
+    if(i == input){
+      for (j of time){
+        console.log(j)
+        document.getElementById(j).disabled = true; 
+      };
+    }
+
+  }
+  
+};
+
+
+  
+
+
+let element = document.getElementById('flexSwitchCheckDefault'),
+   checked = element.getAttribute("checked");
+
+let element1 = document.getElementById('flexSwitchCheckDefault1'),<!--pay later-->
+   checked1 = element1.getAttribute("checked"),
+   remove = element1.getAttribute("hidden");
+
+let buttonelement = document.getElementById('ButtonType1'),
+   hidden = buttonelement.getAttribute("hidden");
+
+let buttonelementest1 = document.getElementById('ButtonType'),
+   hidden1 = buttonelementest1.getAttribute("hidden");
+
+function disabledButton(payLater){
+  console.log(payLater.value)
+
+  if(payLater.value == 'Videocall meeting'){
+    element.setAttribute("checked", "checked"); 
+    buttonelementest1.removeAttribute("hidden");
+    buttonelement.setAttribute("hidden", "hidden");
+    document.getElementById('flexSwitchCheckDefault1').disabled = true;
+  }
+  else if (payLater.value == 'Home visit'){
+    element1.removeAttribute("checked");
+    document.getElementById('flexSwitchCheckDefault1').disabled = false;
+  }
+  else if (payLater.value == 'Personal meeting'){
+    element1.removeAttribute("checked");
+    buttonelementest1.removeAttribute("hidden");
+    buttonelement.setAttribute("hidden", "hidden");
+    document.getElementById('flexSwitchCheckDefault1').disabled = false;
+  }
+  else if (payLater.value == 'paid'){
+    buttonelement.setAttribute("hidden", "hidden1");
+    buttonelementest1.removeAttribute("hidden");
+    
+  }
+  else if (payLater.value == 'pending'){
+    buttonelementest1.setAttribute("hidden", "hidden");
+    buttonelement.removeAttribute("hidden");
+  }
+  else{
+    document.getElementById('flexSwitchCheckDefault1').disabled = false;
+
+  }
+  
+};
+
+let timestr = '{{Appointment_times}}';
+let time = timestr.split(" ")
+<!-- console.log(time) -->
+
+//for (j of time){
+  //document.getElementById(j).disabled = true; 
+//}; 
+
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+<!--dfghjkl;-->
+

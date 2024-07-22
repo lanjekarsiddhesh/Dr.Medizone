@@ -1,0 +1,264 @@
+{% extends 'Admin_dashboard_comman.html' %}
+
+{% block css %} 
+.account-settings .user-profile {
+    margin: 0 0 1rem 0;
+    padding-bottom: 1rem;
+    text-align: center;
+}
+.account-settings .user-profile .user-avatar {
+    margin: 0 0 1rem 0;
+}
+.account-settings .user-profile .user-avatar img {
+    width: 90px;
+    height: 90px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+}
+.account-settings .user-profile h5.user-name {
+    margin: 0 0 0.5rem 0;
+}
+.account-settings .user-profile h6.user-email {
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #9fa8b9;
+}
+.account-settings .about {
+    margin: 2rem 0 0 0;
+    text-align: center;
+}
+.account-settings .about h5 {
+    margin: 0 0 15px 0;
+    color: #007ae1;
+}
+.account-settings .about p {
+    font-size: 0.825rem;
+}
+.form-control {
+    border: 1px solid #cfd1d8;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    font-size: .825rem;
+    background: #ffffff;
+    color: #2e323c;
+}
+
+.card {
+    background: #ffffff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: 0;
+    margin-bottom: 1rem;
+}
+{% endblock %}
+
+
+{% block section %}
+<div class="container">
+    <div class="row gutters">
+    <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+    <div class="card h-100">
+        <div class="card-body">
+            <div class="account-settings">
+                <div class="user-profile">
+                    <div style="overflow: hidden;" class="user-avatar">
+                        <img src="/media/{{doctor.doctor_profile}}" id="photo" alt="Maxwell Admin">
+                        <!-- <img src="https://bootdey.com/img/Content/avatar/avatar7.png" id="photo" alt="Maxwell Admin"> -->
+                        <center>
+                        <input style="background: #007ae1; border-radius: 30px; width: 90px;;" name="prof" type="file" id="file" class="form-control" 2w>
+                    </center>
+
+                    </div>
+                    <h5 class="user-name">{{doctor.doctor_userName}}</h5>
+                    <h6 class="user-email">{{doctor.email}}</h6>
+                </div>
+                <div class="about">
+                    <h5>About</h5>
+                    <p>{{doctor.doctor_self}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form method="post" enctype="multipart/form-data">{% csrf_token %}
+    </div>
+    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+    <div class="card h-100">
+        <div class="card-body">
+            <div class="row gutters">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <h6 class="mb-2 text-primary">Personal Details</h6>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" class="form-control" name="fullName" id="fullName" value="{{doctor.doctor_name}}">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="DOB">Date of birth</label>
+                        <input type="date" class="form-control" id="DOB" value="{{doctor.doctor_DOB}}">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <input type="text" name="gender" class="form-control" id="gender" value="{{doctor.doctor_sex}}">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input disabled type="text" class="form-control" id="phone" value="{{doctor.mobile}}">
+                    </div>
+                </div>
+            </div>
+            <div class="row gutters">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <h6 class="mt-3 mb-2 text-primary">Address</h6>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="Area">Address</label>
+                        <input type="text" class="form-control" name="Address" id="Address" value="{{doctor.doctor_address}}">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="Area">Area</label>
+                        <input type="text" name="Area" class="form-control" id="Area" value="{{doctor.doctor_area}}">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="ciTy">City</label>
+                        <input type="text" name="ciTy" class="form-control" id="ciTy" value="{{doctor.doctor_city}}">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="sTate">State</label>
+                        <input type="text" name="sTate" class="form-control" id="sTate" value="{{doctor.doctor_state}}">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="country">Country</label>
+                        <input type="text" name="country" class="form-control" id="country" value="{{doctor.doctor_country}}">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="zIp">Zip Code</label>
+                        <input type="text" name="zip" class="form-control" id="zIp" value="{{doctor.doctor_zip}}">
+                    </div>
+                </div>
+            </div>
+            <div class="row gutters">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <h6 class="mt-3 mb-2 text-primary">Clinic Details</h6>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="Area">Clinic/Hospital Name</label>
+                        <input type="text" name="Cname" class="form-control" id="Cname" value="{{doctor.hosptial_name}}">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="Area">Clinic/Hospita Address</label>
+                        <input type="text" name="Caddress" class="form-control" id="Caddress" value="{{doctor.hospital_address}}">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="ciTy">Clinic/Hospital Area</label>
+                        <input type="text" name="Carea" class="form-control" id="Carea" value="{{doctor.hosptial_area}}">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="ciTy">Clinic/Hospital City</label>
+                        <input type="text" name="Ccity" class="form-control" id="CciTy" value="{{doctor.hosptial_city}}">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="sTate">Clinic/Hospital State</label>
+                        <input type="text" name="Cstate" class="form-control" id="Cstate" value="{{doctor.hosptial_state}}">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="country">Clinic/Hospital Country</label>
+                        <input type="text" name="Ccountry" class="form-control" id="Ccountry" value="{{doctor.hosptial_country}}">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="zIp">Clinic/Hospital Zip Code</label>
+                        <input type="text" name="Czip" class="form-control" id="Czip" value="{{doctor.hosptial_pincode}}">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="zIp">Clinic/Hospital Telephone</label>
+                        <input type="text" name="Ctele" class="form-control" id="Ctele" value="{{doctor.hosptial_telephone}}">
+                    </div>
+                </div>
+            </div>
+            <div class="row gutters">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="text-right">
+                        <button type="clear" id="submit" name="submit" class="btn btn-secondary">Cancel</button>
+                        <button type="submit" id="submit" name="submit" class="btn btn-primary">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </form>
+{% endblock %}
+
+{% block script %} 
+const imgDiv = document.querySelector('.user-avatar');
+        const img = document.querySelector('#photo');
+        const file = document.querySelector('#file');
+        // const uploadBtn = document.querySelector('#uploadBtn');
+
+        //lets work for image showing functionality when we choose an image to upload
+
+        //when we choose a foto to upload
+
+        file.addEventListener('change', function(){
+            //this refers to file
+            const choosedFile = this.files[0];
+
+            if (choosedFile) {
+
+                const reader = new FileReader(); //FileReader is a predefined function of JS
+
+                reader.addEventListener('load', function(){
+                    img.setAttribute('src', reader.result);
+                });
+
+                reader.readAsDataURL(choosedFile);
+
+                //Allright is done
+
+                //please like the video
+                //comment if have any issue related to vide & also rate my work in comment section
+
+                //And aslo please subscribe for more tutorial like this
+
+                //thanks for watching
+            }
+        });
+{% endblock %}

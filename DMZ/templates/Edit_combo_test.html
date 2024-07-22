@@ -1,0 +1,171 @@
+{% extends 'Admin_dashboard_comman.html' %}
+
+{% block section %}
+{% include 'message.html' %}
+
+    <div class="container">
+
+    <form class="row g-3 needs-validation mt-5" method="post" enctype="multipart/form-data" novalidate>{% csrf_token %}
+
+        <div class="col-md-4">
+          <label for="validationCustomUsername" class="form-label">Combo Dignostic List Name</label>
+          <div class="input-group has-validation">
+            <input name="name" value="{{test.name}}" type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+            <div class="invalid-feedback">
+              Please enter Combo Dibetis List Name.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <label for="validationCustomUsername" class="form-label">Price</label>
+          <div class="input-group has-validation">
+            <input name="price" value="{{test.price}}" type="number" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+            <div class="invalid-feedback">
+              Please enter price.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <label for="validationCustomUsername" class="form-label">Age group</label>
+          <div class="input-group has-validation">
+            <input name="age" value="{{test.Age_Group}}" type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+            <div class="invalid-feedback">
+              Please enter age group.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <label for="validationCustomUsername" class="form-label">Gender</label>
+          <select value="{{test.Gender}}" class="form-select form-select-sm" name="Gender" aria-label=".form-select-sm example" required>
+            <!-- <option selected>Open this select menu</option> -->
+            <option value="Unisex">Unisex</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Transgender">Transgender</option>
+          </select>
+          <div class="invalid-feedback">
+            Please enter gender.
+          </div>
+        </div>
+  
+  
+          <div class="col-md-5">
+              <label for="validationTextarea" class="form-label">Combined Dignostic list</label>
+              <textarea class="form-control" style="height: 200px; " id="show" name="DignoCombo" placeholder="select Dignostic test more than one from Dignostic Test Names" required>{{test.details}}</textarea>
+              <div class="invalid-feedback">
+                Please listed minimum two Dignostic Tests.
+              </div>
+
+              <label for="validationTextarea" class="form-label mt-4">Who should book this checkup</label>
+              <textarea  class="form-control" style="height: 200px; " name="whoBook"  placeholder="Who should book this checkup" required>{{test.Who_should_book_this_checkup}}</textarea>
+              <div class="invalid-feedback">
+                Please enter above description.
+              </div>
+
+              <label for="validationTextarea" class="form-label mt-4">What preparation is needed for this Checkup</label>
+              <textarea class="form-control" style="height: 200px; " name="preparation"  placeholder="What preparation is needed for this Checkup" required>{{test.What_preparation_is_needed_for_this_Checkup}}</textarea>
+              <div class="invalid-feedback">
+                Please enter above description.
+              </div>
+          </div>
+          <div class="col-md-4">
+            <label for="validationCustom01" class="form-label">Dignostic Test Names</label>
+            {% for i in DiagnoTest %}
+            <div class="accordion accordion-flush" id="accordionFlushExample" style="border: 2px solid black;">
+              <div class="accordion-item" >
+                <h2 class="accordion-header" id="flush-headingOne{{i.id}}" >
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne{{i.id}}" aria-expanded="false" aria-controls="flush-collapseOne{{i.id}}">
+                      <div class="form-check">
+                          <input onClick="checkbox();" class="form-check-input" name="vehicle" type="checkbox" value="{{i.name}}" id="flexCheckDefault" >
+                          <label class="form-check-label" for="flexCheckDefault">
+                            {{i.name}}
+                          </label>
+                        </div>
+                  </button>
+                </h2>
+                <div id="flush-collapseOne{{i.id}}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne{{i.id}}" data-bs-parent="#accordionFlushExample">
+                  <div class="accordion-body">{{i.price}}</div>
+                </div>
+              </div>
+              
+            </div>
+            {% endfor %}
+            
+          </div>
+          <div class="col-md-1">
+              <label for="validationTextarea" class="form-label">Count list</label>
+              <input value="{{test.Test_count}}" class="form-control" type="number" id="num" name="num" required>
+              <div class="invalid-feedback">
+                Please listed Dignostic Tests.
+              </div>
+          </div>
+
+          
+
+         
+        <div class="col-12">
+          <button style="float: right;" class="btn btn-primary" type="submit">Update</button>
+        </div>
+      </form>
+    </div>
+
+
+   
+
+
+    <script>
+
+
+
+        function checkbox(){
+  
+            var checkboxes = document.getElementsByName('vehicle');
+            var checkboxesChecked = [];
+            var checkboxesChecked1 = [];
+            // loop over them all
+            for (var i=0; i<checkboxes.length; i++) {
+                // And stick the checked ones onto an array...
+                if (checkboxes[i].checked) {
+                    checkboxesChecked.push("\n"+checkboxes[i].value);
+                }
+            }
+
+            if (checkboxesChecked.length > 1){
+              document.getElementById("show").value = checkboxesChecked;
+            }
+            if (checkboxesChecked.length == 0 || checkboxesChecked.length == 1 ){
+              document.getElementById("show").value = checkboxesChecked1;
+            }
+            // document.getElementById("show").value = checkboxesChecked;
+            var lengths = checkboxesChecked.length
+            document.getElementById("num").value = lengths;
+
+            }
+
+
+
+            // Example starter JavaScript for disabling form submissions if there are invalid fields
+            (function () {
+              'use strict'
+
+              // Fetch all the forms we want to apply custom Bootstrap validation styles to
+              var forms = document.querySelectorAll('.needs-validation')
+
+              // Loop over them and prevent submission
+              Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                  form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                      event.preventDefault()
+                      event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                  }, false)
+                })
+            })()
+    </script>
+
+{% endblock %}

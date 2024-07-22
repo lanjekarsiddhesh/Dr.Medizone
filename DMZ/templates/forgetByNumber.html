@@ -1,0 +1,56 @@
+{% extends 'Comaan.html' %}
+{% block title %} DMZ {% endblock %}
+
+{% block css %}
+#ParentContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#ChildContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  <!-- margin-top: 5rem; -->
+
+}
+{% endblock %}
+{% block body %}
+<div id="ParentContainer">
+<div class="container"  id="ChildContainer" style="  border: 5px solid;background-color:#B1E1FF; ">
+  <form method="POST" style=" margin-top: 26px; margin-bottom: 25px;">
+    {% csrf_token %}
+    <h5 style="text-align: center;">forget password by Phone Number</h5>
+      <center>
+        <input value="Doctor" class="form-check-input" type="radio" name="usertype" id="flexRadioDefault1">
+        <label class="form-check-label" for="flexRadioDefault1">
+          Doctor
+        </label>
+        <input value="Patient" class="form-check-input" type="radio" name="usertype" id="flexRadioDefault2" checked>
+        <label class="form-check-label" for="flexRadioDefault2">
+          Patient
+        </label>
+    </center><br>
+    <div class="mb-3 row">
+      
+      <label for="staticEmail" class="col-sm-2 col-form-label">Mobile</label>
+      <div class="col-sm-10">
+          <input name="mobile" type="tel" class="form-control" id="staticEmail"  placeholder="Enter your mobile">
+          <!-- <input name="mobile" type="tel" class="form-control" id="staticEmail" style="width:20em ;"> -->
+      </div>
+      
+    </div>
+    <center>
+      <button type="submit" class="btn btn-primary">
+          Submit
+        </button>
+    </center>
+    <p style="text-align: center;">Another Way</p>
+    <a href="/ForgetByQuestion/"><p style="text-align: center;">Another Way</p></a>
+
+  </form>
+</div>
+</div>
+{% endblock %}

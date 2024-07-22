@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <!--<title> Responsive Sidebar Menu  | CodingLab </title>-->
+    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://demos.creative-tim.com/soft-ui-dashboard/assets/css/nucleo-icons.css">
+    <link rel="stylesheet" href="https://demos.creative-tim.com/soft-ui-dashboard/assets/css/soft-ui-dashboard.min.css?v=1.0.2">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <!-- chart -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+     <!-- google compare medicine chart -->
+     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+     {% block head %} {% endblock %}
+   </head>
+   <style>
+    /* Google Font Link */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins" , sans-serif;
+}
+.sidebar{
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 98px;
+  background: #11101D;
+  /* padding: 6px 14px; */
+  /* z-index: 59; */
+  transition: all 0.5s ease;
+  overflow-x:hidden;
+}
+.sidebar.open{
+  width: 250px;
+}
+.sidebar .logo-details{
+  height: 60px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.sidebar .logo-details .icon{
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+.sidebar .logo-details .logo_name{
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+.sidebar.open .logo-details .icon,
+.sidebar.open .logo-details .logo_name{
+  opacity: 1;
+}
+.sidebar .logo-details #btn{
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  font-size: 22px;
+  transition: all 0.4s ease;
+  font-size: 23px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+.sidebar.open .logo-details #btn{
+  text-align: right;
+}
+/* .logo-details */
+.sidebar i{
+  color: #fff;
+  height: 60px;
+  min-width: 50px;
+  font-size: 15px;
+  /* text-align: center; */
+  line-height: 60px;
+}
+.sidebar .nav-list{
+  margin-top: 20px;
+  height: 100%;
+}
+.sidebar li{
+  position: relative;
+  /* margin: 8px 0; */
+  list-style: none;
+}
+.sidebar li ul li{
+  position: relative;
+  /* margin: 8px 0; */
+  list-style: none;
+}
+.sidebar li .tooltip{
+  position: absolute;
+  top: -20px;
+  left: calc(100% + 15px);
+  z-index: 3;
+  background: #fff;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 400;
+  opacity: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: 0s;
+}
+.sidebar li:hover .tooltip{
+  opacity: 1;
+  pointer-events: auto;
+  transition: all 0.4s ease;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.sidebar.open li .tooltip{
+  display: none;
+}
+.sidebar input{
+  font-size: 15px;
+  color: #FFF;
+  font-weight: 400;
+  outline: none;
+  height: 50px;
+  width: 100%;
+  width: 50px;
+  border: none;
+  border-radius: 12px;
+  transition: all 0.5s ease;
+  background: #1d1b31;
+}
+.sidebar.open input{
+  padding: 0 20px 0 50px;
+  width: 100%;
+}
+.sidebar .bx-search{
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  font-size: 22px;
+  background: #1d1b31;
+  color: #FFF;
+}
+.sidebar.open .bx-search:hover{
+  background: #1d1b31;
+  color: #FFF;
+}
+.sidebar .bx-search:hover{
+  background: #FFF;
+  color: #11101d;
+}
+.sidebar li a{
+  display: flex;
+  height: 100%;
+  width: 100%;
+  border-radius: 12px;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  background: #11101D;
+}
+
+.sidebar li a:hover{
+  background: #FFF;
+}
+.sidebar .dropdown-item:hover{
+  background: #FFF;
+}
+/* name lists */
+.sidebar li a .links_name{
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.4s;
+}
+.sidebar.open li a .links_name{
+  opacity: 1;
+  pointer-events: auto;
+}
+.sidebar li a:hover .links_name,
+.sidebar li a:hover i{
+  transition: all 0.5s ease;
+  color: #11101D;
+}
+
+.sidebar li i{
+  height: 50px;
+  line-height: 50px;
+  font-size: 18px;
+  border-radius: 12px;
+}
+.sidebar li.profile{
+  position: fixed;
+  height: 60px;
+  width: 78px;
+  left: 0;
+  bottom: -8px;
+  padding: 10px 14px;
+  background: #1d1b31;
+  transition: all 0.5s ease;
+  overflow: hidden;
+}
+.sidebar.open li.profile{
+  width: 250px;
+}
+.sidebar li .profile-details{
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+.sidebar li img{
+  height: 45px;
+  width: 45px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-right: 10px;
+}
+.sidebar li.profile .name,
+.sidebar li.profile .job{
+  font-size: 15px;
+  font-weight: 400;
+  color: #fff;
+  white-space: nowrap;
+}
+.sidebar li.profile .job{
+  font-size: 12px;
+}
+.sidebar .profile #log_out{
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  background: #1d1b31;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  border-radius: 0px;
+  transition: all 0.5s ease;
+}
+.sidebar.open .profile #log_out{
+  width: 50px;
+  background: none;
+}
+.home-section{
+  position: relative;
+  background: #E4E9F7;
+  min-height: 100vh;
+  top: 0;
+  left: 78px;
+  width: calc(100% - 78px);
+  transition: all 0.5s ease;
+  z-index: 2;
+}
+.sidebar.open ~ .home-section{
+  left: 250px;
+  width: calc(100% - 250px);
+}
+.home-section .text{
+  display: inline-block;
+  color: #11101d;
+  font-size: 25px;
+  font-weight: 500;
+  margin: 18px
+}
+@media (max-width: 420px) {
+  .sidebar li .tooltip{
+    display: none;
+  }
+}
+
+/* .nav-list li .tooltip {
+  visibility: hidden;
+  width: 120px;
+  background-color: #e8e7e7;
+  color: #140101;
+  text-align:right;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+} */
+
+/* .nav-list li .tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+} */
+
+/* .nav-list li:hover .tooltip {
+  position: absolute;
+  visibility: visible;
+  opacity: 1;
+} */
+
+{% block css %} {% endblock %}
+
+   </style>
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class='bx  icon'><img src="/media/logo.png" style="width: 45px;"></i>
+        <div class="logo_name">Drmedizone</div>
+        <i class='bx bx-menu' id="btn" ></i>
+    </div>
+    <ul class="nav-list">
+      <!-- <li>
+          <i class='bx bx-search' ></i>
+         <input type="text" placeholder="Search...">
+         <span class="tooltip">Search</span>
+      </li> -->
+      <li>
+        <a href="/Admin_dash/">
+          <i class='bx bx-grid-alt'></i>
+          <span class="links_name">Dashboard</span>
+        </a>
+         <span class="tooltip">Dashboard</span>
+      </li>
+      <li>
+        <a href="/Admin_dash_patient/">
+          <i class='bx bx-user' ></i>
+          <span class="links_name">Patients</span>
+        </a>
+         <span class="tooltip">Patients</span>
+      </li>
+      <!-- <li>
+       <a href="#">
+         <i class='bx bx-user' ></i>
+         <span class="links_name">Patient Login</span>
+       </a>
+       <span class="tooltip">Patient Login</span>
+     </li> -->
+     <li>
+       <a href="/Admin_dash_doctor/">
+        <i class="fa fa-stethoscope" aria-hidden="true"></i>
+         <span class="links_name">Doctors</span>
+       </a>
+       <span class="tooltip">Doctors</span>
+     </li>
+     <!-- <li>
+       <a href="#">
+         <i class='bx bx-pie-chart-alt-2' ></i>
+         <span class="links_name">Doctor Login</span>
+       </a>
+       <span class="tooltip">Doctor Login</span>
+     </li> -->
+     <li>
+       <a href="/Admin_dash_appointment/">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+         <span class="links_name">Appointments</span>
+       </a>
+       <span class="tooltip">Appointments</span>
+     </li>
+     <li>
+       <a href="/Admin_dash_homerCare/">
+        <i class="fa fa-bed" aria-hidden="true"></i>
+         <span class="links_name">Home care</span>
+       </a>
+       <span class="tooltip">Home care</span>
+     </li>
+     <li>
+       <a data-bs-toggle="dropdown" aria-expanded="false"  >
+        <i class="fa fa-tint" aria-hidden="true"></i>
+         <span class="links_name dropdown-toggle" >Diagnostic</span>
+         <ul style="background-color: #ffffffa1;" >
+          <li><a id="up" style="color: #000000; background-color: #ffffff00; font-weight: 700; " class="dropdown-item links_name" href="/Admin_dash_test_appointment/">Appointments</a></li>
+          <li><a id="up" style="color: #000000; background-color: #ffffff00; font-weight: 700; " class="dropdown-item links_name" href="/Admin_dash_test/">Lab Test </a></li>
+          <li><a id="up" style="color: #000000; background-color: #ffffff00; font-weight: 700; " class="dropdown-item links_name" href="/Admin_combo_test/">Combo Lab Test </a></li>
+          <li><a id="up" style="color: #000000; background-color: #ffffff00; font-weight: 700; " class="dropdown-item links_name" href="/ComboDiagnostic/">Make Combo Lab Test</a></li>
+          <li><a id="SD" style="color: #000000; background-color: #ffffff00; font-weight: 700; " class="dropdown-item links_name" href="/Admin_LabTest_Upload/">Upload SIgnle Tests</a></li>
+        </ul>
+       </a>
+       <span class="tooltip">Diagnostic</span>
+     </li>
+     <!-- <li>
+       <a href="#">
+         <i class='bx bx-heart' ></i>
+         <span class="links_name">Tele Communication</span>
+       </a>
+       <span class="tooltip">Tele Communication</span>
+     </li> -->
+     <li>
+      
+       <a href="/admin_dashboard_QNA/">
+        <i class="fa fa-question-circle" aria-hidden="true"></i>
+         <span class="links_name">QNA</span>
+       </a>
+       <span class="tooltip">QNA</span>
+     </li>
+     <li>
+       <a href="/admin_bill/">
+        <i class="fa fa-money" aria-hidden="true"></i>
+         <span class="links_name">Bill</span>
+       </a>
+       <span class="tooltip">Bill</span>
+     </li>
+     <hr style="background-color: rgb(255, 255, 255);">
+     <li>
+       <a href="/Admin_specialist/">
+        <i class="fa fa-user-md" aria-hidden="true"></i>
+         <span class="links_name">Specilaitys</span>
+       </a>
+       <span class="tooltip">Specilaitys</span>
+     </li>
+     <li>
+       <a href="/medicineshop/upload/">
+        <i class="fa fa-heartbeat" aria-hidden="true"></i>
+         <span class="links_name">Medicines</span>
+       </a>
+       <span class="tooltip">Medicines</span>
+     </li>
+     
+  
+     
+    </ul>
+  </div>
+
+  <!-- section -->
+  <section class="home-section" style="overflow-x: hidden;">
+      
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+                  <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="/">Home</a></li>
+                  <li class="breadcrumb-item text-sm text-dark active" aria-current="page"><a href="/Admin_dash/">Dashboard</a></li>
+              </ol>
+              <h6 class="font-weight-bolder mb-0">Dashboard</h6>
+            </nav>
+            </ul> 
+            <!-- <form class="d-flex" role="search" style="position: absolute; left: 70%;">
+              <input style="height:40px; margin-top: 10px;" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button style="margin-top: 10px;"  class="btn btn-outline-success" type="submit">Search</button>
+            </form> -->
+            
+              <a href="/admin_logout/"class="nav-link text-body font-weight-bold px-0" style="position: absolute; left: 93%;">
+                  <i style="font-size: 18px;"  class="fa fa-user me-sm-1" aria-hidden="true"></i>
+                  <span style=" font-size: 18px;"  class="d-sm-inline d-none">Logout</span>
+              </a>
+        
+
+          </div>
+        </div>
+      </nav>
+      {% block section %} {% endblock %}
+
+    </section>
+
+
+
+  <!-- <script></script> -->
+  <script>
+  let sidebar = document.querySelector(".sidebar");
+  let closeBtn = document.querySelector("#btn");
+  let searchBtn = document.querySelector(".bx-search");
+
+  closeBtn.addEventListener("click", ()=>{
+    sidebar.classList.toggle("open");
+    menuBtnChange();//calling the function(optional)
+  });
+
+  searchBtn.addEventListener("click", ()=>{ // Sidebar open when you click on the search iocn
+    sidebar.classList.toggle("open");
+    menuBtnChange(); //calling the function(optional)
+  });
+
+  // following are the code to change sidebar button(optional)
+  function menuBtnChange() {
+   if(sidebar.classList.contains("open")){
+     closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the iocns class
+   }else {
+     closeBtn.classList.replace("bx-menu-alt-right","bx-menu");//replacing the iocns class
+   }
+  }
+
+
+
+  
+
+ 
+
+  // charts script
+  {% block script %} {% endblock %}
+  
+  </script>
+
+  <script>
+    const textarea = document.getElementById("textarea1");
+
+function f1(e) {
+    let value = e.value;
+    textarea.style.fontSize = value + "px";
+}
+
+function f2(e) {
+    if (textarea.style.fontWeight == "bold") {
+        textarea.style.fontWeight = "normal";
+        e.classList.remove("active");
+    }
+    else {
+        textarea.style.fontWeight = "bold";
+        e.classList.add("active");
+    }
+}
+
+function f3(e) {
+    if (textarea.style.fontStyle == "italic") {
+        textarea.style.fontStyle = "normal";
+        e.classList.remove("active");
+    }
+    else {
+        textarea.style.fontStyle = "italic";
+        e.classList.add("active");
+    }
+}
+
+function f4(e) {
+    if (textarea.style.textDecoration == "underline") {
+        textarea.style.textDecoration = "none";
+        e.classList.remove("active");
+    }
+    else {
+        textarea.style.textDecoration = "underline";
+        e.classList.add("active");
+    }
+}
+
+function f5(e) {
+    textarea.style.textAlign = "left";
+}
+
+function f6(e) {
+    textarea.style.textAlign = "center";
+}
+
+function f7(e) {
+    textarea.style.textAlign = "right";
+}
+
+function f8(e) {
+    if (textarea.style.textTransform == "uppercase") {
+        textarea.style.textTransform = "none";
+        e.classList.remove("active");
+    }
+    else {
+        textarea.style.textTransform = "uppercase";
+        e.classList.add("active");
+    }
+}
+
+function f9() {
+    textarea.style.fontWeight = "normal";
+    textarea.style.textAlign = "left";
+    textarea.style.fontStyle = "normal";
+    textarea.style.textTransform = "capitalize";
+    textarea.value = "";
+}
+
+function f10(e) {
+    let value = e.value;
+    textarea.style.color = value;
+}
+
+window.addEventListener('load', () => {
+    textarea.value = "";
+});
+  </script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script> -->
+  
+</body>
+</html>

@@ -1,0 +1,814 @@
+{% extends 'Comaan.html' %}
+{% block head %}<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> {% endblock %}
+{% block title %} DMZ {% endblock %}
+{% block css %}
+
+
+.main{
+    background: #f1f7fd;
+    box-shadow: 0px 2px 15px;
+}
+
+.infobg{background: #f1f7fd; 
+    margin: 10px;
+    box-shadow: 0 10px 45px rgba(0, 0, 0, 0.15);
+}
+
+.table{box-shadow: 0 10px 45px rgba(0, 0, 0, 0.15);
+}
+
+.pad{
+    margin-left: 50px;
+}
+
+.col{
+    max-width: 600px;
+}
+
+
+
+
+
+/* ----- */
+
+.photo{
+    height: 100px;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+
+
+.profile-pic-div{
+    height: 100px;
+    width: 100px;
+    top: 50%;
+    left: 50%;
+    /* margin-left: 80%; */
+    overflow: hidden;
+    background: rgb(7, 7, 6);
+    box-shadow: 0 10px 45px rgba(0, 0, 0, 0.15);
+}
+
+#photo{
+    height: 100%;
+    width: 100%;
+}
+
+#file{
+    display: none;
+}
+
+#uploadBtn{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-top: 35%;
+    opacity: 0%;
+    text-align: center;
+    background: rgb(228, 228, 221);
+    color: rgb(14, 14, 13);
+    line-height: 30px;
+    font-family: sans-serif;
+    font-size: 15px;
+    cursor: pointer;
+    display: none;
+}
+
+label{
+    padding-bottom: 20px;
+    font-weight: 700;
+}
+
+
+
+.otpbtn{
+    margin-left:60%
+
+}
+
+
+
+form > div .requirements {
+    padding: 0 30px 0 50px;
+    color: #C73030;
+    max-height: 0;
+    transition: 0.28s;
+    overflow: hidden;
+    font-style: italic;
+    font-size: 0.8em;
+   }
+
+
+.marg{
+    margin-top: 25px;
+}
+
+.lblmarg{
+    margin-bottom: 0;
+}
+
+
+{% endblock %}
+{% block body %} 
+{% include 'message.html' %}
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+  </symbol>
+</svg>
+{% for msg in messages %}
+<div class="alert alert-success d-flex align-items-center" role="alert">
+  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+  <div>
+    <strong>Hye!!!</strong> {{msg}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+</div>
+  
+{% endfor %}
+&nbsp;
+
+<div class="container main">
+  <form  method="post" class="row needs-validation " novalidate style="display:flex ;" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+      <div  style=" overflow: hidden;">
+        
+              <div class="row " >
+
+                  <div class="col" style="max-width: 850px; ">
+                      <h3>Doctor Registration Form</h3>
+                      <p>Use the form below to create a new account 
+                                  Passwords are required to be a minimum of 6 characters in length. <strong>All * fileds are required</strong> </p>
+                  </div>  
+                  <div class="col" style="padding-left:25%; max-width: 620px;">
+                      <div class="profile-pic-div">
+                          <img src="\media\profile.jpg" id="photo">
+                          <input name="prof" type="file" id="file" class="form-control">
+                          <label for="file" id="uploadBtn">Choose Photo</label>
+                      </div>
+                      
+                      <strong><p>Upload Photo</p></strong>
+                  </div>
+                  
+              </div>
+          
+<!-- -----------------------------------------------------------------------------------------------------Personal -----------------------------------------------------------------------------------------------------Personal -->
+              <div class="row " >
+                      <div class="col infobg" style=" max-width: 650px;">
+                          <h3>personal information</h3>
+                              <div class=" row">
+
+                                  <div class="col marg">
+                                    <label for="validationDefault01" class=" label">First name *</label>
+                                    <input name="doctortName" type="text" class="form-control" id="validationDefault01"  required>
+                                    <div class="invalid-feedback">
+                                        Please enter your first name.
+                                      </div>
+                                  </div>
+                                  
+                              </div>
+                                  <div class="col marg">
+                                    <label for="validationDefault02" class=" label">Middle name *</label>
+                                    <input name="MdoctortName" type="text" class="form-control" id="validationDefault02"  required>
+                                    <div class="invalid-feedback">
+                                        Please enter your middle name.
+                                      </div>
+                                  </div>
+
+                                  <div class="col marg">
+                                    <label for="validationDefault03" class=" label">Last name *</label>
+                                      <input name="LdoctortName" type="text" class="form-control" id="validationDefault03"  required>
+                                      <div class="invalid-feedback">
+                                        Please enter your last name.
+                                      </div>
+                                  </div>
+                          
+                              
+                              
+                                  <div class="col marg">
+                                    <label for="validationDefault04" class=" label">Date of birth *</label>
+                                      <input name="doctordob" type="date" class="form-control" id="validationDefault04">
+                                      <div class="invalid-feedback">
+                                        Please select your date of birth.
+                                      </div>
+                                  </div>
+                              
+                                  
+                                  <div class="col marg">
+                                    <label for="validationDefault5" class=" label">Gender: *</label>
+                                      <select name="doctorsex" class="form-select" id="validationDefault5" required>
+                                      <option selected disabled value="">select your gender</option>
+                                      <option>Male</option>
+                                      <option>Female</option>
+                                      <option>Transgender</option>
+                                      </select>
+                                      <div class="invalid-feedback">
+                                        Please select your gender.
+                                      </div>
+                                  </div>
+                              
+                      </div>
+
+<!-- ------------------------------------------------------------------------------------------Account------------------------------------------------------------------------- -->
+                      <!-- Account information -->
+                      <div class="col infobg" style="max-width: 650px;">
+                          <h3>Account information</h3>
+
+                                  <!-- <span class="input-group-text" id="inputGroupPrepend@">@</span> -->
+
+                                  <div class="col marg">
+                                    <label for="validationDefaultUsername" class=" label">Username *</label>
+                                      <input name="doctoruser" type="text" class="form-control" id="validationDefaultUsername"  aria-describedby="inputGroupPrepend@" required>
+                                      <div class="invalid-feedback">
+                                        Please enter your username.
+                                      </div>
+                                  </div>
+                              
+                                  
+                              <!-- <span class="input-group-text" id="inputGroupPrepend2">P</span> -->
+                              <div class="col marg">
+                                <label for="validationDefaultpassword" class=" label">Password *</label>
+                                  <input name="doctorpass" type="password" class="form-control" id="validationDefaultpassword"  aria-describedby="inputGroupPrepend2"
+                                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}" required>
+                                  <div class="invalid-feedback">
+                                    Please enter your password with include minimum one capital letter, one Number and one unique charcter.
+                                  </div>
+                              </div>
+                              
+                                  
+                              <!-- <span class="input-group-text" id="inputGroupPrepend3">P</span> -->
+                                  <div class="col marg">
+                                    <label for="validationDefaultpassword2" class=" label">Confirm Password *</label>
+                                      <input name="cpass" type="password" class="form-control" id="validationDefaultpassword2"  aria-describedby="inputGroupPrepend3"
+                                      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}"  required>
+                                      <div class="invalid-feedback">
+                                        password is doesn't match.
+                                      </div>
+                                  </div>
+
+                              <!-- <span class="input-group-text" id="inputGroupPrepend4">E</span> -->
+                                    <div class="col marg">
+                                      <label for="validationDefault6" class=" label">Your email *</label>
+                                      <input name="doctoremail" type="email" class="form-control" id="validationDefault6"  aria-describedby="inputGroupPrepend4" required>
+                                      <div class="invalid-feedback">
+                                        Please enter your email.
+                                      </div>
+                                    </div>
+                                <!-- <span class="input-group-text otpspan" id="inputGroupPrepend5" style="margin-left: 24%;">O</span>  -->
+                                   
+
+                                <!--<div class="col marg">
+                                    <center>
+                                    <a class="btn btn-success otpbtn" href="#" role="button">get otp</a>
+                                </center>
+                                </div> -->
+
+                                
+                                      
+                                  <div class="col marg">
+                                    <label for="validationDefault5" class="form-label">Security Question</label>
+                                      <select name="sequrityQ" class="form-select" id="validationDefaultBlood" required>
+                                      <option selected disabled value="">select your Question</option>
+                                      <option>Favourite Cricket Player ?</option>
+                                      <option>First Book You Read ? </option>
+                                      <option>Favourite Singer ?</option>
+                                      <option>Favourite Actor ?</option>
+                                      <option>Country That You Like Most ?</option>
+                                      <option>Your Childhood Friend ?</option>
+                                      <option>Your Favourite Movie ?</option>
+                                      <option>Your Mother Name ?</option>
+                                      </select>
+                                      <div class="invalid-feedback">
+                                          Please choose your question.
+                                        </div>
+                                  </div>
+
+                           
+                                <div class="col marg">
+                                    <label for="validationDefaultsequrityA" class=" label">sequrity Answer *</label>
+                                    <input name="sequrityA " type="text" class="form-control otp" id="validationDefaultsequrityA"  aria-describedby="inputGroupPrepend5"  required>
+                                    <div class="invalid-feedback" style="margin-left:50%">
+                                        Please enter your sequrity Answer.
+                                      </div>
+                                      <span style="color: red;">This question answer used for forgetting password don't forget this</span>
+                                </div>
+                      </div>
+
+<!-- ----------------------------------------------------------------------------------------contact ----------------------------------------------------------------------------------------contact -->
+
+                      <!-- contact info -->
+              
+                  <div class="row">
+                      <div class="col infobg" style="max-width: 650px; margin-top: 50px;">
+                          <h3>contact information</h3>
+
+                              <div class="col marg">
+                                <label for="validationDefault07" class=" label">pincode *</label>
+                                <input name="doctorpin" type="text" class="form-control" id="validationDefault13" required>
+                                  <div class="invalid-feedback">
+                                    Please enter pincode.
+                                  </div>
+                              </div> 
+
+
+                              <div class="col">
+                                <label for="validationDefault08" class=" label">Personal adress *</label>
+                                  <textarea name="doctoradd" class="form-control" id="validationDefault08"  required></textarea>
+                                  <div class="invalid-feedback">
+                                    Please enter your address.
+                                  </div>
+                              </div>
+                              
+                              <div class="col marg">
+                                <label for="validationDefault09" class=" label">Area *</label>
+                                  <input name="doctorarea" type="text" class="form-control" id="validationDefault09" required>
+                                  <div class="invalid-feedback">
+                                    Please enter your area.
+                                  </div>
+                              </div>
+
+                              <div class="col marg">
+                                <label for="validationDefault10" class=" label">City *</label>
+                                  <input name="doctorct" type="text" class="form-control" id="validationDefault10" required>
+                                  <div class="invalid-feedback">
+                                    Please enter your city.
+                                  </div>
+                              </div>
+
+                              <div class="col marg">
+                                <label for="validationDefault11" class=" label">State *</label>
+                                  <input name="doctorst" type="text" class="form-control" id="validationDefault11" required>
+                                  <div class="invalid-feedback">
+                                    Please enter your state.
+                                  </div>
+                              </div>
+
+                              <div class="col marg">
+                                <label for="validationDefault12" class=" label">Country *</label>
+                                  <input name="doctorcountry" type="text" class="form-control" id="validationDefault12" required>
+                                  <div class="invalid-feedback">
+                                    Please enter your country.
+                                  </div>
+                              </div>
+
+                                <div class="col">
+                                  <label for="validationDefault13" class=" label">Mobile number *</label>
+                                  <input name="doctormob" type="tel" class="form-control" id="validationDefault07" placeholder="Ex.+911234567890 +91 is country code"
+                                  pattern="^(\+)(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){11,15}(\s*)?$" required>
+                                  <div>
+                                    Enter your number with country code
+                                  </div>
+                                  <div class="invalid-feedback">
+                                    Please enter your valid number.
+                                  </div>
+                                </div>
+                                
+                                <!-- <div class="col marg">
+                                    <center>
+                                    <button type="submit" name="otpButton" class="col-md-6 btn btn-success" >Get otp</button>
+                                  </center>
+                                </div>
+                              </form> -->
+
+                      </div>
+
+<!-- ------------------------------------------------------------------------------clinic------------------------------------------------ -->
+                      <!-- Clinic -->
+
+                      <div class="col infobg" style="max-width: 650px; margin-top: 50px;">
+                          <h3>Clinic information</h3>
+                              
+                              <div class="col marg">
+                                <label for="validationDefault14" class="lblmarg  label">Clinic/hospital name *</label>
+                                  <input name="C\H_name" type="text" class="form-control" id="validationDefault14" required>
+                                  <div class="invalid-feedback">
+                                    Please enter your Clinic/hospital name.
+                                  </div>
+                              </div>
+                              
+                              <div class="col marg">
+                                <label for="validationDefault15" class=" label">Clinic/hospital adress *</label>
+                                  <textarea name="C\H_add" class="form-control" id="validationDefault15"  aria-describedby="inputGroupPrepend2" required></textarea>
+                                  <div class="invalid-feedback">
+                                    Please enter your Clinic/hospital address.
+                                  </div>
+                              </div>
+                              
+                              <div class="col marg">
+                                <label for="validationDefault16" class=" label">Area *</label>
+                                  <input name="C\H_area" type="text" class="form-control" id="validationDefault16" required>
+                                  <div class="invalid-feedback">
+                                    Please enter your Clinic/hospital area.
+                                  </div>
+                              </div>
+                              
+                              <div class="col marg">
+                                  <label for="validationDefault17" class=" label">City *</label>
+                                  <input name="C\H_ct" type="text" class="form-control" id="validationDefault17" required>
+                                  <div class="invalid-feedback">
+                                    Please enter your Clinic/hospital city.
+                                  </div>
+                              </div>
+                              
+                              
+                              <div class="col marg">
+                                <label for="validationDefault18" class=" label">State *</label>
+                                  <input name="C\H_st" type="text" class="form-control" id="validationDefault18" required>
+                                  <div class="invalid-feedback">
+                                    Please enter your Clinic/hospital state.
+                                  </div>
+                              </div>
+                              
+                          
+                              <div class="col marg">
+                                <label name="C\H_country" for="validationDefault19 label" class="">Country *</label>
+                                  <input type="text" name="C\H_country" class="form-control" id="validationDefault19" required>
+                                  <div class="invalid-feedback">
+                                    Please enter your Clinic/hospital country.
+                                  </div>
+                              </div>
+                              
+                              <div class="col marg">
+                                <label for="validationDefault20" class=" label">Pincode *</label>
+                                  <input name="C\H_pincode" type="text" class="form-control" id="validationDefault20" required>
+                                  <div class="invalid-feedback">
+                                    Please enter your Clinic/hospital pincode.
+                                  </div>
+                              </div>
+
+                                <div class="col marg">
+                                <label for="validationDefault21" class=" label">Clinic/hospital telephone number *</label>
+                                  <input name="C\H_tel" type="tel" class="form-control" id="validationDefault21" required>
+                                  <div class="invalid-feedback">
+                                    Please enter your Clinic/hospital telephone number.
+                                  </div>   
+                                </div>
+
+                      </div>
+                  </div>
+<!-- -------------------------------------------------Qulification--------------------------------------------------------------------------- -->
+                  <!-- Qulification -->
+                  <div class="col infobg" style="max-width: 650px; margin-top: 50px;">
+                  <!-- <div class="col infobg" style="max-width: 1330px; margin-top: 50px;"> -->
+                      <h3>Qualfication information and Experience</h3>
+                      <div class="col marg">
+                          <label for="validationDefault22" class="">Degree *</label>
+                          <textarea name="qualification" type="text" class="form-control" id="validationDefault22" required></textarea>
+                          <div class="invalid-feedback">
+                            Please enter your qualfication.
+                          </div>
+                      </div>
+
+                      <div class="col marg">
+                          <label for="validationDefaultCLG" class=" label">College/Institue *</label>
+                          <input name="speciality" type="text" class="form-control" id="validationDefaultCLG" required>
+                          <div class="invalid-feedback">
+                            Please enter your College/Institue.
+                          </div>
+                      </div>
+                      <div class="col marg">
+                          <label for="validationDefaultCompilation" class=" label">Year of compilation *</label>
+                          <input name="speciality" type="text" class="form-control" id="validationDefaultCompilation" required>
+                          <div class="invalid-feedback">
+                            Please enter your Year of compilation.
+                          </div>
+                      </div>
+                      <div class="col marg">
+                        <label for="validationDefault24" class=" label">Doctor licens *</label>
+                        <input name="cer" type="file" class="form-control" id="validationDefault24" required>
+                        <div class="invalid-feedback">
+                          Please upload your doctory licens.
+                        </div>
+                    </div>
+                      <div class="col marg">
+                          <label for="validationDefaultExperience" class=" label">Experience *</label>
+                          <input name="Experience" type="text" class="form-control" id="validationDefaultExperience" required>
+                          <div class="invalid-feedback">
+                            Please enter your Year of Experience.
+                          </div>
+                      </div>
+                    </div>
+
+     <!-- ---------------------------------------------------Award-----------------------------------------------------                -->
+                    <div class="row infobg" style="max-width: 650px; margin-top: 50px;">
+                      <div class="col">
+                          <h3>Awards</h3>
+                          <div class="col-md-12 marg">
+                              <label for="validationDefaultAwards" class="">Awards </label>
+                              <input name="Awards" type="text" class="form-control" id="validationDefaultAwards" >
+                          </div>
+                          <div class="col-md-12 marg">
+                              <label for="validationDefaultYear" class="">Year </label>
+                              <input name="Year" type="text" class="form-control" id="validationDefaultYear" >
+                          </div>
+                      </div>
+                      
+                    </div>
+                    
+<!-- ------------------------------------------------------------Appointment--------------------------------------------------------------------------- -->
+                    <!-- appointment -->
+                    <div class="row infobg" style=" margin-top: 50px;">
+                        <h3>Speciality and appointment's scheduling</h3>
+                      <div class="col marg">
+                          <label for="validationDefault23" class=" label">Specialict *</label>
+                          <select name="speciality" id="validationDefault28" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"  required >
+                            
+                            {% for i in special %}
+                            <option value="{{i.index}}">{{ i.specilaity_category }}</option>
+                            {% endfor %}
+                          </select>
+                          <div class="invalid-feedback">
+                            Please enter your speciality in doctory.
+                          </div>
+                      </div>
+
+                      <div class="col marg">
+                          <label for="validationDefault25" class=" label">Fees</label>
+                          <input name="fee" type="text" class="form-control" id="validationDefault25" required>
+                      </div>
+
+                      <div class="col marg">
+                          <label for="validationDefault26" class=" label">Advance appointment for next</label>
+                          <input name="appointment" type="text" class="form-control" id="validationDefault26" required>
+                          <label for="validationDefault25" class=" label">days</label>
+                      </div>
+                      <div class="col marg">
+                        <label for="validationDefault28" class=" label">Timeing Slot Durations</label>
+                        <select id="validationDefault28" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" onchange="disabledDiv(this)"  required >
+                            <option selected>-</option>
+                            <option value=15>15 min</option>
+                            <option value=30>30 min</option>
+                            <option value=60>1 hrs</option>
+                          </select>
+                      </div>
+
+                      <!-- for 1 hrs -->
+                      
+                      <label for="validationDefault27" class=" label">appointment Slots *</label>
+                      <span><input type="checkbox"> Select all</span>
+                      <input name="onehrs" type="text" class="form-control" id="txtvalues">
+                      <div class="row-cols-md-6" id = "oneHrs" hidden>
+                        {% for i in One_hrs %}
+                        <input value="{{i}}"  type="checkbox" class="btn-check mb-3 chckcvalue" id="{{i}}" autocomplete="off">
+                        <label class="btn btn-outline-success mb-3" for="{{i}}">{{i}}</label>
+                        {% endfor %}
+                      </div>
+                      <div class="row-cols-md-6" id="30min" hidden>
+                        {% for i in Half_hrs %}
+                        <input value="{{i}}"  type="checkbox" class="btn-check mb-3 chckcvalue" id="{{i}}" autocomplete="off">
+                        <label class="btn btn-outline-success mb-3" for="{{i}}">{{i}}</label>
+                        {% endfor %}
+                      </div>
+                      
+                      <div id="15min" class="row-cols-md-6" hidden>
+                        {% for i in A_15mn %}
+                        <input value="{{i}}" type="checkbox" class="btn-check mb-3 chckcvalue" id="{{i}}" autocomplete="off">
+                        <label class="btn btn-outline-success mb-3" for="{{i}}">{{i}}</label>
+                        {% endfor %}
+                      </div>
+                      <div id="45min" class="row-cols-md-6" hidden>45hiiiiiii</div>
+
+                      <!-- <label for="validationDefault27" class=" label">Avalaiblity *</label>
+                      <table style="display:flexbox" class="table table-striped table-bordered" id="validationDefault27">
+                          <thead class="table-dark">
+                              <tr> 
+                                  <th scope="col">Type</th>
+                                  <th scope="col">From time</th>
+                                  <th scope="col">To time</th>
+                                  <th scope="col">Mon</th>
+                                  <th scope="col">Tue</th>
+                                  <th scope="col">Wed</th>
+                                  <th scope="col">Thu</th>
+                                  <th scope="col">Fri</th>
+                                  <th scope="col">sat</th>
+                                  <th scope="col">sun</th>   
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <th scope="row">appointment</th>
+                                  <td><input name="video_appointment_fromTime" class="timepicker" type="time" required>
+                                    <div class="invalid-feedback">
+                                        Please select your starting timeing.
+                                    </div>
+                                </td>
+                                  <td><input name="video_appointment_toTime"  type="time" required>
+                                    <div class="invalid-feedback">
+                                        Please select your closing timeing.
+                                    </div>
+                                </td>
+                                  <td><input name="video_appointment_day_mon"  type="checkbox"></td>
+                                  <td><input name="video_appointment_day_tue" type="checkbox"></td>
+                                  <td><input name="video_appointment_day_wed" type="checkbox"></td>
+                                  <td><input name="video_appointment_day_thu" type="checkbox"></td>
+                                  <td><input name="video_appointment_day_fri" type="checkbox"></td>
+                                  <td><input name="video_appointment_day_sat" type="checkbox"></td>
+                                  <td><input name="video_appointment_day_sun" type="checkbox"></td>
+                              </tr>
+                      
+                              
+                          </tbody>
+                      </table> -->
+                      <h1>About self</h1>
+                        <textarea name="self" type="textarea" class="form-control" id="validationDefault28" required></textarea>
+                  </div>
+                  <!-- Awards -->
+                 
+            </div>
+
+          <!-- <div class="col infobg" style="margin-top: 50px;">
+              <h1>About self</h1>
+              <textarea name="self" type="textarea" class="form-control" id="validationDefault28" required></textarea>
+          </div> -->
+
+          <div class="col-12;">
+              <div class="form-check" style="display: inline-block; margin-left: 80%;">
+              <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+              <label class="form-check-label" for="invalidCheck2">
+                  Agree to terms and conditions
+              </label>
+              </div>
+          </div>
+      
+          <div class="col-12" style="margin-left: 90%; display:inline-block;">
+              <button class="btn btn-success"  type="submit">Submit form</button>
+          </div>
+
+      </div>
+
+      
+  </form>
+
+
+
+
+ 
+</div>
+{% endblock %}
+
+{% block js %}
+
+
+$(document).ready(function()
+{ $('.chckcvalue').click(function()
+  {
+    var txt = "";
+    $('.chckcvalue:checked').each(function()
+    {
+      txt+=$(this).val()+', '
+    });
+    $('#txtvalues').val(txt)
+
+  });
+});
+
+
+
+//declearing html elements
+
+const imgDiv = document.querySelector('.profile-pic-div');
+const img = document.querySelector('#photo');
+const file = document.querySelector('#file');
+const uploadBtn = document.querySelector('#uploadBtn');
+
+//if user hover on img div
+
+imgDiv.addEventListener('mouseenter', function(){
+    uploadBtn.style.display = "block";
+});
+
+//if we hover out from img div
+
+imgDiv.addEventListener('mouseleave', function(){
+    uploadBtn.style.display = "none";
+});
+
+//lets work for image showing functionality when we choose an image to upload
+
+//when we choose a foto to upload
+
+file.addEventListener('change', function(){
+    //this refers to file
+    const choosedFile = this.files[0];
+
+    if (choosedFile) {
+
+        const reader = new FileReader(); //FileReader is a predefined function of JS
+
+        reader.addEventListener('load', function(){
+            img.setAttribute('src', reader.result);
+        });
+
+        reader.readAsDataURL(choosedFile);
+
+        //Allright is done
+
+        //please like the video
+        //comment if have any issue related to vide & also rate my work in comment section
+
+        //And aslo please subscribe for more tutorial like this
+
+        //thanks for watching
+    }
+});
+
+
+
+
+
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+        if (form.checkValidity()) {
+          console.log("hii")
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+
+
+
+let one_hrs_div =  document.getElementById('oneHrs'),
+hidden = one_hrs_div.getAttribute("hidden");
+
+let A_45min_div =  document.getElementById('45min'),
+hidden45 = A_45min_div.getAttribute("hidden");
+
+let A_30min_div =  document.getElementById('30min'),
+hidden30 = A_30min_div.getAttribute("hidden");
+
+let A_15min_div =  document.getElementById('15min'),
+hidden15 = A_15min_div.getAttribute("hidden");
+
+
+function disabledDiv(Divv){
+  console.log(Divv.value)
+  if(Divv.value == 60){
+    console.log("Divv.value")
+    oneHrs.removeAttribute("hidden");
+    A_30min_div.setAttribute("hidden", "hidden30");
+    A_45min_div.setAttribute("hidden", "hidden45");
+    A_15min_div.setAttribute("hidden", "hidden15");
+  }
+  else if(Divv.value == 30){
+    A_30min_div.removeAttribute("hidden");
+    one_hrs_div.setAttribute("hidden", "hidden");
+    A_45min_div.setAttribute("hidden", "hidden45");
+    A_15min_div.setAttribute("hidden", "hidden15");
+  }
+  else if(Divv.value == 45){
+    A_45min_div.removeAttribute("hidden");
+    one_hrs_div.setAttribute("hidden", "hidden");
+    A_30min_div.setAttribute("hidden", "hidden30");
+    A_15min_div.setAttribute("hidden", "hidden15");
+    one_hrs_div.setAttribute("hidden", "hidden");
+  }
+  else if(Divv.value == 15){
+    A_15min_div.removeAttribute("hidden");
+    one_hrs_div.setAttribute("hidden", "hidden");
+    A_30min_div.setAttribute("hidden", "hidden30");
+    A_45min_div.setAttribute("hidden", "hidden45");
+    one_hrs_div.setAttribute("hidden", "hidden");
+  }
+};
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+

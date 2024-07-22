@@ -1,0 +1,142 @@
+<div class="container-fluid" style="margin-top: 50px;border: 5px solid red;    background-color: cadetblue;padding: 10rem;">
+
+    <!-- Patient -->
+    <form class="row g-3" method="POST" enctype="multipart/form-data" style="border: 6px solid; background-color: lightseagreen;">
+        {% csrf_token %}
+        <center>
+          <input class="form-check-input" type="radio" name="flexRadioDefault" value="doctor" id="flexRadioDefault1">
+          <label class="form-check-label" for="flexRadioDefault1">
+            Doctor
+          </label>
+          <input class="form-check-input" type="radio" name="flexRadioDefault" value="patient" id="flexRadioDefault2" checked>
+          <label class="form-check-label" for="flexRadioDefault2">
+            Patient
+          </label>
+      </center>
+        <div class="col-md-3">
+          <label for="validationDefault01" class="form-label">First name:</label>
+          <input name="patientName" type="text" class="form-control" id="validationDefault01" placeholder="Enter first name" required>
+        </div>
+        <div class="col-md-3">
+            <label for="validationDefault02" class="form-label">Middle name:</label>
+            <input name="MpatientName" type="text" class="form-control" id="validationDefault02" placeholder="Enter middle name" required>
+          </div>
+        <div class="col-md-3">
+          <label for="validationDefault03" class="form-label">Last name:</label>
+          <input name="LpatientName" type="text" class="form-control" id="validationDefault03" placeholder="Enter last name" required>
+        </div>
+        <div class="col-md-3">
+            <label for="validationDefault10" class="form-label">Email:</label>
+            <input name="email" type="text" class="form-control" id="validationDefault10" placeholder="Enter Email" required>
+        </div>
+        <div class="col-md-3">
+          <label for="validationDefault12" class="form-label">email otp:</label>
+          <input name="emailotp" type="text" class="form-control" id="validationDefault12" placeholder="Enter otp from Email" required>
+        </div>
+        <div class="col-md-3">
+          <label for="validationDefault15" class="form-label">get</label>
+          <input class="form-control btn-primary" type="button" onclick="" id="validationDefault15" style="width:116px;">
+        </div>
+        <div class="col-md-3">
+            <label for="validationDefault11" class="form-label">Gender:</label>
+            <!-- <input name="sex" type="text" class="form-control" id="validationDefault11" placeholder="Enter your sex" required> -->
+            <select name="sex" class="form-select" id="validationDefault11" required>
+              <option selected disabled value="">select your gender</option>
+              <option>Male</option>
+              <option>Female</option>
+              <option>Transgender</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label for="validationDefault04" class="form-label">DOB:</label>
+            <input name="dob" type="date" class="form-control" id="validationDefault04" placeholder="Enter date of birth" required>
+        </div>
+        <div class="col-md-3">
+            <label for="validationDefault05" class="form-label">Mobile no.:</label>
+            <input name="mob" type="tel" class="form-control" id="validationDefault05" placeholder="Enter mobile number" required>
+        </div>
+        <div class="col-md-3">
+          <label for="validationDefault13" class="form-label">mob otp:</label>
+          <input name="otp" type="text" class="form-control" id="validationDefault13" placeholder="Enter otp from mobile number" required>
+        </div>
+        <div class="col-md-3">
+          <label for="validationDefault14" class="form-label">get</label>
+          <button class="form-control btn-primary" type="submit" id="validationDefault14" style="width:116px;">Get otp</button>
+        </div>
+        <div class="col-md-3">
+            <label for="validationDefault06" class="form-label">profile Image:</label>
+            <input name="prof" type="file" class="form-control" id="validationDefault06" required>
+        </div>
+        <div class="col-md-3">
+          <label for="validationDefaultUsername" class="form-label">Username</label>
+          <div class="input-group">
+            <span class="input-group-text" id="inputGroupPrepend2">@</span>
+            <input name="user" type="text" class="form-control" id="validationDefaultUsername" placeholder="Enter user name"  aria-describedby="inputGroupPrepend2" required>
+          </div>
+        </div>
+          <div class="col-md-3">
+            <label for="validationDefaultPass" class="form-label">Password</label>
+            <div class="input-group">
+              <span class="input-group-text" id="inputGroupPrepend3">P</span>
+              <input name="pass" type="password" class="form-control" id="validationDefaultPass" placeholder="Enter password"  aria-describedby="inputGroupPrepend3" required>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <label for="validationDefault07" class="form-label">Address:</label>
+            <div class="input-group">
+            <span class="input-group-text" id="inputGroupPrepend4">A</span>
+            <input name="add" type="text" class="form-control" id="validationDefault07" placeholder="Enter your Address" aria-describedby="inputGroupPrepend4" required>
+        </div>
+        </div>
+        <div class="col-md-3">
+          <label for="validationDefault07" class="form-label">City</label>
+          <input name="ct" type="text" class="form-control" id="validationDefault07" placeholder="Enter your city" required>
+        </div>
+        <div class="col-md-3">
+          <label for="validationDefault08" class="form-label">State</label>
+          <!-- <input name="st" type="text" class="form-control" id="validationDefault08" placeholder="Enter your state" required> -->
+          <select name="st" class="form-select" id="validationDefault08" required>
+            <option selected disabled value="">select state...</option>
+            <option>one</option>
+            <option>two</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <label for="validationDefault09" class="form-label">Zip</label>
+          <input name="pin" type="text" class="form-control" id="validationDefault09" placeholder="Enter your pin code" required>
+        </div>
+    
+        
+        <!-- extra -->
+    
+    
+        <div class="col-md-3">
+          <label for="validationDefault15" class="form-label">proof:</label>
+          <input name="proof" type="file" class="form-control" id="validationDefault15" required>
+        </div>
+        <div class="col-md-3">
+          <label for="validationDefault16" class="form-label">cer:</label>
+          <input name="cer" type="file" class="form-control" id="validationDefault16" required>
+        </div>
+        <div class="col-md-3">
+          <label for="validationDefault17" class="form-label">profession:</label>
+          <input name="profession" type="text" class="form-control" id="validationDefault17" required>
+        </div>
+    
+    
+    
+        <div class="col-12">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+            <label class="form-check-label" for="invalidCheck2">
+              Agree to terms and conditions
+            </label>
+          </div>
+        </div>
+        <div class="col-12">
+          <button class="btn btn-primary" type="submit">Submit form</button>
+        </div>
+      </form>
+    </div>
+    
+    

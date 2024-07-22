@@ -1,0 +1,322 @@
+{% extends 'Comaan.html' %}
+
+{% block css %} 
+.section-title {
+    text-align: center;
+    padding-bottom: 30px;
+  }
+  
+  .section-title h2 {
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    position: relative;
+    color: #2c4964;
+  }
+  
+  .section-title h2::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 120px;
+    height: 1px;
+    background: #ddd;
+    bottom: 1px;
+    left: calc(50% - 60px);
+  }
+  
+  .section-title h2::after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: #1977cc;
+    bottom: 0;
+    left: calc(50% - 20px);
+  }
+
+{% endblock %}
+
+
+
+{% block body %}
+    <div class="card text-bg-dark" >
+        <img src="/media/homeCare.jpg" class="card-img" alt="https://mdbcdn.b-cdn.net/img/new/standard/city/047.webp" style="height: 500px; opacity: 0.5;">
+            <div class="card-img-overlay">
+                <!-- <h3 class="card-title" style="font-size: 35px; font-weight: 600; letter-spacing: 0.5px; font-family: 'Poppins', sans-serif; margin-top: 90px; color: #ecf0f4; margin-left: 10px; ">Providing The Highest Standarad Care For</h3>
+                <h3 class="card-title" style="font-size: 35px; font-weight: 600; letter-spacing: 0.5px; font-family: 'Poppins', sans-serif; color: #eaf93e; margin-left: 10px; ">You And Your Family</h3> -->
+                <!-- <h3 class="card-title" style="font-size: 50px; font-weight: 700; letter-spacing: 0.5px; font-family: 'Poppins', sans-serif; margin-top: 30px; color: #ecf0f4; margin-left: 10px; ">Healthcare System </h3> -->
+                <ul>
+                    <h3><li style="list-style: none; font-size: 35px; font-weight: 600; letter-spacing: 0.5px; font-family: 'Poppins', sans-serif; margin-top: 90px; color: #ecf0f4; margin-left: 10px;">Providing The Highest Standarad Care For</li></h3>
+                    <h3 style="color: #dcfd05;"><li style="list-style: none; font-size: 35px; font-weight: 600; letter-spacing: 0.5px; font-family: 'Poppins', sans-serif; margin-left: 10px; ">You And Your Family</li></h3>
+                    <li style="font-size: 20px; font-weight: 600; letter-spacing: 0.5px; font-family: 'Poppins', sans-serif; color: #ecf0f4; margin-top: 20px;">Fast and easy booking</li>
+                    <li style="font-size: 20px; font-weight: 600; letter-spacing: 0.5px; font-family: 'Poppins', sans-serif; color: #ecf0f4;">Trusted homecare partners</li>
+                    <li style="font-size: 20px; font-weight: 600; letter-spacing: 0.5px; font-family: 'Poppins', sans-serif; color: #ecf0f4;">Verified professionals</li>
+                </ul>
+                <a href="#homecareform"><button class="btn btn-primary" style="width:300px;"  type="button">Book HomeCare</button></a>
+            </div>
+    </div>
+ 
+&nbsp;
+<div class="section-title">
+    <h2>How it Works</h2>
+    <h5 class="text-muted">Get guidance and assistance for your home care requirements. Explore the section to know more.</h5>
+  </div>
+
+<div class="card-group" style=" background: #f1f7fd; box-shadow: 0px 2px 15px; padding-right: 150px; padding-top: 50px; padding-bottom: 50px;   padding-left: 150px;">
+
+    <div class="card" style="background: #f1f7fd; border: none; max-width: 357px;">
+      <img style="border-radius: 50%; width: 300px;" src="/media/request.png" class="card-img-top" alt="/media/request.png">
+      <div class="card-body">
+        <center>
+        <h5 class="card-title">Request a Homecare Service</h5>
+        <p class="card-text text-muted">Fill up the form to place your request</p>
+    </center>
+      </div>
+    </div>
+    <div class="card" style="background: #f1f7fd; border: none; max-width: 357px; margin-left: 50px; margin-right: 50px; ">
+      <img style="border-radius: 50%; width: 300px;" src="/media/recive.png" class="card-img-top" alt="/media/recive.png">
+      <div class="card-body">
+        <center>
+        <h5 class="card-title">Drmedizone Homecare Expert</h5>
+        <p class="card-text text-muted">You will receive a confirmation call</p>
+    </center>
+      </div>
+    </div>
+    <div class="card" style="background: #f1f7fd; border: none; max-width: 357px;">
+      <img style="border-radius: 50%; width: 300px;" src="/media/homeSerivce.png" class="card-img-top" alt="https://mdbcdn.b-cdn.net/img/new/standard/city/047.webp">
+      <div class="card-body">
+        <center>
+        <h5 class="card-title">Homecare Professional</h5>
+        <p class="card-text text-muted">Avail Healthcare Services at your Home</p>
+    </center>
+      </div>
+    </div>
+    <div class="card" style="background: #f1f7fd; border: none; max-width: 357px; margin-left: 50px ;">
+        <img style=" border-radius: 50%; width: 300px;" src="/media/feedback.png" class="card-img-top" alt="https://mdbcdn.b-cdn.net/img/new/standard/city/047.webp">
+        <div class="card-body">
+            <center>
+          <h5 class="card-title">Stress Free Homecare</h5>
+          <p class="card-text text-muted">Share your feedback with Credihealth</p>
+        </center>
+        </div>
+      </div>
+  </div>
+&nbsp;
+<!-- homeCare -->
+<div class="container" id="homecareform" style="background-color: #f1f7fd;; padding: 50px; box-shadow: 0px 2px 15px;">
+    <div class="section-title">
+        <h2>Book HomeCare</h2>
+      </div>
+    <form method="post" class="row g-3 needs-validation" novalidate>
+        {% csrf_token %}
+        <div class="col-md-6">
+        <label for="validationCustom01" class="form-label">Full name</label>
+        <input type="text" name="name" class="form-control" id="validationCustom01"  required>
+        <div class="invalid-feedback">
+            Please enter your name!
+        </div>
+        </div>
+        <div class="col-md-3">
+        <label for="validationCustom02" class="form-label">Choose Service</label>
+        <select class="form-select"  name="service" aria-label="Default select example" required>
+            <option selected>Open this select menu</option>
+            {% for i in homeCare|slice:":" %}
+            <option value="{{i.Home_Care_Service}}">{{i.Home_Care_Service}} {{i.price}}</option>
+            {% endfor %}
+        </select>
+        <div class="invalid-feedback">
+            Please choose your service!
+        </div>
+        </div>
+        <div class="col-md-2">
+          <label for="validationCustom02" class="form-label">For How Many Days?</label>
+          <input type="number" class="form-control" value="1">
+          <div class="invalid-feedback">
+              Please Select Days!
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+        <label for="validationCustomUsername"  class="form-label">Mobile number</label>
+        <div class="input-group has-validation">
+            <span style=" width: 92px" class="input-group-text" id="inputGroupPrepend"><input style="height:30px;" type="text" class="form-control" id="validationCustomUsername1" aria-describedby="inputGroupPrepend" placeholder="+91" required></span>
+            <input name="mobile" type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+            <div class="invalid-feedback">
+            Please enter your mobile number with country code!
+            </div>
+        </div>
+        </div>
+        <div class="col-md-6">
+        <label for="validationCustom05"  class="form-label">Email</label>
+        <input name="email" type="text" class="form-control" id="validationCustom05" required>
+        <div class="invalid-feedback">
+            Please enter your Email!
+        </div>
+        </div>
+        <div class="col-12">
+            <label for="inputAddress" class="form-label">Address</label>
+            <input name="address1"  type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" required>
+            <div class="invalid-feedback">
+                Please enter your address line 1!
+            </div>
+        </div>
+        <div class="col-12">
+            <label for="inputAddress2"  class="form-label">Address 2</label>
+            <input name="address2" type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" required> 
+            <div class="invalid-feedback">
+            Please enter your address line 2!
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label for="validationCustom05" class="form-label">Pincode</label>
+            <input  name="pin" type="text" class="form-control" id="validationCustom05" required>
+            <div class="invalid-feedback">
+            Please enter your Pincode!.
+            </div>
+        </div>
+        <div class="col-md-6">
+          <label for="validationCustom05" class="form-label">Reason <span>  Why need homeCare</span></label>
+          <input  name="Reason" type="text" class="form-control" id="validationCustom05" required>
+          <div class="invalid-feedback">
+          Please enter your Reason!.
+          </div>
+      </div>
+        <div class="col-12">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+            <label class="form-check-label" for="invalidCheck">
+            Agree to terms and conditions
+            </label>
+            <div class="invalid-feedback">
+            You must agree before submitting.
+            </div>
+        </div>
+        </div>
+        <div class="col-12">
+          {% if login == "Login" %}
+          <button class="btn btn-primary" type="submit">Submit form</button>
+          {% else %}
+          <a class="btn btn-primary" href="/Login/">Submit form
+          </a>
+          {% endif %}
+        
+        </div>
+    </form>
+</div>
+<!-- homeCare form end -->
+
+<!-- homecare Home_Care_Service_image -->
+&nbsp;
+<div class="container-fluid" style="background-color: #f1f7fd; box-shadow: 0px 2px 15px;">
+<div class="container" id="start" style="background-color: #f1f7fd; ">
+    <div class="section-title">
+      <h2>Home Care</h2>
+      <h5>Choose from our wide variety of services. Get Assurance for quality round the clock care.</h5>
+    </div>
+    <div class="row row-cols-2 row-cols-md-4 g-4" >
+      {% for i in homeCare|slice:":" %}
+      <a href="#" id="" style="text-decoration:none ; color:black;" >
+        <div class="col">
+            <div class="card ovelay align-items-center icon-box" style="border-radius: 10px;" >
+              <img src="/media/{{i.Home_Care_Service_image}}" class="card-img-top" alt="Hollywood Sign on The Hill  "/>
+              <div class="card-body">
+                <h6 class="card-title">{{i.Home_Care_Service}}</h6>
+              </div>
+            </div>
+        </div>
+      </a>
+        {% endfor %}
+        
+    </div>
+</div>
+</div>
+&nbsp;
+
+<!-- about homecare -->
+<div style="margin: 20px; box-shadow: 0px 2px 5px;" >
+    <div style="padding: 20px;">
+    <p><b>What is meant by healthcare at home?</b></p>
+    <p>Healthcare at home encompasses providing all professional medical support services at home. There are people with certain conditions that require support in carrying out their day to day activities and home care
+        service providers are intent on providing them with the same. People who have aged, are affected by any disability, or have recently undergone surgery, require professional care at their homes. The home care provided by
+        nurses, aides, and doctors can either be short term or long term.
+        Sometimes, people can also be in need of companionship, physiotherapy, rehabilitative services, and counseling sessions at home. The aim of home care services is to enable people to acquire quality healthcare within
+        the safe confines of their homes.</p>
+
+    <p><b>What are the various types of home care health services?</b></p>
+    <p>Depending on the types of services provided by the duration, home care services can be divided into three categories:</p>
+    <ul>
+        <li><b>Personal Care And Companionship</b></li>
+        <p>Under this category, healthcare professionals help the individual with the most basic day-to-day activities such as bathing, doing household chores, dressing up, eating etc. This helps the patient to get a sense of routine,
+            confidence, and independence. Some of the other home care services included in this category are:</p>
+            <ul>
+                <li>Grooming oneself</li>
+                <li>Using the restroom</li>
+                <li>Ensuring patient safety and preventing any fall (from the wheelchair or otherwise)</li>
+                <li>Helping and ensuring the safety of a patient with Alzheimer's Disease</li>
+            </ul>
+
+        <li><b>Nursing Care</b></li>
+        <P>Nursing staff provides long term healthcare services, usually on an hourly basis. This is suitable for patients who need professional medical help at home for ventilator care, kidney dialysis, and tracheostomy care. It can
+            also involve shift nursing and adult nursing.</P>
+        <p><b>Some of the common services included under this category include:</b></p><ul>
+            <li>Monitoring vital signs of a patient</li>
+            <li>Catheter care</li>
+            <li>Catastrophic care</li>
+            <li>Feeding tube care</li>
+        </ul>
+
+        <li><b>Home Health Care</b></li>
+        This involves attaining intermittent short term medical care, meant to help a patient recover from an illness or a physical injury. Services considered to be a part of this category include:
+        <ul>
+            <li>Visiting nurse service to check the recovery progress</li>
+            <li>Physiotherapy to recover from a fracture or other physical injuries/abnormalities</li>
+            <li>Speech therapy</li>
+            <li>Occupational Therapy</li>
+            <li>Postnatal care</li>
+            <li>Medical Social Work</li>
+        </ul>
+    </ul>
+
+    <p><b>What do home healthcare providers generally do?</b></p>
+    <p>Home healthcare providers most commonly keep your vitals in check after you have undergone a surgery or injury, promote you to indulge in your favorite activities and household chores, help you in carrying out tasks,
+    etc. They are likely to check your blood pressure, investigate if you have pain, ensure your safety, check that you are taking prescribed medications on time, keep your diet in check, provide you with professional medical
+    assistance such as dialysis and ventilator care, etc. The specific role of a healthcare provider depends on the needs of the seeker. Basically, they can provide medical help ranging from basic day to day support and
+    companionship, to critical life support mechanisms.</p>
+
+
+    <p><b>Where can I find the best home care services near me?</b></p>
+    <p>Drmedizone is an online healthcare portal for all your hospital appointment bookings, diagnostic test bookings, for ordering medications, or healthcare at home in India. Credihealth offers all sorts of authorized home care
+        services one might need. View our home care services page, if you wish to apply for and seek quality healthcare at home from trained professionals. If you have any inquiries or consultation needs, our in-house medical
+        experts can help solve them and guide you towards the right doctor, medical aides, and nursing staff.</p>
+</div>
+</div>
+
+
+{% endblock %}
+
+{% block js %} 
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(() => {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+
+{% endblock %}

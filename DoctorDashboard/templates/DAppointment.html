@@ -1,0 +1,427 @@
+{% extends 'Doctorcomman.html' %}  
+
+{% block section %} 
+
+<div class="app-wrapper">
+
+    {% include 'message.html' %}
+	    
+    <div class="app-content pt-3 p-md-3 p-lg-4">
+        <div class="container-xl">
+            
+            <div class="row g-3 mb-4 align-items-center justify-content-between">
+                <div class="col-auto">
+                    <h1 class="app-page-title mb-0">Appointments</h1>
+                </div>
+                <div class="col-auto">
+                     <div class="page-utilities">
+                        <div class="row g-2 justify-content-start justify-content-md-end align-items-center">
+                            
+                            <div class="col-auto">
+
+                                <div class="dropdown w-auto">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                      Dropdown button
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                      <li><a class="dropdown-item" href="?Doctor_id={{Id}}">All</a></li>
+                                      <li><a class="dropdown-item" href="?Doctor_id={{Id}}&status=Complete">Complete</a></li>
+                                      <li><a class="dropdown-item" href="?Doctor_id={{Id}}&status=Pending">Pending</a></li>
+                                    </ul>
+                                  </div>
+                                
+                                <!-- <select class="form-select w-auto" >
+                                      <option selected value="option-1">All</option>
+                                      <option value="option-2"><a href="?status=Pending">Pending</a></option>
+                                      <a href="?status=Complete"><option >Complete</option></a>
+                                      <option value="option-3"><a href="?status=Complete"></a>Cancelled</option>
+                                      
+                                </select> -->
+                            </div>
+                            
+                        </div><!--//row-->
+                    </div><!--//table-utilities-->
+                </div><!--//col-auto-->
+            </div><!--//row-->
+           
+            
+            <nav id="orders-table-tab" class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
+                <a class="flex-sm-fill text-sm-center nav-link active" id="orders-all-tab" data-bs-toggle="tab" href="#all" role="tab" aria-controls="orders-all" aria-selected="true">All</a>
+                <a class="flex-sm-fill text-sm-center nav-link"  id="orders-paid-tab" data-bs-toggle="tab" href="#clinic" role="tab" aria-controls="orders-paid" aria-selected="false">Clinic</a>
+                <a class="flex-sm-fill text-sm-center nav-link" id="orders-pending-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="orders-pending" aria-selected="false">Home</a>
+                <a class="flex-sm-fill text-sm-center nav-link" id="orders-cancelled-tab" data-bs-toggle="tab" href="#video" role="tab" aria-controls="orders-cancelled" aria-selected="false">Video</a>
+                <a class="flex-sm-fill text-sm-center nav-link" id="orders-cancelled-tab" data-bs-toggle="tab" href="#cancelled" role="tab" aria-controls="orders-cancelled" aria-selected="false">Cancelled</a>
+            </nav>
+            
+        <!-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	 -->
+            <div class="tab-content" id="orders-table-tab-content">
+                <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="orders-all-tab">
+                    <div class="app-card app-card-orders-table shadow-sm mb-5">
+                        <div class="app-card-body">
+                            <div class="table-responsive">
+                                <table class="table app-table-hover mb-0 text-left">
+                                    <thead style="text-align: center;">
+                                        
+                                        <tr>
+                                            <th class="cell">Order</th>
+                                            <th class="cell">Patient</th>
+                                            <th class="cell">Patient Mobile</th>
+                                            <th class="cell">Date</th>
+                                            <th class="cell">Time</th>
+                                            <th class="cell">Type</th>
+                                            <th class="cell">Status</th>
+                                            <th class="cell"></th>
+                                        </tr>
+                                       
+                                    </thead>
+                                    <tbody style="text-align: center;" >
+                                        {% for appointment in appointment %}
+                                        <tr>
+                                            <td class="cell">{{appointment.order_id}}</td>
+                                            <td class="cell"><span class="truncate">{{appointment.patient_name}}</span></td>
+                                            <td class="cell">{{appointment.patient_mobile}}</td>
+                                            <td class="cell">{{appointment.Appointments_date}}</td>
+                                            <td class="cell">{{appointment.Appointments_time}}</td>
+                                            <td class="cell">{{appointment.Appointments_type}}</td>
+                                            {% if appointment.appointment_status == "pending" %}
+                                            <td class="cell"><span class="badge bg-warning">Pending</span></td>
+                                            <td class="cell"><a href="/DDashboard/updatePending/{{appointment.Appointments_id}}" class="btn-sm app-btn-secondary" >Complete Appointment</a></td>
+                                            <td class="cell"><a  onclick="functionName('{{appointment.patient.email}}','{{appointment.patient}}')" class="btn-sm app-btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal" role="button">Reshedule</a></td>
+                                            <td class="cell"><a  onclick="functionUpload('{{appointment.patient.patient_id}}','{{appointment.Doctor_id.doctor_id}}','{{appointment.patient_name}}')" class="btn-sm app-btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal1" role="button">Upload</a></td>
+                                            {% else %}
+                                            <td class="cell"><span class="badge bg-success">Confirmed</span></td>
+                                            
+                                            <td class="cell"><a class="btn-sm app-btn-secondary" href="#" style="pointer-events: none;" >Nothing for Reshedule</a></td>
+                                            <td class="cell"><a  onclick="functionUpload('{{appointment.patient.patient_id}}','{{appointment.Doctor_id.doctor_id}}','{{appointment.patient_name}}')" class="btn-sm app-btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal1" role="button">Upload</a></td>
+                                            {% endif %}
+                                        </tr>
+                                        {% empty %}
+                                        <div class="alert alert-danger" role="alert">
+                                        No Appointments !!!
+                                        </div>
+                                        {% endfor %}
+                                        
+                                        
+                                        
+    
+                                    </tbody>
+                                </table>
+                            </div><!--//table-responsive-->
+                           
+                        </div><!--//app-card-body-->		
+                    </div><!--//app-card-->
+                    <!-- <nav class="app-pagination">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        </ul>
+                    </nav>//app-pagination -->
+                    
+                </div><!--//tab-pane-->
+                
+                <div class="tab-pane fade" id="clinic" role="tabpanel" aria-labelledby="orders-paid-tab">
+                    <div class="app-card app-card-orders-table mb-5">
+                        <div class="app-card-body">
+                            <div class="table-responsive">
+                                
+                                <table class="table mb-0 text-left">
+                                    <thead>
+                                        <tr>
+                                            <th class="cell">Order</th>
+                                            <th class="cell">Patient</th>
+                                            <th class="cell">Patient Mobile</th>
+                                            <th class="cell">Date</th>
+                                            <th class="cell">Time</th>
+                                            <th class="cell">Type</th>
+                                            <th class="cell">Status</th>
+                                            <th class="cell"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for appointment in Clinics %}
+                                        <tr>
+                                            <td class="cell">{{appointment.order_id}}</td>
+                                            <td class="cell"><span class="truncate">{{appointment.patient_name}}</span></td>
+                                            <td class="cell">{{appointment.patient_mobile}}</td>
+                                            <td class="cell">{{appointment.Appointments_date}}</td>
+                                            <td class="cell">{{appointment.Appointments_time}}</td>
+                                            <td class="cell">{{appointment.Appointments_type}}</td>
+                                            {% if appointment.appointment_status == "pending" %}
+                                            <td class="cell"><span class="badge bg-warning">Pending</span></td>
+                                            <td class="cell"><a href="/DDashboard/updatePending/{{appointment.Appointments_id}}" class="btn-sm app-btn-secondary" >Complete Appointment</a></td>
+                                            <td class="cell"><a  onclick="functionName('{{appointment.patient.email}}','{{appointment.patient}}')" class="btn-sm app-btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal" role="button">Reshedule</a></td>
+                                            <td class="cell"><a  onclick="functionUpload('{{appointment.patient.patient_id}}','{{appointment.Doctor_id.doctor_id}}','{{appointment.patient_name}}')" class="btn-sm app-btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal1" role="button">Upload</a></td>
+                                            {% else %}
+                                            <td class="cell"><span class="badge bg-success">Confirmed</span></td>
+                                            
+                                            <td class="cell"><a class="btn-sm app-btn-secondary" href="#" style="pointer-events: none;" >Nothing for Reshedule</a></td>
+                                            <td class="cell"><a  onclick="functionUpload('{{appointment.patient.patient_id}}','{{appointment.Doctor_id.doctor_id}}','{{appointment.patient_name}}')" class="btn-sm app-btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal1" role="button">Upload</a></td>
+                                            {% endif %}
+                                            <!-- <td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td> -->
+                                        </tr>
+                                        {% empty %}
+                                        <div class="alert alert-danger" role="alert">
+                                        No Appointments !!!
+                                        </div>
+                                        {% endfor %}
+                                        
+                                    </tbody>
+                                </table>
+                            </div><!--//table-responsive-->
+                        </div><!--//app-card-body-->		
+                    </div><!--//app-card-->
+                </div><!--//tab-pane-->
+                
+                <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="orders-pending-tab">
+                    <div class="app-card app-card-orders-table mb-5">
+                        <div class="app-card-body">
+                            <div class="table-responsive">
+                                <table class="table mb-0 text-left">
+                                    <thead>
+                                        <tr>
+                                            <th class="cell">Order</th>
+                                            <th class="cell">Patient</th>
+                                            <th class="cell">Patient Mobile</th>
+                                            <th class="cell">Date</th>
+                                            <th class="cell">Time</th>
+                                            <th class="cell">Type</th>
+                                            <th class="cell">Status</th>
+                                            <th class="cell"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for appointment in Homes %}
+                                        <tr>
+                                            <td class="cell">{{appointment.order_id}}</td>
+                                            <td class="cell"><span class="truncate">{{appointment.patient_name}}</span></td>
+                                            <td class="cell">{{appointment.patient_mobile}}</td>
+                                            <td class="cell">{{appointment.Appointments_date}}</td>
+                                            <td class="cell">{{appointment.Appointments_time}}</td>
+                                            <td class="cell">{{appointment.Appointments_type}}</td>
+                                            {% if appointment.appointment_status == "pending" %}
+                                            <td class="cell"><span class="badge bg-warning">Pending</span></td>
+                                            <td class="cell"><a href="/DDashboard/updatePending/{{appointment.Appointments_id}}" class="btn-sm app-btn-secondary" >Complete Appointment</a></td>
+                                            <td class="cell"><a  onclick="functionName('{{appointment.patient.email}}','{{appointment.patient}}')" class="btn-sm app-btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal" role="button">Reshedule</a></td>
+                                            <td class="cell"><a  onclick="functionUpload('{{appointment.patient.patient_id}}','{{appointment.Doctor_id.doctor_id}}','{{appointment.patient_name}}')" class="btn-sm app-btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal1" role="button">Upload</a></td>
+                                            {% else %}
+                                            <td class="cell"><span class="badge bg-success">Confirmed</span></td>
+                                            
+                                            <td class="cell"><a class="btn-sm app-btn-secondary" href="#" style="pointer-events: none;" >Nothing for Reshedule</a></td>
+                                            <td class="cell"><a  onclick="functionUpload('{{appointment.patient.patient_id}}','{{appointment.Doctor_id.doctor_id}}','{{appointment.patient_name}}')" class="btn-sm app-btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal1" role="button">Upload</a></td>
+                                            {% endif %}
+                                            <!-- <td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td> -->
+                                        </tr>
+                                        {% empty %}
+                                        <div class="alert alert-danger" role="alert">
+                                        No Appointments !!!
+                                        </div>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div><!--//table-responsive-->
+                        </div><!--//app-card-body-->		
+                    </div><!--//app-card-->
+                </div><!--//tab-pane-->
+                <div class="tab-pane fade" id="video" role="tabpanel" aria-labelledby="orders-cancelled-tab">
+                    <div class="app-card app-card-orders-table mb-5">
+                        <div class="app-card-body">
+                            <div class="table-responsive">
+                                <table class="table mb-0 text-left">
+                                    <thead>
+                                        <tr>
+                                            <th class="cell">Order</th>
+                                            <th class="cell">Patient</th>
+                                            <th class="cell">Patient Mobile</th>
+                                            <th class="cell">Date</th>
+                                            <th class="cell">Time</th>
+                                            <th class="cell">Type</th>
+                                            <th class="cell">Status</th>
+                                            <th class="cell"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                        {% for appointment in Videos %}
+                                        <tr>
+                                            <td class="cell">{{appointment.order_id}}</td>
+                                            <td class="cell"><span class="truncate">{{appointment.patient_name}}</span></td>
+                                            <td class="cell">{{appointment.patient_mobile}}</td>
+                                            <td class="cell">{{appointment.Appointments_date}}</td>
+                                            <td class="cell">{{appointment.Appointments_time}}</td>
+                                            <td class="cell">{{appointment.Appointments_type}}</td>
+                                            {% if appointment.appointment_status == "pending" %}
+                                            <td class="cell"><span class="badge bg-warning">Pending</span></td>
+                                            <td class="cell"><a href="/DDashboard/updatePending/{{appointment.Appointments_id}}" class="btn-sm app-btn-secondary" >Complete Appointment</a></td>
+                                            <td class="cell"><a  onclick="functionName('{{appointment.patient.email}}','{{appointment.patient}}')" class="btn-sm app-btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal" role="button">Reshedule</a></td>
+                                            <td class="cell"><a  onclick="functionUpload('{{appointment.patient.patient_id}}','{{appointment.Doctor_id.doctor_id}}','{{appointment.patient_name}}')" class="btn-sm app-btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal1" role="button">Upload</a></td>
+                                            {% else %}
+                                            <td class="cell"><span class="badge bg-success">Confirmed</span></td>
+                                            
+                                            <td class="cell"><a class="btn-sm app-btn-secondary" href="#" style="pointer-events: none;" >Nothing for Reshedule</a></td>
+                                            <td class="cell"><a  onclick="functionUpload('{{appointment.patient.patient_id}}','{{appointment.Doctor_id.doctor_id}}','{{appointment.patient_name}}')" class="btn-sm app-btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal1" role="button">Upload</a></td>
+                                            {% endif %}
+                                            <!-- <td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td> -->
+                                        </tr>
+                                        {% empty %}
+                                        <div class="alert alert-danger" role="alert">
+                                        No Appointments !!!
+                                        </div>
+                                        {% endfor %}
+                                        
+                                    </tbody>
+                                </table>
+                            </div><!--//table-responsive-->
+                        </div><!--//app-card-body-->		
+                    </div><!--//app-card-->
+                </div><!--//tab-pane-->
+
+
+                <div class="tab-pane fade" id="cancelled" role="tabpanel" aria-labelledby="orders-cancelled-tab">
+                    <div class="app-card app-card-orders-table mb-5">
+                        <div class="app-card-body">
+                            <div class="table-responsive">
+                                <table class="table mb-0 text-left">
+                                    <thead>
+                                        <tr>
+                                            <th class="cell">Order</th>
+                                            <th class="cell">Patient</th>
+                                            <th class="cell">Patient Mobile</th>
+                                            <th class="cell">Date</th>
+                                            <th class="cell">Time</th>
+                                            <th class="cell">Type</th>
+                                            <th class="cell">Status</th>
+                                            <th class="cell"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                        {% for appointment in Canclled %}
+                                        <tr>
+                                            <td class="cell">{{appointment.order_id}}</td>
+                                            <td class="cell"><span class="truncate">{{appointment.patient_name}}</span></td>
+                                            <td class="cell">{{appointment.patient_mobile}}</td>
+                                            <td class="cell">{{appointment.Appointments_date}}</td>
+                                            <td class="cell">{{appointment.Appointments_time}}</td>
+                                            <td class="cell">{{appointment.Appointments_type}}</td>
+                                            {% if appointment.appointment_status == "pending" %}
+                                            <td class="cell"><span class="badge bg-warning">Pending</span></td>
+                                            {% else %}
+                                            <td class="cell"><span class="badge bg-success">Confirmed</span></td>
+                                            {% endif %}
+                                            <!-- <td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td> -->
+                                        </tr>
+                                        {% empty %}
+                                        <div class="alert alert-danger" role="alert">
+                                        No canclled Appointments !!!
+                                        </div>
+                                        {% endfor %}
+                                        
+                                    </tbody>
+                                </table>
+                            </div><!--//table-responsive-->
+                        </div><!--//app-card-body-->		
+                    </div><!--//app-card-->
+                </div><!--//tab-pane-->
+
+
+            </div><!--//tab-content-->
+
+            <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Reshedule Appointment</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form method="post">{% csrf_token %}
+        <div class="modal-body">
+            <div class="row">
+                <input class="col m-2" name="Demail" type="email" placeholder="enter your email" required >
+                <input class="col m-2" name="time" type="time" placeholder="Choose reshedule time" required >
+            </div>
+            <div class="row">
+                <input id="Pname" name="name" class="col m-2" type="text" required >
+                <input id="Pemail" name="Pemail" class="col m-2" type="email" placeholder="enter patient email" required >
+            </div>
+            
+          
+        </div>
+        <div class="modal-footer">
+          <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+    </form>
+      </div>
+    </div>
+  </div>
+
+
+    <!-- Modal -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Upload Report</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form method="post" enctype="multipart/form-data">{% csrf_token %}
+        <div class="modal-body">
+            <div class="row">
+                {{Form.pid}}
+                {{Form.Did}}
+                {{Form.Pname}}
+            </div>
+            <div class="row">
+                {{Form.file_name}}
+                {{Form.file}}
+            </div>
+            
+          
+        </div>
+        <div class="modal-footer">
+          <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+          <button type="submit" class="btn btn-primary">Upload</button>
+        </div>
+    </form>
+      </div>
+    </div>
+  </div>
+
+
+
+            <!-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+            
+            
+            
+        </div><!--//container-fluid-->
+    </div><!--//app-content-->
+    
+
+    
+</div><!--//app-wrapper-->   
+
+<script>
+
+function functionName(parameter1,parameter2) {
+    document.getElementById('Pemail').value = parameter1
+    document.getElementById('Pname').value = parameter2
+}
+
+function functionUpload(parameter1,parameter2,parameter3) {
+    document.getElementById('Pnum').value = parameter1
+    document.getElementById('Dnm').value = parameter2
+    document.getElementById('Pnames').value = parameter3
+}
+</script>
+
+
+
+{% endblock %} 	

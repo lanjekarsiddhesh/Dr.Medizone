@@ -1,0 +1,89 @@
+{% extends 'Admin_dashboard_comman.html' %}
+{% block css %} 
+    .loader_bg{
+        <!-- position: fixed; -->
+        z-index: 999999;
+        <!-- background-color: #d02222; -->
+        width: 100%;
+    }
+    .loader{
+        <!-- /* border: 0 solid transparent; */ -->
+        width: 1500px;
+        <!-- /* height: 250px; */ -->
+        <!-- position: absolute; -->
+        top: calc(15vh - 70px);
+        left: calc(10vw - 70px);
+    }
+    {% endblock %}
+{% block section %}
+{% include 'message.html' %}
+
+    <div class="loader_bg">
+        <div class="loader p-3">
+            <div class="row">
+                <form method="post">{% csrf_token %}
+                    <div class="form-group col" id="Input">
+                        
+                    </div>
+                    <div class="form-group col">
+                        <label for="Select">Select</label>
+                        <select name="selection" onchange="myFunction(this)" class="form-select" id="Select" required>
+                            <option selected>Open this select menu</option>
+                            <option value="Test Name">Test Name</option>
+                            <option value="price">Price</option>
+                            <option value="Gender">Gender</option>
+                            <option value="Age group">Age group</option>
+                            <option value="visit">visit</option>
+                            <option value="Medicine Description">What preparation is needed for this Checkup</option>
+                            <option value="Medicine Uses">Who should book this checkup</option>
+                        </select>
+                        <button style="float: right;" class="btn btn-primary mt-3" type="submit">Update Medicine</button>
+                    </div>
+                </form>
+                    
+            </div>
+
+            <div class="row p-2">
+                <div class="col m-2">
+                    <img style="width: 100px; height: 100px;" src="/media/{{Test.image}}">
+                </div>
+            </div>
+            
+            <div class="p-2 ">
+                <div class="mt-3"><label>Test Name:- <span class="h6">{{Test.name}}</span></label></div>
+                <div class="mt-3"><label>Price:- <span class="h6">{{Test.price}}</span></label></div>
+                <div class="mt-3"><label>Gender:- <span class="h6">{{Test.Gender}}</span></label></div>
+                <div class="mt-3"><label>Age_Group:- <span class="h6">{{Test.Age_Group}}</span></label></div>
+                <div class="mt-3"><label>Visit:- <span class="h6">{{Test.Home_visit}}</span></label></div>
+                <div class="mt-3"><label>What preparation is needed for this Checkup:- <span class="h6">{{Test.What_preparation_is_needed_for_this_Checkup}}</span></label></div>
+                <div class="mt-3"><label>Who should book this checkup:- <span class="h6">{{Test.Who_should_book_this_checkup}}</span></label></div>
+            </div>
+            
+            
+    
+        </div>
+    </div>
+
+    <script>
+
+        function myFunction(selectedValue) {
+        console.log(selectedValue.value)
+        if (selectedValue.value == "Test Name" || selectedValue.value == "price" ||  selectedValue.value == "Age group"){
+            document.getElementById("Input").innerHTML = '<label for="Area">Content</label><input name="update" type="text" class="form-control" id="fullName" required >'
+        }
+
+        if (selectedValue.value == "Gender" ){
+            document.getElementById("Input").innerHTML = '<label for="Area">Content</label><select name="update" class="form-select" aria-label="Default select example"><option selected>Open this select menu</option> <option value="Unisex">Unisex</option> <option value="Male">Male</option> <option value="Female">Female</option> </select>'
+        }
+        if (selectedValue.value == "visit" ){
+            document.getElementById("Input").innerHTML = '<label for="Area">Content</label><select name="update" class="form-select" aria-label="Default select example"><option selected>Open this select menu</option> <option value="True">Lab Visit</option> <option value="False">Home Visite</option> '
+        }
+
+        if (selectedValue.value == "Medicine Description" || selectedValue.value == "Medicine Uses"){
+            document.getElementById("Input").innerHTML = '<label for="Area">Content</label><textarea name="update" class="form-control" required ></textarea>'
+        }
+        
+        }
+    </script>
+
+{% endblock %}

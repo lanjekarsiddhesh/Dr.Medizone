@@ -1,0 +1,299 @@
+{% extends 'Doctorcomman.html' %}  
+
+{% block section %} 
+
+<div class="app-wrapper">
+	    
+    <div class="app-content pt-3 p-md-3 p-lg-4">
+        <div class="container-xl">
+            
+            <div class="row g-3 mb-4 align-items-center justify-content-between">
+                <div class="col-auto">
+                    <h1 class="app-page-title mb-0">Appointment Bills</h1>
+                </div>
+                <div class="col-auto">
+                     <div class="page-utilities">
+                        <div class="row g-2 justify-content-start justify-content-md-end align-items-center">
+                        
+                            
+                        </div><!--//row-->
+                    </div><!--//table-utilities-->
+                </div><!--//col-auto-->
+            </div><!--//row-->
+           
+            
+            <nav id="orders-table-tab" class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
+                <a class="flex-sm-fill text-sm-center nav-link active" id="orders-all-tab" data-bs-toggle="tab" href="#all" role="tab" aria-controls="orders-all" aria-selected="true">All</a>
+                <a class="flex-sm-fill text-sm-center nav-link"  id="orders-paid-tab" data-bs-toggle="tab" href="#clinic" role="tab" aria-controls="orders-paid" aria-selected="false">Clinic</a>
+                <a class="flex-sm-fill text-sm-center nav-link" id="orders-pending-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="orders-pending" aria-selected="false">Home</a>
+                <a class="flex-sm-fill text-sm-center nav-link" id="orders-cancelled-tab" data-bs-toggle="tab" href="#video" role="tab" aria-controls="orders-cancelled" aria-selected="false">Video</a>
+                <a class="flex-sm-fill text-sm-center nav-link" id="orders-cancelled-tab" data-bs-toggle="tab" href="#cancelled" role="tab" aria-controls="orders-cancelled" aria-selected="false">Cancelled</a>
+            </nav>
+            
+        <!-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	 -->
+            <div class="tab-content" id="orders-table-tab-content">
+                <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="orders-all-tab">
+                    <div class="app-card app-card-orders-table shadow-sm mb-5">
+                        <div class="app-card-body">
+                            <div class="table-responsive">
+                                <table class="table app-table-hover mb-0 text-left">
+                                    <thead style="text-align: center;" >
+                                        
+                                        <tr>
+                                            <th class="cell">Order id</th>
+                                            <th class="cell">Payment id</th>
+                                            <th class="cell">signature</th>
+                                            <th class="cell">Payment</th>
+                                            <th class="cell">Bill date</th>
+                                            <th class="cell">Appointment</th>
+                                            <th class="cell"></th>
+                                        </tr>
+                                       
+                                    </thead>
+                                    <tbody style="text-align: center;" >
+                                        {% for appointment in appointment_bill %}
+                                        <tr>
+                                            <td class="cell">{{appointment.order_id}}</td>
+                                            <td class="cell"><span class="truncate">{{appointment.Payment_id}}</span></td>
+                                            <td class="cell">{{appointment.signature}}</td>
+                                            <td class="cell">{{appointment.Payment}}/-</td>
+                                            <td class="cell">{{appointment.Bill_date}}</td>
+                                            <td class="cell">{{appointment.appointments_id}}</td>
+                                            <td class="cell"><a class="btn-sm app-btn-secondary" href="/MakingPdf/create/{{appointment.appointments_id}}">Download bill</a></td>
+                                        </tr>
+                                        {% empty %}
+                                        <div class="alert alert-danger" role="alert">
+                                        No Appointments !!!
+                                        </div>
+                                        {% endfor %}
+                                        
+                                        
+                                        
+    
+                                    </tbody>
+                                </table>
+                            </div><!--//table-responsive-->
+                           
+                        </div><!--//app-card-body-->		
+                    </div><!--//app-card-->
+                    <nav class="app-pagination">
+                        <!-- <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        </ul> -->
+                    </nav><!--//app-pagination-->
+                    
+                </div><!--//tab-pane-->
+                
+                <div class="tab-pane fade" id="clinic" role="tabpanel" aria-labelledby="orders-paid-tab">
+                    <div class="app-card app-card-orders-table mb-5">
+                        <div class="app-card-body">
+                            <div class="table-responsive">
+                                
+                                <table class="table mb-0 text-left">
+                                    <thead>
+                                        <tr>
+                                            <th class="cell">Order</th>
+                                            <th class="cell">Patient</th>
+                                            <th class="cell">Patient Mobile</th>
+                                            <th class="cell">Date</th>
+                                            <th class="cell">Time</th>
+                                            <th class="cell">Type</th>
+                                            <th class="cell">Status</th>
+                                            <th class="cell"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for appointment in Clinics %}
+                                        <tr>
+                                            <td class="cell">{{appointment.order_id}}</td>
+                                            <td class="cell"><span class="truncate">{{appointment.patient_name}}</span></td>
+                                            <td class="cell">{{appointment.patient_mobile}}</td>
+                                            <td class="cell">{{appointment.Appointments_date}}</td>
+                                            <td class="cell">{{appointment.Appointments_time}}</td>
+                                            <td class="cell">{{appointment.Appointments_type}}</td>
+                                            {% if appointment.appointment_status == "pending" %}
+                                            <td class="cell"><span class="badge bg-warning">Pending</span></td>
+                                            {% else %}
+                                            <td class="cell"><span class="badge bg-success">Confirmed</span></td>
+                                            {% endif %}
+                                            <!-- <td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td> -->
+                                        </tr>
+                                        {% empty %}
+                                        <div class="alert alert-danger" role="alert">
+                                        No Appointments !!!
+                                        </div>
+                                        {% endfor %}
+                                        
+                                    </tbody>
+                                </table>
+                            </div><!--//table-responsive-->
+                        </div><!--//app-card-body-->		
+                    </div><!--//app-card-->
+                </div><!--//tab-pane-->
+                
+                <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="orders-pending-tab">
+                    <div class="app-card app-card-orders-table mb-5">
+                        <div class="app-card-body">
+                            <div class="table-responsive">
+                                <table class="table mb-0 text-left">
+                                    <thead>
+                                        <tr>
+                                            <th class="cell">Order</th>
+                                            <th class="cell">Patient</th>
+                                            <th class="cell">Patient Mobile</th>
+                                            <th class="cell">Date</th>
+                                            <th class="cell">Time</th>
+                                            <th class="cell">Type</th>
+                                            <th class="cell">Status</th>
+                                            <th class="cell"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for appointment in Homes %}
+                                        <tr>
+                                            <td class="cell">{{appointment.order_id}}</td>
+                                            <td class="cell"><span class="truncate">{{appointment.patient_name}}</span></td>
+                                            <td class="cell">{{appointment.patient_mobile}}</td>
+                                            <td class="cell">{{appointment.Appointments_date}}</td>
+                                            <td class="cell">{{appointment.Appointments_time}}</td>
+                                            <td class="cell">{{appointment.Appointments_type}}</td>
+                                            {% if appointment.appointment_status == "pending" %}
+                                            <td class="cell"><span class="badge bg-warning">Pending</span></td>
+                                            {% else %}
+                                            <td class="cell"><span class="badge bg-success">Confirmed</span></td>
+                                            {% endif %}
+                                            <!-- <td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td> -->
+                                        </tr>
+                                        {% empty %}
+                                        <div class="alert alert-danger" role="alert">
+                                        No Appointments !!!
+                                        </div>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div><!--//table-responsive-->
+                        </div><!--//app-card-body-->		
+                    </div><!--//app-card-->
+                </div><!--//tab-pane-->
+                <div class="tab-pane fade" id="video" role="tabpanel" aria-labelledby="orders-cancelled-tab">
+                    <div class="app-card app-card-orders-table mb-5">
+                        <div class="app-card-body">
+                            <div class="table-responsive">
+                                <table class="table mb-0 text-left">
+                                    <thead>
+                                        <tr>
+                                            <th class="cell">Order</th>
+                                            <th class="cell">Patient</th>
+                                            <th class="cell">Patient Mobile</th>
+                                            <th class="cell">Date</th>
+                                            <th class="cell">Time</th>
+                                            <th class="cell">Type</th>
+                                            <th class="cell">Status</th>
+                                            <th class="cell"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                        {% for appointment in Videos %}
+                                        <tr>
+                                            <td class="cell">{{appointment.order_id}}</td>
+                                            <td class="cell"><span class="truncate">{{appointment.patient_name}}</span></td>
+                                            <td class="cell">{{appointment.patient_mobile}}</td>
+                                            <td class="cell">{{appointment.Appointments_date}}</td>
+                                            <td class="cell">{{appointment.Appointments_time}}</td>
+                                            <td class="cell">{{appointment.Appointments_type}}</td>
+                                            {% if appointment.appointment_status == "pending" %}
+                                            <td class="cell"><span class="badge bg-warning">Pending</span></td>
+                                            {% else %}
+                                            <td class="cell"><span class="badge bg-success">Confirmed</span></td>
+                                            {% endif %}
+                                            <!-- <td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td> -->
+                                        </tr>
+                                        {% empty %}
+                                        <div class="alert alert-danger" role="alert">
+                                        No Appointments !!!
+                                        </div>
+                                        {% endfor %}
+                                        
+                                    </tbody>
+                                </table>
+                            </div><!--//table-responsive-->
+                        </div><!--//app-card-body-->		
+                    </div><!--//app-card-->
+                </div><!--//tab-pane-->
+
+
+                <div class="tab-pane fade" id="cancelled" role="tabpanel" aria-labelledby="orders-cancelled-tab">
+                    <div class="app-card app-card-orders-table mb-5">
+                        <div class="app-card-body">
+                            <div class="table-responsive">
+                                <table class="table mb-0 text-left">
+                                    <thead>
+                                        <tr>
+                                            <th class="cell">Order</th>
+                                            <th class="cell">Patient</th>
+                                            <th class="cell">Patient Mobile</th>
+                                            <th class="cell">Date</th>
+                                            <th class="cell">Time</th>
+                                            <th class="cell">Type</th>
+                                            <th class="cell">Status</th>
+                                            <th class="cell"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                        {% for appointment in Canclled %}
+                                        <tr>
+                                            <td class="cell">{{appointment.order_id}}</td>
+                                            <td class="cell"><span class="truncate">{{appointment.patient_name}}</span></td>
+                                            <td class="cell">{{appointment.patient_mobile}}</td>
+                                            <td class="cell">{{appointment.Appointments_date}}</td>
+                                            <td class="cell">{{appointment.Appointments_time}}</td>
+                                            <td class="cell">{{appointment.Appointments_type}}</td>
+                                            {% if appointment.appointment_status == "pending" %}
+                                            <td class="cell"><span class="badge bg-warning">Pending</span></td>
+                                            {% else %}
+                                            <td class="cell"><span class="badge bg-success">Confirmed</span></td>
+                                            {% endif %}
+                                            <!-- <td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td> -->
+                                        </tr>
+                                        {% empty %}
+                                        <div class="alert alert-danger" role="alert">
+                                        No canclled Appointments !!!
+                                        </div>
+                                        {% endfor %}
+                                        
+                                    </tbody>
+                                </table>
+                            </div><!--//table-responsive-->
+                        </div><!--//app-card-body-->		
+                    </div><!--//app-card-->
+                </div><!--//tab-pane-->
+
+
+            </div><!--//tab-content-->
+
+
+
+            <!-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+            
+            
+            
+        </div><!--//container-fluid-->
+    </div><!--//app-content-->
+    
+
+    
+</div><!--//app-wrapper-->   
+
+
+
+{% endblock %} 	

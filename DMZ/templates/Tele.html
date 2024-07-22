@@ -1,0 +1,133 @@
+{% extends 'Comaan.html' %}
+
+{% block css %} 
+.section-title {
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.section-title h2 {
+  text-align: center;
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  position: relative;
+  color: #2c4964;
+}
+
+.section-title h2::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 120px;
+  height: 1px;
+  background: #ddd;
+  bottom: 1px;
+  left: calc(50% - 60px);
+}
+
+.section-title h2::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: #1977cc;
+  bottom: 0;
+  left: calc(50% - 20px);
+}
+{% endblock %}
+
+
+
+{% block body %}
+<div class="card text-bg-dark">
+    <img src="/media/tele.jpg" class="card-img" alt="..." style="height: 500px; opacity: 0.5;">
+    <center>
+    <div class="card-img-overlay">
+      <h1 class="card-title" style="font-size: 50px; font-weight: 700; letter-spacing: 0.5px; font-family: 'Poppins', sans-serif; margin-top: 130px; color: #ecf0f4; margin-left: 10px; ">Talk to Medical Expert</h1>
+      <h1 class="card-title" style="font-size: 50px; font-weight: 700; letter-spacing: 0.5px; font-family: 'Poppins', sans-serif; margin-top: 30px; color: #ecf0f4; margin-left: 10px; ">transparency in the Indian</h1>
+      <h1 class="card-title" style="font-size: 50px; font-weight: 700; letter-spacing: 0.5px; font-family: 'Poppins', sans-serif; margin-top: 30px; color: #ecf0f4; margin-left: 10px; ">Healthcare System </h1>
+    </div>
+  </center>
+  </div>
+&nbsp;
+&nbsp;
+<div class="section-title">
+    <h2>How it Works</h2>
+    <h5 class="text-muted">Get guidance and assistance for your home care requirements. Explore the section to know more.</h5>
+  </div>
+
+<div class="card-group" style=" background: #f1f7fd; box-shadow: 0px 2px 15px; padding-right: 150px; padding-top: 50px; padding-bottom: 50px;   padding-left: 150px;">
+
+    <div class="card" style="background: #f1f7fd; border: none; max-width: 357px;">
+      <img style="border-radius: 50%; width: 300px;" src="/media/request.png" class="card-img-top" alt="/media/request.png">
+      <div class="card-body">
+        <center>
+        <h5 class="card-title">Fill the Request Callback Form</h5>
+    </center>
+      </div>
+    </div>
+    <div class="card" style="background: #f1f7fd; border: none; max-width: 357px; margin-left: 50px; margin-right: 50px; ">
+      <img style="border-radius: 50%; width: 300px;" src="/media/recive.png" class="card-img-top" alt="/media/recive.png">
+      <div class="card-body">
+        <center>
+        <h5 class="card-title">Our Medical Expert will call you</h5>
+    </center>
+      </div>
+    </div>
+    <div class="card" style="background: #f1f7fd; border: none; max-width: 357px;">
+      <img style="border-radius: 50%; width: 300px;" src="/media/homeSerivce.png" class="card-img-top" alt="">
+      <div class="card-body">
+        <center>
+        <h5 class="card-title">The expert will take care of your medical needs</h5>
+    </center>
+      </div>
+    </div>
+    <div class="card" style="background: #f1f7fd; border: none; max-width: 357px; margin-left: 50px ;">
+        <img style=" border-radius: 50%; width: 300px;" src="/media/feedback.png" class="card-img-top" alt="">
+          <h5 style="text-align: center;" class="card-title">Experience stress-free medical journey</h5>
+      </div>
+  </div>
+&nbsp;
+&nbsp;
+  <center>
+<div class="card mb-3" style="max-width: 1400px; border: none">
+  <div class="row">
+    <div class="col-md-4">
+      <img style="height: 400px; max-width: 400px;" src="/media/teleCommunication.jpg" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title" style="text-align: left;"><b>How its work?</b></h5>
+        <p class="card-text" style="text-align: left;">Take precautions and do not ignore the symptoms. Book your tele
+          consultation with India's top doctors. Now reach out to India's best, from the
+          comfort of your home!</p>
+          <b><p style="text-align: left;">Follow these easy steps to do a tele consult from anywhere</p></b>
+          <table>
+            <tr>
+              <td><img src="/media/tele_appointment.png" alt="" height=70 width=70 /></td>
+              <td>Fill in your details, doctor to consult and pay for the appointment through verified channels</td>
+            </tr>
+            <tr>
+              <td><img src="/media/tele_call.png" alt="" height=70 width=70 /></td>
+              <td>A medical expert will call to confirm your details and request</td>
+            </tr>
+            <tr>
+              <td><img src="/media/tele_doctor.png" alt="" height=70 width=70 /></td>
+              <td style="margin-left: 100px;">Connect with your doctor and get diagnosed remotely</td>
+            </tr>
+          </table>
+      </div>
+    </div>
+  </div>
+</div>
+</center>
+<div class="container col-md-8">
+{% for i in lst %}
+<input type="checkbox" class="btn-check mb-3" id={{i}} autocomplete="off">
+<label class="btn btn-outline-success mb-3" for={{i}}>{{i}}</label>
+{% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends 'comman.html' %}
+
+{% block section %}   	
+    
+    
+    <div class="app-wrapper">
+	    
+	    <div class="app-content pt-3 p-md-3 p-lg-4">
+		    <div class="container-xl">
+                <div class="row">
+				    <div class="col-6">
+			            <h1 class="app-page-title mb-0">Lab Test Cart <span class="badge bg-primary">{{length}}</span></h1>
+				    </div>
+				    <div class="col-6">
+			            <h3 style="float: right;" class="app-page-title mb-0">Total Price:- {{total}} </h3>
+				    </div>
+                </div>
+				    
+			   
+		
+				
+				
+				<div class="tab-content" id="orders-table-tab-content">
+			        <div class="tab-pane fade show active" id="orders-all" role="tabpanel" aria-labelledby="orders-all-tab">
+					    <div class="app-card app-card-orders-table shadow-sm mb-5">
+						    <div class="app-card-body">
+							    <div class="table-responsive">
+							        <table class="table app-table-hover mb-0 text-left">
+										<thead>
+											<tr>
+												<th class="cell">No.</th>
+												<th class="cell">Test Name</th>
+												<th class="cell">Price</th>
+												<th class="cell"></th>
+											</tr>
+										</thead>
+										<tbody>
+											{% for item in cart %}
+											<tr>
+												<td class="cell">{{forloop.counter}}</td>
+												<td class="cell">{{item.Tests.name}}</td>
+												<td class="cell">{{item.Tests.price}}</td>
+												<td class="cell"><a href="#"><i class="fa fa-eye" aria-hidden="true"></i></a> &nbsp; &nbsp;<a href="/DignoCartItemDelete/{{item.Tests.id}}" ><i class="fa fa-times" aria-hidden="true"></i></a></td>
+											</tr>
+                                            {% empty %}
+											<div style="background-color: rgba(255, 0, 0, 0.39);">
+												<h3 class="p-3" >No single test present in cart</h3>
+											</div>
+											{% endfor %}
+											
+											
+											
+		
+										</tbody>
+									</table>
+						        </div><!--//table-responsive-->
+						       
+						    </div><!--//app-card-body-->		
+						</div><!--//app-card-->
+						
+			        </div><!--//tab-pane-->
+			        
+			        
+			        
+			        
+
+
+
+                    
+
+
+                    
+			        
+				</div><!--//tab-content-->
+				
+				
+			    
+		    </div><!--//container-fluid-->
+	    </div><!--//app-content-->
+	    
+	   
+	    
+    </div><!--//app-wrapper-->    					
+
+ 
+{% endblock %}
+

@@ -1,0 +1,122 @@
+{% extends 'Admin_dashboard_comman.html' %}
+
+{% block head %} 
+<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous"> -->
+{% endblock %}
+
+{% block section %} 
+<h3 class="mx-4 mt-4" style="text-align: center;"><b>DOCTOR</b>
+    <span class="badge rounded-pill text-bg-danger">{{Dr_length}}</span>
+</h3>
+<center>
+    <div class="btn-group" >
+        <!-- Filter -->
+        <div class="dropdown ps-3">
+          <button style="height: 30px; border-radius: 20px;" class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" >
+            Filter by Speciality
+          </button>
+          <ul class="dropdown-menu">
+            <a href="?">
+            <li>
+              <div class="form-check dropdown-item">
+                <label class="form-check-label" for="flexCheckDefault">
+               All Doctors
+              </label>
+            </li>
+          </a>
+              {% for i in Specilaity %}
+              <li><div class="form-check dropdown-item">
+                <a href="?SpecialisID={{i.index}}">
+                  <label class="form-check-label" for="flexCheckDefault">
+                      {{i.specilaity_category}}
+                  </label></a>
+                </div>
+                </li>
+              {% endfor %}
+          </ul>
+        </div>
+      </div>
+
+    <a href="/Doctor_Registration/">
+      <button style="border-radius: 12px; font-size:14px" type="button" class="btn btn-success ps-3 mx-3">
+          <i class="material-icons" style="font-size:20px">person_add</i>Add
+      </button></a>
+    </center>
+
+<div class="row  row-cols-md-5 g-3 p-3" >
+    {% for i in doctor %}
+    <div class="col" >
+      
+      <div class="card d-flex align-items-center" style=" max-width:300px;">
+        <div class="mt-3" style="position: absolute; left: 90%;">
+
+          <a role="button"  data-bs-toggle="dropdown">
+            <div style=' width: 5px; height: 5px; background-color: black; margin: 6px 0;'></div>
+            <div style='width: 5px; height: 5px; background-color: black; margin: 6px 0;'></div>
+            <div style='width: 5px; height: 5px; background-color: black; margin: 6px 0;'></div>
+          </a>
+
+          <ul class="dropdown-menu">
+            <!-- /Doctor_edit/{{i.doctor_id}} -->
+            
+            <a href="/admin/DMZ/doctor/{{i.doctor_id}}/change/" id="dr{{i.doctor_id}}" class="text-secondary font-weight-bold text-xs">
+                <li class="mx-4 dropdown-item" style="font-size: 20px; text-decoration: none;">Edit
+                <svg style="color: blue; margin-left: 10px; font-size: 20px; " xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                    <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+                  </svg></li></a>
+                  
+            <a href="/deleteDoctor/{{i.doctor_id}}" class="text-secondary font-weight-bold text-xs">
+                <l class="mx-4 dropdown-item" style="font-size: 20px; text-decoration: none;">Delete
+                <svg style="color: red; margin-left: 10px; font-size: 20px;  " xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                </svg></l>
+            </a>
+          </ul>
+        </div>
+        <a href="/Admin_dash_DoctorDetails/?id={{i.doctor_id}}" style="text-decoration: none; color: black;">
+
+        <img src="/media/{{i.doctor_profile}}" style="height:70px; width:70px; " class="card-img-top rounded-circle mt-3" alt="...">
+        <center>
+        <div class="card-body">
+          <h5 class="mb-0 card-title fs-6">{{i.doctor_name}} 
+            {% if i.status == "Logout" %}
+            <span class="position-absolute start-70 p-2 bg-danger border border-light rounded-circle">
+                {% else %}
+            <span class="position-absolute start-70 p-2 bg-success border border-light rounded-circle">
+                {% endif %}
+            </h5>
+
+          <p class="mb-0 text-muted fs-9" style="font-size: 12px;">{{i.doctor_profession.specilaity_category}} ({{i.doctor_qualifcation}})</p>
+          <p class="mb-0 text-muted fs-7" style="font-size: 12px;">Rating <span>{% include 'star_rating.html' %}</span></p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+          <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+          </svg><span class="card-text  text-wrap" style="font-size: 12px;">This is a wider card with supporting text This is a wider card with supporting text  </span>
+        </div>
+      <center>
+      </a>
+        <div class="card-footer ">
+          <small>Joined at {{i.joining_date}}</small>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+<nav aria-label="Page navigation example">
+    {% if doctor.has_other_pages %}
+    <ul class="pagination">
+        {% for i in doctor.paginator.page_range %}
+        {% if i == doctor.number %}
+      <li class="page-item" ><a style="background: rgb(171, 212, 248); color: black;" class="page-link" href="?page={{i}}">{{i}}</a></li>
+      {% else %}
+      <li class="page-item" ><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </nav>
+
+
+
+{% endblock %}

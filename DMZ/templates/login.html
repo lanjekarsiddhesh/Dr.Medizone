@@ -1,0 +1,327 @@
+{% extends 'Comaan.html' %}
+{% block title %} DMZ {% endblock %}
+
+{% block css %}
+
+.font {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(90deg, #c7e5fe, #6aa5d9);
+} 
+
+
+
+
+
+.screen {
+    /* background: linear-gradient(90deg, #5d54a4, #7c78b8); */
+    background: linear-gradient(90deg, #558dbe, #8fb4d5);
+    position: relative;
+    height: 600px;
+    width: 360px;
+    box-shadow: 0px 0px 24px #567496;
+}
+
+.screen__content {
+    z-index: 1;
+    position: relative;
+    height: 70%;
+    /* text-align: center; */
+    margin: 5%;
+    top: 25%;
+}
+
+.screen__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    -webkit-clip-path: inset(0 0 0 0);
+    clip-path: inset(0 0 0 0);
+}
+
+.screen__background__shape {
+    transform: rotate(45deg);
+    position: absolute;
+}
+
+.screen__background__shape1 {
+    height: 520px;
+    width: 520px;
+    background-color: #fff;
+    top: -50px;
+    right: 120px;
+    border-radius: 0 72px 0 0;
+}
+.screen__background__shape2 {
+    height: 550px;
+    width: 520px;
+    background-color: #3d77cd;
+    top: -150px;
+    right: -50px;
+    border-radius: 0 0 30px 0;
+}
+.screen__background__shape3 {
+    height: 550px;
+    width: 520px;
+    background-color: #719cd2;
+    bottom: -450px;
+    left: 30px;
+    border-radius: 70px 0 0 0;
+}
+
+
+/* .login__input{
+  margin: 5% 0 5% 0;
+} */
+
+.social__login {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 3%;
+}
+
+.social__login a{
+  color: black;
+}
+.social__login a h6{
+  font-size: 18px;
+  font-weight:bolder;
+}
+.social__login a:hover{
+  color: rgb(253, 251, 251);
+}
+
+/* inputs */
+.control-form {
+  position: relative;
+  margin: 20px 0 30px;
+  width: 250px;
+  border-style: none;
+
+}
+
+.control-form input {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 2px #2a59b8 solid;
+  display: block;
+  width: 100%;
+  /* padding: 15px 0; */
+  font-size: 18px;
+  color: #000000;
+}
+
+.control-form input:focus,
+.control-form input:valid {
+  outline: 0;
+  border-bottom-color: rgb(4, 53, 145);
+}
+
+.control-form label {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  pointer-events: none;
+}
+
+.control-form label span {
+  display: inline-block;
+  font-size: 18px;
+  min-width: 5px;
+  color: #000000;
+  transition: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.control-form input:focus+label span,
+.control-form input:valid+label span {
+  color: rgb(4, 53, 145);
+  transform: translateY(-30px);
+}
+
+.control-form input:focus+label span,
+.control-form input:valid+label span {
+  color: rgb(4, 53, 145);
+  -webkit-transform: translateY(-30px);
+      -ms-transform: translateY(-30px);
+          transform: translateY(-30px);
+}
+
+/* login button */
+.box {
+  width: 200px;
+  height: auto;
+  float: left;
+  transition: .5s linear;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  padding: 5px;
+  text-align: center;
+  margin: 0 5px;
+  background: transparent;
+  text-transform: uppercase;
+  font-weight: 900;
+  border-radius: 30px;
+}
+
+.box:before {
+  position: absolute;
+  content: '';
+  left: 0;
+  bottom: 0;
+  height: 4px;
+  width: 100%;
+  border-bottom: 4px solid transparent;
+  border-left: 4px solid transparent;
+  box-sizing: border-box;
+  transform: translateX(100%);
+}
+
+.box:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  border-top: 4px solid transparent;
+  border-right: 4px solid transparent;
+  box-sizing: border-box;
+  transform: translateX(-100%);
+  border-radius: 30px;
+}
+
+.box:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.box:hover:before {
+  border-color: #262626;
+  border-radius: 30px;
+  height: 100%;
+  transform: translateX(0);
+  transition: .3s transform linear, .3s height linear .3s;
+}
+
+.box:hover:after {
+  border-color: #262626;
+  border-radius: 30px;
+  height: 100%;
+  transform: translateX(0);
+  transition: .3s transform linear, .3s height linear .5s;
+}
+
+.login__submit {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background: transparent;
+  width: 200px;
+  padding: 2%;
+  border-radius: 30px;
+}
+
+/* radio  */
+
+
+.form-check-label{
+  color: rgb(4, 53, 145);
+  font-size: 18px;
+  font-weight: bolder;
+}
+
+
+{% endblock %}
+
+{% block body %}
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+	<symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+	  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+	</symbol>
+  </svg>
+
+  {% include 'message.html' %}
+
+  <!-- {% for msg in messages %}
+  <div class="alert alert-danger d-flex align-items-center" role="alert">
+	<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+	<div>
+	  <strong>Hye!!!</strong> {{msg}}
+	  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+  </div>
+  {% endfor %} -->
+
+<center>
+  <div class="container">
+    <div class="screen">
+        <div class="screen__content">
+            <form method="post" class="login">
+                {% csrf_token %}
+
+                <center>
+                    <input value="doctor" class="form-check-input" type="radio" name="sid" id="flexRadioDefault1">
+                    <label class="form-check-label font" for="flexRadioDefault1">
+                      Doctor
+                    </label>
+                    <input value="patient" class="form-check-input" type="radio" name="sid" id="flexRadioDefault2" checked>
+                    <label class="form-check-label font" for="flexRadioDefault2">
+                      Patient
+                    </label>
+                    <input value="admin" class="form-check-input" type="radio" name="sid" id="flexRadioDefault2" checked>
+                    <label class="form-check-label font" for="flexRadioDefault2">
+                      Admin
+                    </label>
+                </center><br>
+
+                <div class="control-form">
+                    <!-- <i class="login_icon fas fa-user"></i>  -->
+                    <input name="userD" type="text" required>
+                        <label class="font">
+                            <span style="transition-delay:0ms"><i class="login_icon fas fa-user"></i> </span><span style="transition-delay:50ms"> U</span><span style="transition-delay:100ms">s</span><span style="transition-delay:150ms">e</span><span style="transition-delay:200ms">r</span><span style="transition-delay:250ms">n</span><span style="transition-delay:300ms">a</span><span style="transition-delay:350ms">m</span><span style="transition-delay:400ms">e</span>
+                        </label>
+                </div>
+                <div class="control-form">
+                    <!-- <i class="login_icon fas fa-lock"></i>  -->
+                    <input name="PassD" type="password" required>
+                    <label class="font">
+                        <span style="transition-delay:0ms"><i class="login_icon fas fa-lock"></i></span> <span style="transition-delay:50ms"> P</span><span style="transition-delay:100ms">a</span><span style="transition-delay:150ms">s</span><span style="transition-delay:200ms">s</span><span style="transition-delay:250ms">w</span><span style="transition-delay:300ms">o</span><span style="transition-delay:350ms">r</span><span style="transition-delay:400ms">d</span>
+                    </label>
+                </div>
+                <button type="submit" class="button login__submit">
+                    <span class="button__text box font"> Log In Now <i class="fa fa-sign-in"> </i></span>
+                    
+                </button>
+                
+            </form>
+            <div class="social__login">
+                <a href="/ForgetPassword"><h6><i class="fa fa-unlock" aria-hidden="true">  Forget password, </i></h6></a>
+                <a href=""><h6><i class="fa fa-user-plus" aria-hidden="true"> Create account</i></h6></a>
+            </div>
+        </div>
+        <div class="screen__background">
+            <span class="screen__background__shape screen__background__shape4 "></span>
+            <span class="screen__background__shape screen__background__shape3 "></span>
+            <span class="screen__background__shape screen__background__shape2 "></span>
+            <span class="screen__background__shape screen__background__shape1 "></span>
+        </div>
+    </div>
+</div>
+</center>
+
+
+
+
+
+
+  {% endblock %}
+	

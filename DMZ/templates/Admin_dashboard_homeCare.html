@@ -1,0 +1,150 @@
+{% extends 'Admin_dashboard_comman.html' %}
+{% block section %} 
+
+<h3 class="mx-4 mt-4" style="text-align: center;"><b>HomeCare</b>
+    <!-- <span class="badge rounded-pill text-bg-danger">{{Dr_length}}</span> -->
+</h3>
+{% include 'message.html' %}
+<div class="container-fluid pt-3">
+<div class=" removable">
+        <div class="card mb-4">
+            <div class="card-header pb-0">
+                <h6  style="display: inline-block; margin-right: 380px;" >Home  Care</h6>
+                <a href="/admin/DMZ/homecare_page/add/" class="btn btn-primary">Add New</a>
+                <!-- <h6  style="display: inline-block;">serach</h6> -->
+                
+            </div>
+            <div class="card-body px-0 pt-0 pb-2">
+                <div class="table-responsive p-0">
+                    <table class="table align-items-center mb-0">
+                        <thead >
+                            <tr style="background: rgb(190, 243, 244);">
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder ">Id</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder ">Name</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder ">Patient Id</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder  ps-2">Service</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder  ps-2">mobile</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">email</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">Reason</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">status</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">address</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">pincode</th>
+                                <th class="text-secondary opacity-7">edit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in Homecare %}
+                            <tr>
+                                <td>
+                                    <div class="d-flex px-2">
+                                        
+                                        <div class="d-flex flex-column justify-content-center">
+                                            <h6 style="margin-right: 9px;" class="mb-0 text-sm">#{{forloop.counter}}</h6>
+                                        </div>
+                                        <!-- <div>
+                                            <img src="/media/{{i.patient_profile}}" class="avatar avatar-sm me-3" alt="..." >
+                                        </div> -->
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex px-2 py-1">
+                                        <div class="d-flex flex-column justify-content-center">
+                                            <h6 class="mb-0 text-sm">{{i.name}}</h6>
+                                            <!-- <p class="text-xs text-secondary mb-0">{{i.patient_email}}</p> -->
+                                        </div>
+                                    </div>
+                                </td>
+                                <!-- last Visit -->
+                                <td>
+                                    <p class="text-xs font-weight-bold mb-0">{{i.patient.patient_id}}</p>
+                                    <!-- <p class="text-xs text-secondary mb-0">hi</p> -->
+                                </td>
+                                <td>
+                                    <p class="text-xs font-weight-bold mb-0">{{i.service}}</p>
+                                    <!-- <p class="text-xs text-secondary mb-0">hi</p> -->
+                                </td>
+                                <!-- Blood -->
+                                <td>
+                                    <p class="text-xs font-weight-bold mb-0">{{i.mobile}}</p>
+                                </td>
+                                <td class="align-middle text-center">
+                                    <span<p class="text-xs font-weight-bold mb-0">{{i.email}}</span>
+                                </td>
+                                <td class="align-middle text-center text-sm">
+                                    <p class="text-xs font-weight-bold mb-0">{{i.Reason}}</span>
+                                </td>
+                                <td class="align-middle text-center text-sm">
+                                    {% if i.status == 'Delivered' %}
+                                    <span class="badge badge-sm bg-gradient-warning">{{i.status}}</span>
+                                    {% elif i.status == 'Returned' %}
+                                    <span class="badge badge-sm bg-gradient-success">{{i.status}}</span>
+                                    {% else %}
+                                    <span class="badge badge-sm bg-gradient-danger">{{i.status}}</span>
+                                    {% endif %}
+                                </td>
+                                <td class="align-middle text-center text-sm">
+                                    <p class="text-xs font-weight-bold mb-0">{{i.address}}</span>
+                                </td>
+                                <td class="align-middle text-center text-sm">
+                                    <p class="text-xs font-weight-bold mb-0">{{i.pincode}}</span>
+                                </td>
+                                <td class="align-middle">
+
+                                    <div class="btn-group">
+                                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" style="font-size: 10px;" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Status
+                                          </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                          <li><a class="dropdown-item" href="?status=Delivered&id={{i.id}}">Delivered</a></li>
+                                          <li><a class="dropdown-item" href="?status=Returned&id={{i.id}}">Returned</a></li>
+                                        </ul>
+                                      </div>
+
+                
+                                    <a href="/deleteHome?id={{i.id}}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                        Delete
+                                        <svg style="color: red; margin-right: 20px; " xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                            <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                                          </svg>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <div class="alert alert-danger" role="alert">
+                                No Active Doctor !!!
+                            </div>
+                            {% endfor %}
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+</div>
+<nav aria-label="Page navigation example">
+    {% if patient.has_other_pages %}
+    <ul class="pagination">
+        {% for i in patient.paginator.page_range %}
+        {% if i == patient.number %}
+      <li class="page-item" ><a style="background: rgb(171, 212, 248); color: black;" class="page-link" href="?page={{i}}">{{i}}</a></li>
+      {% else %}
+      <li class="page-item" ><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </nav>
+
+
+  
+
+
+  
+
+<!-- </div -->
+
+
+{% endblock %}

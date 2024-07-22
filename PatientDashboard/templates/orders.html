@@ -1,0 +1,167 @@
+{% extends 'comman.html' %}
+
+{% block section %}   	
+    
+    
+    <div class="app-wrapper">
+	    
+	    <div class="app-content pt-3 p-md-3 p-lg-4">
+		    <div class="container-xl">
+				    <div class="col-auto">
+			            <h1 class="app-page-title mb-0">Orders</h1>
+				    </div>
+				    
+			   
+			    
+			    <nav id="orders-table-tab" class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
+				    <a class="flex-sm-fill text-sm-center nav-link active" id="orders-all-tab" data-bs-toggle="tab" href="#orders-all" role="tab" aria-controls="orders-all" aria-selected="true">All</a>
+				    <a class="flex-sm-fill text-sm-center nav-link"  id="orders-paid-tab" data-bs-toggle="tab" href="#orders-paid" role="tab" aria-controls="orders-paid" aria-selected="false">Order Received</a>
+				    <a class="flex-sm-fill text-sm-center nav-link" id="orders-pending-tab" data-bs-toggle="tab" href="#orders-pending" role="tab" aria-controls="orders-pending" aria-selected="false">Order delivered</a>
+				</nav>
+				
+				
+				<div class="tab-content" id="orders-table-tab-content">
+			        <div class="tab-pane fade show active" id="orders-all" role="tabpanel" aria-labelledby="orders-all-tab">
+					    <div class="app-card app-card-orders-table shadow-sm mb-5">
+						    <div class="app-card-body">
+							    <div class="table-responsive">
+							        <table class="table app-table-hover mb-0 text-left">
+										<thead>
+											<tr>
+												<th class="cell">Order Id</th>
+												<th class="cell">Price</th>
+												<th class="cell">Signature</th>
+												<th class="cell">Date</th>
+												<th class="cell">Status</th>
+												<th class="cell"></th>
+											</tr>
+										</thead>
+										<tbody>
+											{% for order in Order %}
+											<tr>
+												<td class="cell">{{order.Orders_id}}</td>
+												<td class="cell">{{order.price}}</td>
+												<td class="cell">{{order.signature}}</td>
+												<td class="cell"><span>{{order.Date}}</span><span class="note">{{order.Time}}</span></td>
+												{% if order.status == 'Order Received' or order.status == 'Out For Delivery' %}
+												<td class="cell"><span class="badge bg-danger">{{order.status}}</span></td>
+												{% else %}
+												<td class="cell"><span class="badge bg-success">{{order.status}}</span></td>
+												{% endif %}
+												<td class="cell"><a href="#"><i class="fa fa-eye" aria-hidden="true"></i></a> &nbsp; &nbsp;<a href="/MakingPdf/createMedicine/?id={{order.Orders_id}}" ><i class="fa fa-download" aria-hidden="true"></i></a></td>
+											</tr>
+											{% endfor %}
+											
+											
+											
+		
+										</tbody>
+									</table>
+						        </div><!--//table-responsive-->
+						       
+						    </div><!--//app-card-body-->		
+						</div><!--//app-card-->
+						<!-- <nav class="app-pagination">
+							<ul class="pagination justify-content-center">
+								<li class="page-item disabled">
+									<a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+							    </li>
+								<li class="page-item active"><a class="page-link" href="#">1</a></li>
+								<li class="page-item"><a class="page-link" href="#">2</a></li>
+								<li class="page-item"><a class="page-link" href="#">3</a></li>
+								<li class="page-item">
+								    <a class="page-link" href="#">Next</a>
+								</li>
+							</ul>
+						</nav>//app-pagination -->
+						
+			        </div><!--//tab-pane-->
+			        
+			        <div class="tab-pane fade" id="orders-paid" role="tabpanel" aria-labelledby="orders-paid-tab">
+					    <div class="app-card app-card-orders-table mb-5">
+						    <div class="app-card-body">
+							    <div class="table-responsive">
+								    
+							        <table class="table mb-0 text-left">
+										<thead>
+											<tr>
+												<tr>
+													<th class="cell">Order Id</th>
+													<th class="cell">Price</th>
+													<th class="cell">Signature</th>
+													<th class="cell">Date</th>
+													<th class="cell"></th>
+												</tr>
+											</tr>
+										</thead>
+										<tbody>
+											{% for order in OrderReceived%}
+											<tr>
+												<td class="cell">{{order.Orders_id}}</td>
+												<td class="cell">{{order.price}}</td>
+												<td class="cell">{{order.signature}}</td>
+												<td class="cell"><span>{{order.Date}}</span><span class="note">{{order.Time}}</span></td>
+												<td class="cell"><a href="#"><i class="fa fa-eye" aria-hidden="true"></i></a> &nbsp; &nbsp;<a href="#" ><i class="fa fa-download" aria-hidden="true"></i></a></td>
+											</tr>
+											{% endfor %}
+											
+											
+										
+											
+		
+										</tbody>
+									</table>
+						        </div><!--//table-responsive-->
+						    </div><!--//app-card-body-->		
+						</div><!--//app-card-->
+			        </div><!--//tab-pane-->
+			        
+			        <div class="tab-pane fade" id="orders-pending" role="tabpanel" aria-labelledby="orders-pending-tab">
+					    <div class="app-card app-card-orders-table mb-5">
+						    <div class="app-card-body">
+							    <div class="table-responsive">
+							        <table class="table mb-0 text-left">
+										<thead>
+											<tr>
+												<th class="cell">Order Id</th>
+												<th class="cell">Price</th>
+												<th class="cell">Signature</th>
+												<th class="cell">Date</th>
+												<th class="cell"></th>
+											</tr>
+										</thead>
+										<tbody>
+											{% for order in Orderdelivered %}
+											<tr>
+												<td class="cell">{{order.Orders_id}}</td>
+												<td class="cell">{{order.price}}</td>
+												<td class="cell">{{order.signature}}</td>
+												<td class="cell"><span>{{order.Date}}</span><span class="note">{{order.Time}}</span></td>
+												<td class="cell"><a href="#"><i class="fa fa-eye" aria-hidden="true"></i></a> &nbsp; &nbsp;<a href="#" ><i class="fa fa-download" aria-hidden="true"></i></a></td>
+											</tr>
+											{% empty %}
+											<div style="background-color: rgba(255, 0, 0, 0.39);">
+												<h3 class="p-3" >No single order as been delivered</h3>
+											</div>
+											{% endfor %}
+										</tbody>
+									</table>
+						        </div><!--//table-responsive-->
+						    </div><!--//app-card-body-->		
+						</div><!--//app-card-->
+			        </div><!--//tab-pane-->
+			        
+				</div><!--//tab-content-->
+				
+				
+			    
+		    </div><!--//container-fluid-->
+	    </div><!--//app-content-->
+	    
+	   
+	    
+    </div><!--//app-wrapper-->    					
+
+ 
+{% endblock %}
+

@@ -1,0 +1,337 @@
+{% extends 'Comaan.html' %}
+{% block title %} DMZ {% endblock %}
+{% block css %} 
+<!-- .sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav form {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 15px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+} -->
+
+
+<!-- multi range input css -->
+.social{
+  margin-top: 12px; display: flex; align-items: center; justify-content: flex-start;
+
+}
+.social_a{
+  transition: ease-in-out 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  width: 32px;
+  height: 32px;
+  background: #a0bcd5;
+  margin-right :5px ;
+
+}
+.social_i{
+  color: #fff;font-size: 16px; margin: 0 2px;" 
+}
+
+.pic{
+  overflow: hidden; width: 170px; border-radius: 50%; 
+
+}
+
+.pic .img-fluid {
+  transition: ease-in-out 0.3s;
+}
+
+.member:hover .img-fluid {
+  transform: scale(1.1);
+}
+
+.member span::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 50px;
+  height: 1px;
+  background: #b2c8dd;
+  bottom: 0;
+  left: 0;
+}
+
+.member p {
+  margin: 10px 0 0 0;
+  font-size: 14px;
+}
+
+.btn:hover {
+  background: #166ab5;
+  color: #fff;
+}
+
+.checked {
+  color: orange;
+} 
+
+
+
+{% endblock %}
+
+
+
+{% block body %}
+
+<div class="row">
+  <!-- <div class="col scoll" style="border: inset rgb(213, 210, 210) ; max-width: 280px; padding-left: 25px;">
+    <h6 style="color: #818181 ;"><span style="font-size:30px ;">&bull;</span>&nbsp;Specialist</h6>
+    <form>  -->
+      <!-- for specialist check box -->
+      <!-- {% for i in specialists|slice:":" %}
+      <div class="form-check">
+        <input name="name" class="form-check-input" type="checkbox" value={{i.specilaity_category}} id={{i.specilaity_category}}>
+        <label class="form-check-label" for="flexCheckDefault">
+          {{i.specilaity_category}}
+        </label>
+      </div>
+      {% endfor %} -->
+      <!-- for rating checkbox -->
+      <!-- <h6 style="color: #818181 ;"><span style="font-size:30px ;">&bull;</span>&nbsp;Rating</h6>
+      <div class="form-check">
+      <input name="sp" class="form-check-input" type="checkbox" value=3&below id="flexCheckDefault">
+      <label class="form-check-label" for="flexCheckDefault">
+        3&below &#9733;
+      </label>
+      </div>
+      <div class="form-check">
+        <input name="sp" class="form-check-input" type="checkbox" value=3&above id="flexCheckDefault">
+        <label class="form-check-label" for="flexCheckDefault">
+          3&above &#9733;
+        </label>
+        </div>
+        <div class="form-check">
+          <input name="sp" class="form-check-input" type="checkbox" value=3&above id="flexCheckDefault">
+          <label class="form-check-label" for="flexCheckDefault">
+            4&above &#9733;
+          </label>
+          </div>  -->
+          <!-- for fees  -->
+          <!-- <h6 style="color: #818181 ;"><span style="font-size:30px ;">&bull;</span>&nbsp;Fees</h6>
+          <div class="form-check">
+          <input type="range">
+        </div> -->
+      
+      <!-- button -->
+      <!-- <button type="submit" class="btn btn-primary">Primary</button>
+    </form>
+  </div> -->
+
+  <div class="col offcanvas-start show"  id="offcanvasDark" aria-labelledby="offcanvasDarkLabel" style="max-width: 280px; box-shadow: 0px 2px 15px rgba(221, 12, 12, 0.08); border: 1px solid rgb(226, 223, 223);">
+    <div class="offcanvas-body" style="padding-left:20px ;">
+      <h6 style="color: #818181 ;"><span style="font-size:30px ;">&bull;</span>&nbsp;Specialist</h6> 
+      <!-- for specialist check box -->
+      
+      <div class="form-check">
+        <ul>
+          <a href="/doctors"><li>All Doctors</li></a>
+          {% for i in specialists %}
+          <li>
+            <a href="/doctors/?doctor_category={{i.index}}">
+              {{i.specilaity_category}}</a>
+          </li>
+      {% endfor %}
+        </ul>
+      </div>
+
+      <h6 style="color: #818181 ;"><span style="font-size:30px ;">&bull;</span>&nbsp;Fee:-</h6>
+      <div class="range">
+        <ul>
+          <li><a href="?L=100&G=500">Up to 500</a></li>
+          <li><a href="?L=500&G=1000">Up to 1000</a></li>
+          <li><a href="?G=1000">Up to 1000 </a></li>
+        </ul>
+        
+      </div>
+
+
+      <h6 style="color: #818181 ;"><span style="font-size:30px ;">&bull;</span>&nbsp;Rating</h6>
+      <div class="star">
+        <ul>
+          <a href="/doctors/?star=4">
+          <li><span style="font-size: 15px; " class="fa fa-star"></span>
+            <span style="font-size: 15px; " class="fa fa-star"></span>
+            <span style="font-size: 15px; " class="fa fa-star"></span>
+            <span style="font-size: 15px; " class="fa fa-star"></span> & above</li></a>
+
+            <a href="/doctors/?star=3">
+          <li><span style="font-size: 15px; " class="fa fa-star"></span>
+            <span style="font-size: 15px; " class="fa fa-star"></span>
+            <span style="font-size: 15px; " class="fa fa-star"></span> & above</li></a>
+
+            <a href="/doctors/?star=2">
+          <li><span style="font-size: 15px; " class="fa fa-star"></span>
+            <span style="font-size: 15px; " class="fa fa-star"></span> & above</li></a>
+
+            <a href="/doctors/?star=1">
+          <li><span style="font-size: 15px; " class="fa fa-star"></span> & above</li></a>
+        </ul>
+        
+      </div>
+      <!-- for rating checkbox -->
+      <!-- <h6 style="color: #818181 ;"><span style="font-size:30px ;">&bull;</span>&nbsp;Rating</h6>
+      <div class="form-check">
+      <input name="sp" class="form-check-input" type="checkbox" value=3&below id="flexCheckDefault">
+      <label class="form-check-label" for="flexCheckDefault">
+        3&below &#9733;
+      </label>
+      </div>
+      <div class="form-check">
+        <input name="sp" class="form-check-input" type="checkbox" value=3&above id="flexCheckDefault">
+        <label class="form-check-label" for="flexCheckDefault">
+          3&above &#9733;
+        </label>
+        </div>
+        <div class="form-check">
+          <input name="sp" class="form-check-input" type="checkbox" value=3&above id="flexCheckDefault">
+          <label class="form-check-label" for="flexCheckDefault">
+            4&above &#9733;
+          </label>
+          </div> 
+           for fees  -->
+          <!-- <h6 style="color: #818181 ;"><span style="font-size:30px ;">&bull;</span>&nbsp;Fees</h6>
+          <div class="form-check">
+          <input type="range"> -->
+        <!-- </div> -->
+      
+      <!-- button -->
+      <!-- <button type="submit" class="btn btn-primary" style="background: #1977cc; color: #fff; border-radius: 50px;">Primary</button>
+    </form> -->
+    </div> 
+  </div>
+
+
+  <!-- doctor-->
+  <div id="doctors" class="col" style="background: #fff; ">
+     <div class="row row-cols-2 row-cols-md-2 g-4 " style=" margin-left: 0.5%;"><!--padding-left:10% ; -->
+        {% for i in doctor|slice:"0:" %}
+        <!-- margin-right: 15px; -->
+        <div class="card mb-3" style="  box-shadow: 0px 2px 15px rgba(221, 12, 12, 0.08); overflow: hidden; width: 650px; white-space: nowrap; ">
+            <div class="member row g-0 ">
+                <div class="col-md-4 pic">
+                  <a href="/doctor_profile/{{i.doctor_id}}/{{i.doctor_category}}" id="dr1{{i.doctor_id}}"  style="text-decoration:none; ">
+                    <img src="/media/{{i.doctor_profile}}" class="img-fluid " alt="..." >
+                  </a>
+                </div>
+                
+                <div class="col-md-8">
+                  <a href="/doctor_profile/{{i.doctor_id}}/{{i.doctor_category}}" id="dr{{i.doctor_id}}"  style="text-decoration:none; color:black; ">
+                    <div class="card-body">
+                        <h4 class="card-title" style="font-weight: 700; margin-bottom: 5px; font-size: 20px; color: #2c4964;">{{i.doctor_name}}</h4>
+                        <span style="display: block; font-size: 15px; padding-bottom: 10px; position: relative; font-weight: 500;">{{i.doctor_profession.specilaity_category}} &#8377; {{i.doctor_fee}}</span>
+                        <!-- <p class="card-text m-0">Fees:- {{i.doctor_fee}}</p> -->
+                        <!-- <p class="card-text m-0">Mobile no.:- {{i.doctor_mobile}}</p> -->
+                        <!-- <p style="margin: 10px 0 0 0; font-size: 14px;" class="card-text m-0">Rating:- {{i.doctor_self}} </p> -->
+
+                        {% include 'star_rating.html' %}
+
+                        <p style="margin: 10px 0 0 0; font-size: 14px; width: 50px;" class="card-text mt-1 ">About:- {{i.doctor_self}} <a href="/"><span style="color: blue;"></span></a></p>
+                      </a>
+                      <div class="social" style=" padding-bottom: 10px; padding-top: 10px;">
+                        <ul style=" list-style-type: none;  display:flex;">
+                          <li><a href="" class="social_a"><i class="social_i ri-twitter-fill"><img src = "/media/twitter.svg" alt="My Happy SVG" style="width: 30px;" aria-hidden="true"/></i></a></li>
+                          <li><a href="" class="social_a"><i class="social_i ri-facebook-fill"><img src = "/media/facebook.svg" alt="My Happy SVG" style="width: 30px;"/></i></a></li>
+                          <li><a href="" class="social_a"><i class="social_i ri-instagram-fill"><img src = "/media/instagram.svg" alt="My Happy SVG" style="width: 30px;"/></i></a></li>
+                          <li><a href="" class="social_a"> <i class="social_i ri-linkedin-box-fill"><img src = "/media/linkedin.svg" alt="My Happy SVG" style="width: 30px;"/></i> </a></li>
+                      </ul>
+                      
+                      {% if login == "Login" %}
+                      <a href="/BookAppointment/{{i.doctor_id}}" id="dr{{i.doctor_id}}">
+                      {% else %}
+                      <a href="/Login/" >
+                      {% endif %}
+                        <button type="button" class="btn" style="background: #1977cc; color: #fff; border-radius: 50px;" >
+                            Book appointment
+                      </button></a>
+                    </div>
+                   
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="alert alert-danger" role="alert">
+          No doctor found!
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    
+  </div>
+  
+</div>
+
+
+
+
+  <!-- slider -->
+ 
+
+    
+
+{% endblock %}
+
+   {% block js %} 
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+    }
+    
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+    }
+
+    var slider = document.getElementById("myRange");
+    var output = document.getElementById("demo");
+    output.innerHTML = slider.value;
+
+    slider.oninput = function() {
+      output.innerHTML = this.value;
+    }
+
+    
+    {% endblock %}

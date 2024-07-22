@@ -1,0 +1,525 @@
+{% extends 'Comaan.html' %}
+{% block title %} DMZ {% endblock %}
+
+
+{% block css %}
+.main{
+    background: #f1f7fd;
+    box-shadow: 0px 2px 15px;
+}
+
+.infobg{
+    background: #f1f7fd; 
+    margin: 10px;
+    box-shadow: 0 10px 45px rgba(0, 0, 0, 0.15);
+}
+
+.table{box-shadow: 0 10px 45px rgba(0, 0, 0, 0.15);
+}
+
+.pad{
+    margin-left: 50px;
+}
+
+.col{
+    max-width: 600px;
+}
+
+
+
+
+
+/* ----- */
+
+.photo{
+    height: 100px;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+
+
+.profile-pic-div{
+    height: 100px;
+    width: 100px;
+    top: 50%;
+    left: 50%;
+    /* margin-left: 80%; */
+    overflow: hidden;
+    background: rgb(7, 7, 6);
+    box-shadow: 0 10px 45px rgba(0, 0, 0, 0.15);
+}
+
+#photo{
+    height: 100%;
+    width: 100%;
+}
+
+#file{
+    display: none;
+}
+
+#uploadBtn{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-top: 35%;
+    opacity: 0%;
+    text-align: center;
+    background: rgb(228, 228, 221);
+    color: rgb(14, 14, 13);
+    line-height: 30px;
+    font-family: sans-serif;
+    font-size: 15px;
+    cursor: pointer;
+    display: none;
+}
+
+label{
+    padding-bottom: 20px;
+    font-weight: 700;
+}
+
+
+
+.otpbtn{
+    margin-left:60%
+
+}
+
+#validationDefaultdoctormobotp{
+    margin-left:39%;
+
+}
+
+#validationDefaultdoctorotp{
+    margin-left:50%;
+
+}
+{% endblock %}
+
+
+
+{% block body %}
+
+{% include 'message.html' %}
+
+
+
+&nbsp;
+<div class="container">
+    <form name="prform" class="row g-3 needs-validation" novalidate style="display:flex ;" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+    
+        <div class="main" style="overflow: hidden;">
+                <div class="row " >
+
+                    <div class="col" style="max-width: 850px; ">
+                        <h3>Patient Registration Form</h3>
+                        <p>Use the form below to create a new account 
+                                    Passwords are required to be a minimum of 6 characters in length. <strong>All * fileds are required</strong> </p>
+                    </div>  
+                    <div class="col" style="padding-left:25%; max-width: 620px;">
+                        <div class="profile-pic-div">
+                            <img name="img" src="\media\profile.jpg" id="photo">
+                            <input name="patient_prof" type="file" id="file">
+                            <label for="file" id="uploadBtn">Choose Photo</label>
+                        </div>
+                        <strong><p>Upload Photo</p></strong>
+                    </div>
+                    
+                </div>
+            
+
+                <div class="row " >
+                        <div class="col infobg" style=" max-width: 650px; ">
+                            <h1>personal information</h1>
+                                <div class="input-group row">
+                                    <div class="col ">
+                                        <label for="validationDefault01" class="form-label">First name</label>
+                                    </div>
+                                    <div class="col">
+                                        <input name="patient_Name" type="text" class="form-control" id="validationDefault01"  required>
+                                        <div class="invalid-feedback">
+                                            Please enter your first name.
+                                          </div>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <div class="col">
+                                        <label for="validationDefault02" class="form-label">Middle name</label>
+                                    </div>
+                                    <div class="col">
+                                        <input name="Mpatient_Name" type="text" class="form-control" id="validationDefault02"  required>
+                                        <div class="invalid-feedback">
+                                            Please enter your Middle name.
+                                          </div>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <div class="col">
+                                        <label for="validationDefault03" class="form-label">Last name</label>
+                                    </div>
+                                    <div class="col">
+                                        <input name="Lpatient_Name" type="text" class="form-control" id="validationDefault03"  required>
+                                        <div class="invalid-feedback">
+                                            Please enter your last name.
+                                          </div>
+                                    </div>
+                                    
+                                </div>   
+                                
+                                <div class="input-group">
+                                    <div class="col">
+                                        <label for="validationDefault04" class="form-label">Date of birth</label>
+                                    </div>
+                                    <div class="col">
+                                        <input name="patient_dob" type="date" class="form-control" id="validationDefault04" required>
+                                        <div class="invalid-feedback">
+                                            Please enter your DOB.
+                                          </div>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <div class="col">
+                                        <label for="validationDefault5" class="form-label">Gender:</label>
+                                    </div>
+                                    <div class="col">
+                                        <select name="patient_sex" class="form-select" id="validationDefault5" required>
+                                        <option selected disabled value="">select your gender</option>
+                                        <option>Male</option>
+                                        <option>Female</option>
+                                        <option>Transgender</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Please enter your Gender.
+                                          </div>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <div class="col">
+                                        <label for="validationDefault5" class="form-label">Blood Group:</label>
+                                    </div>
+                                    <div class="col">
+                                        <select name="patient_blood" class="form-select" id="validationDefaultBlood" required>
+                                        <option selected disabled value="">select your Blood Groupr</option>
+                                        <option>A+</option>
+                                        <option>A-</option>
+                                        <option>B+</option>
+                                        <option>B-</option>
+                                        <option>AB+</option>
+                                        <option>AB-</option>
+                                        <option>O+</option>
+                                        <option>O-</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Please enter your Blood Group.
+                                          </div>
+                                    </div>
+                                </div>
+                                
+                        </div>
+                        <!-- account -->
+                        <div class="col infobg" style="max-width: 650px;">
+                            <h1>Account information</h1>
+                                <div class="input-group">
+                                    <div class="col">
+                                        <label for="validationDefaultUsername" class="form-label">Username</label>
+                                    </div>
+
+                                    <div class="col">
+                                        <input name="patient_user" type="text" class="form-control" id="validationDefaultUsername"  aria-describedby="inputGroupPrepend2"
+                                        pattern="/^[a-zA-Z0-9_-]{4,16}$/" required>
+                                        <div class="invalid-feedback">
+                                            Please enter your username.
+                                          </div>
+                                    </div>
+                                
+                                </div>
+
+                                <div class="input-group">
+                                    <div class="col">
+                                        <label for="validationDefaultpassword" class="form-label">Password</label>
+                                    </div>
+                                    
+                                <div class="col">
+                                    <input name="patient_pass" type="text" class="form-control" id="validationDefaultpassword"  aria-describedby="inputGroupPrepend2"
+                                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}"  required>
+                                    <div class="invalid-feedback">
+                                        Please enter your password with include minimum one capital letter, one Number and one unique charcter.
+                                      </div>
+                                </div>
+                                
+                                </div>
+
+                                <div class="input-group">
+                                    <div class="col">
+                                        <label for="validationDefaultpassword2" class="form-label">Confirm Password</label>
+                                    </div>
+                                    
+                                    <div class="col">
+                                        <input name="patient_cpass" type="text" class="form-control" id="validationDefaultpassword2"  aria-describedby="inputGroupPrepend2"
+                                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}"  required>
+                                        <div class="invalid-feedback">
+                                            Please enter Repassword.
+                                          </div>
+                                    </div>
+                                </div>
+
+                                <div class="input-group">
+                                    <div class="col">
+                                        <label for="validationDefault6" class="form-label">Your email</label>
+                                    </div>
+                                    <div class="col">
+                                        <input name="patient_email" type="text" class="form-control" id="validationDefaultemail"  aria-describedby="inputGroupPrepend2" required>
+                                      
+                                        <div class="invalid-feedback">
+                                            Please enter your email.
+                                          </div>
+                                    </div>
+                                </div>
+
+                                <div class="input-group">
+                                    <div class="col">
+                                        <label for="validationDefault07" class="form-label">Personal Mobile number</label>
+                                    </div>
+        
+                                    <div class="col">
+                                        <input name="patient_mob" type="tel" class="form-control" id="validationDefaultmobile" required>
+                                        
+                                        <div class="invalid-feedback">
+                                            Please enter your mobile number.
+                                          </div>
+                                    </div>
+                                    
+                                </div> 
+
+                                
+                        </div>
+                        <!-- Contact -->
+                
+                    <div class=" infobg" style="max-width: 1330px; margin-top: 50px;">
+                        <h1>Contact information</h1>
+                    
+
+                        <div class="input-group">
+                            <div class="col">
+                                <label for="validationDefault08" class="form-label">Personal adress</label>
+                            </div>
+
+                            <div class="col">
+                                <textarea name="patient_add" class="form-control" id="validationDefault8"  aria-describedby="inputGroupPrepend2" required></textarea>
+                                <div class="invalid-feedback">
+                                    Please enter your address.
+                                  </div>
+                            </div>
+                            
+                        </div>
+
+                        <div class="input-group">
+                            <div class="col">
+                                <label for="validationDefault09" class="form-label">Area</label>
+                            </div>
+                            
+                            <div class="col">
+                                <input name="patient_area" type="text" class="form-control" id="validationDefault09" required>
+                                <div class="invalid-feedback">
+                                    Please enter your area.
+                                  </div>
+                            </div>
+                            
+                        </div>
+
+                        <div class="input-group">
+                            <div class="col">
+                                <label for="validationDefault10" class="form-label">City</label>
+                            </div>
+
+                            <div class="col">
+                                <input name="patient_ct" type="text" class="form-control" id="validationDefault1o" required>
+                                <div class="invalid-feedback">
+                                    Please enter your city.
+                                  </div>
+                            </div>
+                            
+                        </div>
+
+                        <div class="input-group">
+                            <div class="col">
+                                <label for="validationDefault11" class="form-label">State</label>
+                            </div>
+
+                            <div class="col">
+                                <input name="patient_st" type="text" class="form-control" id="validationDefault11" required>
+                                <div class="invalid-feedback">
+                                    Please enter your state.
+                                  </div>
+                            </div>
+                            
+                        </div>
+
+                        <div class="input-group">
+                            <div class="col">
+                                <label for="validationDefault12" class="form-label">Country</label>
+                            </div>
+
+                            <div class="col">
+                                <input name="patient_country" type="text" class="form-control" id="validationDefault12" required>
+                                <div class="invalid-feedback">
+                                    Please enter your country.
+                                  </div>
+                            </div>
+                            
+                        </div>
+
+                        <div class="input-group">
+                            <div class="col">
+                                <label for="validationDefault13" class="form-label">Pincode</label>
+                            </div>
+
+                            <div class="col">
+                                <input name="patient_pin" type="text" class="form-control" id="validationDefault13" required>
+                                <div class="invalid-feedback">
+                                    Please enter your pincode.
+                                  </div>
+                            </div>
+                            
+                        </div>
+
+                        <div class="input-group">
+                            <div class="col">
+                                <label for="validationDefault5" class="form-label">Security Question</label>
+                            </div>
+                            <div class="col">
+                                <select name="patient_qna" class="form-select" id="validationDefaultBlood" required>
+                                <option selected disabled value="">select your Question</option>
+                                <option>Favourite Cricket Player ?</option>
+                                <option>First Book You Read ? </option>
+                                <option>Favourite Singer ?</option>
+                                <option>Favourite Actor ?</option>
+                                <option>Country That You Like Most ?</option>
+                                <option>Your Childhood Friend ?</option>
+                                <option>Your Favourite Movie ?</option>
+                                <option>Your Mother Name ?</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please choose your question.
+                                  </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="input-group">
+                            <div class="col">
+                                <label for="validationDefault13" class="form-label">Security Answer</label>
+                            </div>
+
+                            <div class="col">
+                                <input name="patient_ans" type="text" class="form-control" id="validationDefault13" required>
+                                <div class="invalid-feedback">
+                                    Please enter your answer.
+                                  </div>
+                                  <span style="color: red;">This question answer used for forgetting password don't forget this</span>
+                            </div>
+                            
+                        </div>
+
+                        
+
+                    </div>
+                </div>
+            
+
+            <div class="col-12;">
+                <div class="form-check" style="display: inline-block; margin-left: 80%;">
+                <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+                <label class="form-check-label" for="invalidCheck2">
+                    Agree to terms and conditions
+                </label>
+                </div>
+            </div>
+        
+            <div style="margin-left: 90%; display:inline-block;">
+                <button name="all_form" class="btn btn-primary" type="submit">Submit form</button>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+{% endblock %}
+{% block js %}
+//declearing html elements
+
+const imgDiv = document.querySelector('.profile-pic-div');
+const img = document.querySelector('#photo');
+const file = document.querySelector('#file');
+const uploadBtn = document.querySelector('#uploadBtn');
+
+
+
+
+//if user hover on img div
+
+imgDiv.addEventListener('mouseenter', function(){
+    uploadBtn.style.display = "inline-block";
+});
+
+//if we hover out from img div
+
+imgDiv.addEventListener('mouseleave', function(){
+    uploadBtn.style.display = "none";
+});
+
+//lets work for image showing functionality when we choose an image to upload
+
+//when we choose a foto to upload
+
+file.addEventListener('change', function(){
+    //this refers to file
+    const choosedFile = this.files[0];
+
+    if (choosedFile) {
+
+        const reader = new FileReader(); //FileReader is a predefined function of JS
+
+        reader.addEventListener('load', function(){
+            img.setAttribute('src', reader.result);
+        });
+
+        reader.readAsDataURL(choosedFile);
+    }
+});
+
+
+
+
+
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+
+{% endblock %}

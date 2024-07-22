@@ -1,0 +1,71 @@
+{% extends 'Comaan.html' %}
+{% block title %} DMZ {% endblock %}
+{% block body %}
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+	<symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+	  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+	</symbol>
+  </svg>
+  {% for msg in messages %}
+  <div class="alert alert-danger d-flex align-items-center" role="alert">
+	<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+	<div>
+	  <strong>Hye!!!</strong> {{msg}}
+	  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+  </div>
+	
+  {% endfor %}
+  
+<div class="container-fluid" style="border: 5px solid;background-color:#B1E1FF;    margin-top: 5rem;display: flex;">
+<form method="post" style=" margin-left: 570px; margin-top: 26px; margin-bottom: 25px;">
+	{% csrf_token %}
+	<center>
+        <input value="doctor" class="form-check-input" type="radio" name="sid" id="flexRadioDefault1">
+        <label class="form-check-label" for="flexRadioDefault1">
+          Doctor
+        </label>
+        <input value="patient" class="form-check-input" type="radio" name="sid" id="flexRadioDefault2" checked>
+        <label class="form-check-label" for="flexRadioDefault2">
+          Patient
+        </label>
+        <input value="admin" class="form-check-input" type="radio" name="sid" id="flexRadioDefault2" checked>
+        <label class="form-check-label" for="flexRadioDefault2">
+          Admin
+        </label>
+    </center><br>
+
+	<center>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<form role="form">
+						<div class="form-group">
+							
+							<label for="exampleInputEmail1">
+								Username:
+							</label>
+							<input name="userD" type="text" class="form-control" id="exampleInputEmail1" style="width:20em ;" />
+						</div>
+						<div class="form-group">
+							
+							<label for="exampleInputPassword1">
+								Password
+							</label>
+							<input name="PassD" type="password" class="form-control" id="exampleInputPassword1" style="width:20em ;" />
+						</div><br>
+						
+						<button name="btn" type="submit" class="btn btn-primary">
+							Submit
+						</button><br>
+						<a href="/ForgetPassword">Forget password</a>
+						
+					</form> 
+				</div>
+			</div>
+		</div>
+</center>
+</form>
+</div>
+{% endblock %}

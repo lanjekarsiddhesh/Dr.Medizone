@@ -1,0 +1,227 @@
+
+	{% extends 'commanMedicine.html' %}
+
+	{% block css %} 
+	/* <!-- rating star --> */
+
+
+.rate input{
+  display: none;
+  
+}
+
+.rate{
+  display: inline-block;
+  border: 0;
+}
+
+.rate label:after{
+  display: inline-block;
+  font-size: 2.3rem;
+  font-family: FontAwesome;
+  content: "\f005";
+  margin: 0;
+  padding: 0.3rem .2rem;
+  cursor: pointer;
+
+}
+
+.rate .half:after{
+  content: "\f089";
+  position:absolute;
+  padding-right: 0;
+}
+
+label:hover ~ label, input:checked ~ label {
+  color: rgb(255, 196, 0);
+
+}
+input:checked + label:hover, input:checked ~ label:hover, input:checked ~ label:hover ~ label, label:hover ~ input:checked ~ label{
+  color: rgb(222, 152, 1);
+}
+/* <!-- rating star end --> */
+.checked {
+	color: orange;
+  } 
+
+
+
+{% endblock %}
+
+
+	{% block body %}
+	{% load static %}
+	
+	<section>
+		<div class="container">
+			<div class="row">
+			
+				
+				<div class="col-sm-9 padding-right">
+					<div class="product-details"><!--product-details-->
+						<div class="col-sm-5">
+							<div class="view-product">
+								<img src="/media/{{medicine.Image1}}" alt="" />
+							</div>
+							<div id="similar-product" class="carousel slide" data-ride="carousel">
+								
+								  <!-- Wrapper for slides -->
+								    <div class="carousel-inner">
+										<div class="item active">
+										  <a href=""><img src="/media/{{medicine.Image1}}" style="height: 60px; width: 60px;" alt=""></a>
+										  <a href=""><img src="/media/{{medicine.Image2}}" style="height: 60px; width: 60px;" alt=""></a>
+										  <a href=""><img src="/media/{{medicine.Image3}}" style="height: 60px; width: 60px;" alt=""></a>
+										  <a href=""><img src="/media/{{medicine.Image4}}" style="height: 60px; width: 60px;" alt=""></a>
+										</div>
+										<div class="item">
+										  <a href=""><img src="/media/{{medicine.Image1}}" style="height: 60px; width: 60px;" alt=""></a>
+										  <a href=""><img src="/media/{{medicine.Image2}}" style="height: 60px; width: 60px;" alt=""></a>
+										  <a href=""><img src="/media/{{medicine.Image3}}" style="height: 60px; width: 60px;" alt=""></a>
+										  <a href=""><img src="/media/{{medicine.Image4}}" style="height: 60px; width: 60px;" alt=""></a>
+										</div>
+										<div class="item">
+										  <a href=""><img src="/media/{{medicine.Image1}}" style="height: 60px; width: 60px;" alt=""></a>
+										  <a href=""><img src="/media/{{medicine.Image2}}" style="height: 60px; width: 60px;" alt=""></a>
+										  <a href=""><img src="/media/{{medicine.Image3}}" style="height: 60px; width: 60px;" alt=""></a>
+										  <a href=""><img src="/media/{{medicine.Image4}}" style="height: 60px; width: 60px;" alt=""></a>
+										</div>
+										
+									</div>
+
+								  <!-- Controls -->
+								  <a class="left item-control" href="#similar-product" data-slide="prev">
+									<i class="fa fa-angle-left"></i>
+								  </a>
+								  <a class="right item-control" href="#similar-product" data-slide="next">
+									<i class="fa fa-angle-right"></i>
+								  </a>
+							</div>
+
+						</div>
+						<div class="col-sm-7">
+							<div class="product-information"><!--/product-information-->
+								<img src="images/product-details/new.jpg" class="newarrival" alt="" />
+								<h2>{{medicine.medicine_name}}</h2>
+								<p>Web ID: 1089772</p>
+								{% include 'overall_rating.html' %}
+								<img src="images/product-details/rating.png" alt="" />
+								<span>
+									<span>Rs.: {{medicine.price}}/-</span>
+									<a href="{% url 'add_to_cart' medicine.Id  %}">
+									<button type="button" class="btn btn-fefault cart">
+										<i class="fa fa-shopping-cart"></i>
+										Add to cart
+									</button>
+									</a>
+								</span>
+								<p><b>Availability:</b> In Stock</p>
+								<p><b>Condition:</b> New</p>
+								<p><b>Brand:</b> {{medicine.company.Brand_name}}</p>
+								<a href=""><img src="images/product-details/share.png" class="share img-responsive"  alt="" /></a>
+							</div><!--/product-information-->
+						</div>
+					</div><!--/product-details-->
+					
+					<div class="category-tab shop-details-tab"><!--category-tab-->
+						<div class="col-sm-12">
+							<ul class="nav nav-tabs">
+								<li><a href="#details" data-toggle="tab">Details</a></li>
+								<li><a href="#companyprofile" data-toggle="tab">Uses</a></li>
+								<li class="active"><a href="#reviews" data-toggle="tab">Reviews ({{length_review}})</a></li>
+							</ul>
+						</div>
+						<div class="tab-content">
+							<div class="tab-pane fade" id="details" >
+								<p>{{medicine.discription}}</p>
+								
+								
+								
+								
+
+							</div>
+							
+							<div class="tab-pane fade" id="companyprofile" >
+								<p>{{medicine.uses}}</p>
+							</div>
+								
+								
+								
+						
+							
+							
+							<div class="tab-pane fade active in" id="reviews" >
+								<div class="col-sm-12">
+									
+									{% for review in reviews %}
+									<ul>
+										<li><a href=""><i class="fa fa-user"></i>{{review.patient}}</a></li>
+										<li><a href=""><i class="fa fa-clock-o"></i>{{review.created_Time_at}}</a></li>
+										<li><a href=""><i class="fa fa-calendar-o"></i>{{review.created_Date_at}}</a></li>
+									</ul>
+									<p><b>{{review.subject}}</b></p>
+									
+									<p><span>Rating:- </span>
+										{% include 'star_ratings.html' %}
+										
+									</p>
+									<p>{{review.review}}</p>
+									{% endfor %}
+									<p><b>Write Your Review</b></p>
+									
+									<form action="#" method="post" enctype="multipart/form-data">{% csrf_token %}
+										<span>
+											<input name="sub" type="text" placeholder="Subject"/>
+										
+											<input name="img" type="file" placeholder="Enter product image"/>
+										</span>
+										
+										<textarea name="review" placeholder="Write your review here" ></textarea>
+										<b>Rating: </b> 
+										<div class="mb-3 rate">
+											<input name="rating" type="radio" id="rating10" value="5"><label for="rating10" title="5">
+											<input name="rating" type="radio" id="rating9" value="4.5"><label for="rating9" title="4.5" class="half">
+											<input name="rating" type="radio" id="rating8" value="4"><label for="rating8" title="4">
+											<input name="rating" type="radio" id="rating7" value="3.5"><label for="rating7" title="3.5" class="half"> 
+											<input name="rating" type="radio" id="rating6" value="3"><label for="rating6" title="3">
+											<input name="rating" type="radio" id="rating5" value="2.5"><label for="rating5" title="2.5" class="half"> 
+											<input name="rating" type="radio" id="rating4" value="2"><label for="rating4" title="2">            
+											<input name="rating" type="radio" id="rating3" value="1.5"><label for="rating3" title="1.5" class="half"> 
+											<input name="rating" type="radio" id="rating2" value="1"><label for="rating2" title="1">
+											<!-- <input name="rating" type="radio" id="rating1" value="0.5"><label for="rating1" title="0.5" class="half"> -->
+										  </div>
+										  {% if login == "Login" %}
+										  <button type="submit" class="btn btn-default pull-right">
+											Submit
+											</button>
+
+										  {% else %}
+										  <a href="/Login/">
+										  <button type="submit" class="btn btn-default pull-right">
+											Submit
+											</button></a>
+										  {% endif %}
+										
+									</form>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+					<!-- /category-tab
+					{% for user in user %}
+					{% if user.status == "Login" %}
+					hii
+					{% else %}
+					hi not
+					{% endif %}
+					{% endfor %} -->
+					
+					
+					
+				</div>
+			</div>
+		</div>
+	</section>
+	{% endblock %}
+	
+	
