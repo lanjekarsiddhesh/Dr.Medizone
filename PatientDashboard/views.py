@@ -27,6 +27,7 @@ def order(request):
 
 def DrAppointment(request):
     id = request.session.get('patient_id')
+    print(id)
     Id = Patient.objects.get(patient_id=id)
     appointment = Appointments.objects.filter(patient=id)
     appointmentClinic = Appointments.objects.filter(patient=id,Appointments_type='Personal meeting')

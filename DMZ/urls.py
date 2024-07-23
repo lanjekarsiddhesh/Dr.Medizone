@@ -17,7 +17,6 @@ urlpatterns = [
     path("Department/",view.Department, name="Department"),
     path("Tele/",view.Tele, name="Tele"),
     path("Review/<int:doctor_id>",view.review, name="Review"),
-    path("changePass/",view.password, name="password"),
     path("specialist/",view.specialist, name="specialist"),
     path("Login/",view.Login, name="login"),
     path("otp/",view.otp_fun, name="otp_fun"),
@@ -35,6 +34,7 @@ urlpatterns = [
     path("ForgetPassword/",ForgetPassword.ForgetPassword, name="forget"),
     path("ForgetByMobile/",ForgetPassword.ForgetByMobile, name="ForgetByMobile"),
     path("ForgetByQuestion/",ForgetPassword.ForgetByQuestion, name="ForgetByQuestion"),
+    path("changePass/",ForgetPassword.password, name="password"),
 
     # ----------------------------------------Doctor.py------------------------------------------------------------
     path("doctor_home/<int:doctor_id>",Doctor.doctor_home, name="doctor_home"),

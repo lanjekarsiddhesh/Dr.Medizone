@@ -5,6 +5,7 @@ from ..forms import *
 from django.contrib import messages
 from math import *
 from .mail import send_mail
+from django.contrib.auth.hashers import make_password, check_password
 
 Users = ''
 user_name = ''
@@ -14,32 +15,33 @@ def ForgetPassword(request):
     if request.method == 'POST':
         email = request.POST['mobile']
         userType = request.POST['usertype']
-        Model += userType
-        Users += email
+        global Model, Users, user_name
+        Model = userType
+        Users = email
 
         if userType == 'Patient':
             try:
                 Patient2 = Patient.objects.get(email=email)
                 if email == Patient2.email:
-                    user_name += Patient2.patient_name
+                    user_name = Patient2.patient_name
                     generate_otp(request)
-                    send_mail(email="salonijagtap55@gmail.com",Text='Your OTP is:- ',subjectMSG="Verifying By OTP",user=Patient2.patient_name,MSG=request.session.get('otp'))
+                    send_mail(email=Patient2.email,Text='Your OTP is:- ',subjectMSG="Verifying By OTP",user=Patient2.patient_name,MSG=request.session.get('otp'))
                     return redirect('/otp/')
 
             except:
                 messages.warning(request, "This email is doesn't valid")
 
         elif userType == 'Doctor':
-            try:
+            # try:
                 doctor2 = Doctor.objects.get(email=email)
                 if email == doctor2.email:
-                    user_name += doctor2.doctor_name
+                    user_name = doctor2.doctor_name
                     generate_otp(request)
-                    send_mail(Text='Your OTP is:- ',email="salonijagtap55@gmail.com",subjectMSG="Verifying By OTP",user=doctor2.doctor_name,MSG=request.session.get('otp'))
+                    send_mail(Text='Your OTP is:- ',email=doctor2.email,subjectMSG="Verifying By OTP",user=doctor2.doctor_name,MSG=request.session.get('otp'))
                     return redirect('/otp/')
             
-            except:
-                messages.warning(request, "This email is doesn't valid")
+            # except:
+            #     messages.warning(request, "This email is doesn't valid")
         # doctortDB = Doctor.objects.filter()
     return render(request,'forget.html')
 
@@ -48,14 +50,15 @@ def ForgetByMobile(request):
     if request.method == 'POST':
         mobile = request.POST['mobile']
         userType = request.POST['usertype']
-        Model += userType
+        global Model, Users, user_name
+        Model = userType
 
         if userType == 'Patient':
             try:
                 Patient2 = Patient.objects.get(mobile=mobile)
                 if mobile == str(Patient2.mobile):
-                    user_name += Patient2.patient_name
-                    Users += mobile
+                    user_name = Patient2.patient_name
+                    Users = mobile
                     generate_otp(request)
                     print("Match")
                     send_mail(user=Patient2.patient_name,OtpVerify=request.session.get('otp'))
@@ -70,8 +73,8 @@ def ForgetByMobile(request):
             try:
                 doctor2 = Doctor.objects.get(mobile=mobile)
                 if mobile == str(doctor2.mobile):
-                    user_name += doctor2.doctor_name
-                    Users += mobile
+                    user_name = doctor2.doctor_name
+                    Users = mobile
                     generate_otp(request)
                     print("Match")
                     send_mail(user=doctor2.doctor_name,OtpVerify=request.session.get('otp'))
@@ -90,9 +93,10 @@ def ForgetByQuestion(request):
         userType = request.POST['usertype']
         question = request.POST['Question']
         answer = request.POST['answer']
-        Model += userType
-        question += question
-        answer += answer
+        global Model, Users, user_name
+        Model = userType
+        # question = question
+        # answer = answer
         
 
         if userType == 'Patient':
@@ -122,3 +126,41 @@ def ForgetByQuestion(request):
 
 
     return render (request,"forgetByQuestion.html")
+
+
+def password(request):
+    login = request.session.get('patient_status')
+    Id = request.session.get('patient_id')
+    if request.method == "POST":
+        pass1 = request.POST['newpass']
+        pass2 = request.POST['newpassC']
+        print(pass1)
+        print(pass2)
+
+        if pass1 == pass2:
+            print(Model)
+            password = make_password(pass1)
+            if Model == "Patient":
+                if Patient.objects.filter(email=Users).update(password=password):
+                    return redirect('/Login/')
+                elif question and answer:
+                    if Patient.objects.filter(Security_Question=question,Security_Answer=answer).update(password=password):
+                        return redirect('/Login/')
+                elif Patient.objects.filter(mobile=int(Users)).update(password=password):
+                    return redirect('/Login/')
+                else:
+                    print("P error")
+            elif Model == "Doctor":
+                if Doctor.objects.filter(email=Users).update(password=password):
+                    return redirect('/Login/')
+                elif Doctor.objects.filter(mobile=int(Users)).update(password=password):
+                    return redirect('/Login/')
+                elif Doctor.objects.filter(Security_Question=question,Security_Answer=answer).update(password=password):
+                    return redirect('/Login/')
+                else:
+                    print("D error")
+            else:
+                print("U error")
+        else:
+            messages.warning(request, "Password doesn't match; Enter Both password are same")
+    return render(request,'pqsword_change.html',{"Id":Id,"login":login,})

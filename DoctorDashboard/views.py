@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,  get_object_or_404
 from django.contrib.sessions.models import Session  
 from DMZ.models import *
 from datetime import datetime
@@ -62,11 +62,11 @@ def HomeDash(request):
              "PendingHomelength":PendingHomelength,"Pendingappointment":Pendingappointment}
     return render(request,'DoctorHome.html',param)
 
-def ViewReport(request):
+def View_Report(request):
     id = request.GET.get('Doctor_id')
     Id = Doctor.objects.get(doctor_id=id)
-    myFile = PatientReport.objects.all()
-    return render(request,'report.html',{'myFile':myFile,"Id":id,'id':Id,})
+    myFile = PatientReport.objects.filter(doctor=id)
+    return render(request,'Dreport.html',{'myFile':myFile,"Id":id,'id':Id,})
 
 def AppointmentDash(request):
     id = request.GET.get('Doctor_id')
@@ -156,28 +156,16 @@ def AppointmentDash(request):
              "PendingHomelength":PendingHomelength,"Pendingappointment":Pendingappointment}
     
     return render(request,'DAppointment.html',param)
-
+ 
 
 def AppointmentBill(request):
     id = request.GET.get('Doctor_id')
-    print(id)
     Id = Doctor.objects.get(doctor_id=id)
 
     appointment = Appointments.objects.filter(Doctor_id=id)
-    print(appointment)
-    # appointment_bill = []
-
-    param = None
-
-    for i in appointment:
-        # appointment_bill = Bill.objects.filter(appointments_id=i.Appointments_id)
-        print(i.Appointments_id)
-        appointment_bill = Bill.objects.filter(appointments_id=i.Appointments_id)
-        print(appointment_bill)
-
-        # param = {'id':Id,"appointment_bill":appointment_bill}
-        
-    param = {"Id":id,'id':Id,"appointment_bill":appointment_bill}
+    bills = Bill.objects.filter(appointments__in=appointment)
+ 
+    param = {"Id":id,'id':Id,"appointment_bill":bills}
     return render(request,'bill.html',param)
 
 def Review(request):

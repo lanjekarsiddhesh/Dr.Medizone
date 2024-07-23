@@ -6,7 +6,6 @@ from django.contrib import messages
 from django.contrib.auth.hashers import make_password
 from datetime import datetime
 from math import *
-from .view import overall_star
 
 Users = ''
 user_name = ''
@@ -416,3 +415,45 @@ def doctor_specilaity(request,index):
     
     param = {"Doctor_status":Doctor_status,"Doctor_id":Doctor_id,"patient_id":patient_id,"Doctor_status":Doctor_status,"Id":Id,"login":login,'Specilaity':Specilaity[0],'doctor':doctors}
     return render(request,'filter.html',param)
+
+
+def overall_star(doctor_id):
+    doctor = Doctor.objects.filter(doctor_id=doctor_id)
+    one = len(ReviewsRatings.objects.filter(doctorId=doctor_id,rating=1))
+    one_half = len(ReviewsRatings.objects.filter(doctorId=doctor_id,rating=1.5))
+    two = len(ReviewsRatings.objects.filter(doctorId=doctor_id,rating=2))
+    two_half = len(ReviewsRatings.objects.filter(doctorId=doctor_id,rating=2.5))
+    three = len(ReviewsRatings.objects.filter(doctorId=doctor_id,rating=3))
+    three_half = len(ReviewsRatings.objects.filter(doctorId=doctor_id,rating=3.5))
+    four = len(ReviewsRatings.objects.filter(doctorId=doctor_id,rating=4))
+    four_half = len(ReviewsRatings.objects.filter(doctorId=doctor_id,rating=4.5))
+    five = len(ReviewsRatings.objects.filter(doctorId=doctor_id,rating=5))
+
+    if  one > one_half or one > two or one > two_half or one > three or one > three_half or one > four or one > four_half or one > five:
+        doctor.update(overall_rating=1.0)
+
+    if two > one or two > one_half or two > two_half or two > three or two > three_half or two > four or two > four_half or two > five:
+        doctor.update(overall_rating=2.0)
+
+    if three > one or three > one_half or three > two or three > two_half or three > three_half or three > four or three > four_half or three > five:
+        doctor.update(overall_rating=3.0)
+
+    if four > one or four > one_half or four > two or four > two_half or four > three or four > three_half or four > four_half or four > five:
+        doctor.update(overall_rating=4.0)
+
+    if five > one or five > one_half or five > two or five > two_half or five > three or five > three_half or five > four or five > four_half:
+        doctor.update(overall_rating=5.0)
+
+    # half's
+
+    if four_half > one or four_half > one_half or four_half > two or four_half > two_half or four_half > three or four_half > three_half or four_half > four or four_half > five:
+        doctor.update(overall_rating=4.5)
+
+    if three_half > one or three_half > one_half or three_half > two or three_half > two_half or three_half > three or three_half > four or three_half > four_half or three_half > five:
+        doctor.update(overall_rating=3.5)
+
+    if two_half > one or two_half > one_half or two_half > two or two_half > three or two_half > three_half or two_half > four or two_half > four_half or two_half > five:
+        doctor.update(overall_rating=2.5)
+
+    if one_half > one or one_half > two or one_half > two_half or one_half > three or one_half > three_half or one_half > four or one_half > four_half or one_half > five:
+        doctor.update(overall_rating=1.5)

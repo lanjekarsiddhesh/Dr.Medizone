@@ -37,7 +37,7 @@
                                             <th class="cell">id</th>
                                             <th class="cell">patient</th>
                                             <th class="cell">File name</th>
-                                            <th class="cell"></th>
+                                            <th class="cell">st</th>
                                         </tr>
                                        
                                     </thead>
@@ -47,7 +47,7 @@
                                             <td class="cell">{{forloop.counter}}</td>
                                             <td class="cell">{{i.patientName}}</td>
                                             <td class="cell">{{i.name}}</td>
-                                            <td class="cell"><a class="btn-sm app-btn-secondary" href="{{i.upload.url}}">Download bill</a></td>
+                                            <td class="cell"><a rel="noreferrer" class="btn-sm app-btn-secondary" href={{i.upload.url}}>Download bill</a></td>
                                         </tr>
                                         {% empty %}
                                         <div class="alert alert-danger" role="alert">

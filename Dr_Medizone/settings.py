@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
-from dotenv import load_dotenv, dotenv_values
+from dotenv import load_dotenv
 load_dotenv() 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -95,7 +95,7 @@ DATABASES = {
         'NAME': os.getenv("DATABASE_NAME"),  
         'USER': os.getenv("DATABASE_USERNAME"),  
         'PASSWORD': os.getenv("DATABASE_PASSWORD"),  
-        'HOST': '127.0.0.1',  
+        'HOST': os.getenv("DATABASE_HOST"),  
         'PORT': os.getenv("DATABASE_PORT"),  
         'OPTIONS': {  
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
@@ -153,12 +153,13 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+EMAIL_HOST_USER = 'lanjekarsiddhu1@gmail.com'
+EMAIL_HOST_PASSWORD = 'mqqm tatz eukr enjy'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 
 
